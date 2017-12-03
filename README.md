@@ -1,5 +1,6 @@
 # Android Project 🤖
 This is my first project in _Android_.
+It has been developped in my third year at the Haute École en Hainaut for the _Développement mobile - Applications sur Android_ course.
 
 ## The project 👨🏻‍💻
 
