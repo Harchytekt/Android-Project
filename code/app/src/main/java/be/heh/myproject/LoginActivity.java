@@ -33,7 +33,7 @@ public class LoginActivity extends Activity {
         userDB.Close();
 
         for (User u: tabUser) {
-            Toast.makeText(getApplicationContext(), u.getEmail(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), u.getEmail() + " " + u.getId(), Toast.LENGTH_LONG).show();
         }*/
 
     }

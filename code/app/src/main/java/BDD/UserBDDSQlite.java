@@ -31,6 +31,12 @@ public class UserBDDSQlite extends SQLiteOpenHelper {
             COL_EMAIL + ") VALUES (" +
             "'Super', 'Utilisateur', 'android3', 'android');";
 
+    private static final String ADD_USER = "INSERT INTO "+ TABLE_USER +
+            " (" + COL_LASTNAME + ", " +
+            COL_FIRSTNAME + ", " + COL_PASSWORD + ", " +
+            COL_EMAIL + ") VALUES (" +
+            "'Ducobu', 'Alexandre', 'Test123*', 'test@heh.be');";
+
     public UserBDDSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);
     }
@@ -39,6 +45,7 @@ public class UserBDDSQlite extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_DB);
         db.execSQL(ADD_SUPER);
+        db.execSQL(ADD_USER);
     }
 
     @Override
