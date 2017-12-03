@@ -1,6 +1,6 @@
 # Android Project 🤖
 This is my first project in _Android_.
-It has been developped in my third year at the Haute École en Hainaut for the _Développement mobile - Applications sur Android_ course.
+It has been developped in my third year at the Haute École en Hainaut for the _Développement mobile - Applications sur Android_ course.
 
 ## The project 👨🏻‍💻
 
@@ -17,8 +17,8 @@ We have carte blanche as for the presentation of the interface: **Material Desig
 
 ## The users 👨‍👩‍👧‍👦
 
-<details><summary>It is necessary to provide user management.
-_Read_ or _read/write_ rights will not be set to all users!</summary>
+<details><summary>It is necessary to provide user management.  
+Read or read/write rights will not be set to all users!</summary>
 
 Every user is registered with the "**Basic**" profile and has the right to read.
 A user is represented by his name, firstname and email address as well as a password. It connects via its login: email address and password (minimum 4 characters).
