@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/iv_login_icon"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/home" />
+
+    <TextView
+        android:id="@+id/tv_login_title"
+        android:layout_marginTop="50dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:text="Accueil- SuperUser"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+</LinearLayout>
