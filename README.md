@@ -5,8 +5,8 @@ It has been developped in my third year at the Haute École en Hainaut for the _
 ## The project 👨🏻‍💻
 
 It involves the supervision and remote control of two industrial processes:
-- Packaging of tablets, controlled by the PLC S7-1516 2DPPN.
-- Liquid level control, controlled by PLC S7-1214C.
+- Packaging of tablets, controlled by the PLC S7-1516 2DPPN automaton.
+- Liquid level control, controlled by the PLC S7-1214C automaton.
 
 ## The design 👨🏻‍🎨
 
