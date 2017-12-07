@@ -27,15 +27,14 @@ public class LoginActivity extends Activity {
         et_login_email = findViewById(R.id.et_login_email);
         et_login_pwd   = findViewById(R.id.et_login_pwd);
 
-        /*UserAccessBDD userDB = new UserAccessBDD(this);
+        UserAccessBDD userDB = new UserAccessBDD(this);
         userDB.openForWrite();
         ArrayList<User> tabUser = userDB.getAllUser();
         userDB.Close();
 
         for (User u: tabUser) {
-            //Password pwd = new Password(u.getPassword());
-            Toast.makeText(getApplicationContext(), u.getPassword(), Toast.LENGTH_LONG).show();
-        }*/
+            Toast.makeText(getApplicationContext(), u.getId() + " " + u.getEmail(), Toast.LENGTH_LONG).show();
+        }
 
     }
 
