@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import be.heh.myproject.Password;
+
 /**
  * Created by alexandre on 1/12/17.
  */
@@ -22,7 +24,7 @@ public class UserAccessBDD {
     private static final String COL_FIRSTNAME = "FIRSTNAME";
     private static final String COL_PASSWORD = "PASSWORD";
     private static final String COL_EMAIL = "EMAIL";
-    
+
     private static final int NUM_COL_ID = 0;
     private static final int NUM_COL_LASTNAME = 1;
     private static final int NUM_COL_FIRSTNAME = 2;
@@ -49,19 +51,21 @@ public class UserAccessBDD {
     }
 
     public long insertUser(User u) {
+        Password pwd = new Password(u.getPassword());
         ContentValues content = new ContentValues();
         content.put(COL_LASTNAME, u.getLastname());
         content.put(COL_FIRSTNAME, u.getFirstname());
-        content.put(COL_PASSWORD, u.getPassword());
+        content.put(COL_PASSWORD, pwd.getGeneratedPassword());
         content.put(COL_EMAIL, u.getEmail());
         return db.insert(TABLE_USER, null, content);
     }
 
     public int updateUser(int i, User u) {
+        Password pwd = new Password(u.getPassword());
         ContentValues content = new ContentValues();
         content.put(COL_LASTNAME, u.getLastname());
         content.put(COL_FIRSTNAME, u.getFirstname());
-        content.put(COL_PASSWORD, u.getPassword());
+        content.put(COL_PASSWORD, pwd.getGeneratedPassword());
         content.put(COL_EMAIL, u.getEmail());
         return db.update(TABLE_USER, content, COL_ID + " = " + i, null);
     }

@@ -29,13 +29,17 @@ public class UserBDDSQlite extends SQLiteOpenHelper {
             " (" + COL_LASTNAME + ", " +
             COL_FIRSTNAME + ", " + COL_PASSWORD + ", " +
             COL_EMAIL + ") VALUES (" +
-            "'Super', 'Utilisateur', 'android3', 'android');";
+            "'Super', 'Utilisateur'," +
+            "'1bf95edc5009fe6f2174bc6bf2938c562a8aaedfdcc91ee16756990013c7692e4692aef843090d874a2d601fa9267983b2a86bd27eb6e27d4c2c5110bef4611a'," +
+            "'android');";
 
     private static final String ADD_USER = "INSERT INTO "+ TABLE_USER +
             " (" + COL_LASTNAME + ", " +
             COL_FIRSTNAME + ", " + COL_PASSWORD + ", " +
             COL_EMAIL + ") VALUES (" +
-            "'Ducobu', 'Alexandre', 'Test123*', 'test@heh.be');";
+            "'Ducobu', 'Alexandre'," +
+            "'a66d85048925a32ab6e288a78e7a20c98b937d7e1fdbdc5f8b38e6b89792d896a7fbfa13573326fe3b12a39a2478b0a43f40ebf49dec90d35236bcf3c96b09f2'," +
+            "'test@heh.be');";
 
     public UserBDDSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);

@@ -33,7 +33,8 @@ public class LoginActivity extends Activity {
         userDB.Close();
 
         for (User u: tabUser) {
-            Toast.makeText(getApplicationContext(), u.getEmail() + " " + u.getId(), Toast.LENGTH_LONG).show();
+            //Password pwd = new Password(u.getPassword());
+            Toast.makeText(getApplicationContext(), u.getPassword(), Toast.LENGTH_LONG).show();
         }*/
 
     }
@@ -91,8 +92,9 @@ public class LoginActivity extends Activity {
      * @return true if the credentials are corrects, false otherwise.
      */
     public boolean isInBDD(User user) {
+        Password pwd = new Password(et_login_pwd.getText().toString());
         return (user.getEmail().equals(et_login_email.getText().toString())
-                && user.getPassword().equals(et_login_pwd.getText().toString()));
+                && user.getPassword().equals(pwd.getGeneratedPassword()));
     }
 
     /**
