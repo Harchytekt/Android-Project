@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import BDD.User;
@@ -25,6 +26,13 @@ public class RegisterActivity extends Activity {
     private TextWatcher firstname;
     private TextWatcher email;
     private TextWatcher password;
+
+    private boolean validLastname;
+    private boolean validFirstname;
+    private boolean validPassword;
+    private boolean validEmail;
+
+    UserAccessBDD userDB = new UserAccessBDD(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +68,8 @@ public class RegisterActivity extends Activity {
                         et_register_email.getText().toString().isEmpty() ||
                         et_register_pwd.getText().toString().isEmpty())
                     Toast.makeText(getApplicationContext(), "⚠️️ Veuillez compléter tous les champs ! ⚠️ ", Toast.LENGTH_LONG).show();
+                else if (!isValid())
+                    Toast.makeText(getApplicationContext(), "⚠️️ Veuillez vérifier les champs erronés ! ⚠️ ", Toast.LENGTH_LONG).show();
                 else {
                     Password pwd = new Password(et_register_pwd.getText().toString());
 
@@ -91,8 +101,12 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Pattern.matches("^(([A-za-z]+[\\s|-]{1}[A-za-z]+)|([A-Za-z]+))$", et_register_lastname.getText().toString()))
+                if (!Pattern.matches("^(([A-z][a-z]+[\\s|-]{1}[A-z][a-z]+)|([A-Z][a-z]+))$", et_register_lastname.getText().toString())) {
                     et_register_lastname.setError("Format incorrect !");
+                    validLastname = false;
+                } else {
+                    validLastname = true;
+                }
             }
         };
 
@@ -105,8 +119,12 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Pattern.matches("^(([A-za-z]+[\\s|-]{1}[A-za-z]+)|([A-Za-z]+))$", et_register_firstname.getText().toString()))
+                if (!Pattern.matches("^(([A-z][a-z]+[\\s|-]{1}[A-z][a-z]+)|([A-Z][a-z]+))$", et_register_firstname.getText().toString())) {
                     et_register_firstname.setError("Format incorrect !");
+                    validFirstname = false;
+                } else {
+                    validFirstname = true;
+                }
             }
         };
 
@@ -119,8 +137,21 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!isValidEmail(et_register_email.getText().toString()))
+                if (!isValidEmail(et_register_email.getText().toString())) {
                     et_register_email.setError("Format d'email incorrect !");
+                    validEmail = false;
+                } else {
+                    validEmail = true;
+                }
+
+                userDB.openForWrite();
+                if (userDB.isAlreadyUsed(et_register_email.getText().toString())) {
+                    et_register_email.setError("Cette adresse est déjà utilisée !");
+                    userDB.Close();
+                    validEmail = false;
+                } else {
+                    validEmail = true;
+                }
             }
         };
 
@@ -133,8 +164,12 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,16}$", et_register_pwd.getText().toString()))
+                if (!Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,16}$", et_register_pwd.getText().toString())) {
                     et_register_pwd.setError("Minimum 4 caractères, au moins 1 majuscule, 1 minuscule et 1 chiffre.");
+                    validPassword = false;
+                } else {
+                    validPassword = true;
+                }
             }
         };
     }
@@ -145,6 +180,10 @@ public class RegisterActivity extends Activity {
         } else {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
+    }
+
+    public boolean isValid() {
+        return validLastname && validFirstname && validPassword && validEmail;
     }
 
 }
