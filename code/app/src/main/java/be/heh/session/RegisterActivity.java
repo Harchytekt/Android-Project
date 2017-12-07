@@ -1,4 +1,4 @@
-package be.heh.myproject;
+package be.heh.session;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,11 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import BDD.User;
 import BDD.UserAccessBDD;
+import be.heh.myproject.R;
 
 public class RegisterActivity extends Activity {
 

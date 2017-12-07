@@ -6,9 +6,9 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.HashMap;
+
+import be.heh.session.Session;
 
 public class SuperHomeActivity extends Activity {
 
@@ -31,12 +31,10 @@ public class SuperHomeActivity extends Activity {
 
         //Toast.makeText(getApplicationContext(),"User Login Status: " + session.isUserLoggedIn(), Toast.LENGTH_LONG).show();
 
-        // If User is not logged in , This will redirect user to LoginActivity
-        // and finish current activity from activity stack.
+        // If not logged in, redirection to LoginActivity
         if (session.checkLogin())
             finish();
 
-        // get user data from session
         HashMap<String, String> user = session.getUserDetails();
 
         String email = user.get(Session.KEY_EMAIl);

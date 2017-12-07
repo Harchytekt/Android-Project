@@ -1,11 +1,10 @@
-package be.heh.myproject;
+package be.heh.session;
 
 /**
  * Created by alexandre on 7/12/17.
  */
 
 import java.util.HashMap;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;

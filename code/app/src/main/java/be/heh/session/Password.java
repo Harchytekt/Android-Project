@@ -1,4 +1,4 @@
-package be.heh.myproject;
+package be.heh.session;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

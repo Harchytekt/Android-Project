@@ -1,4 +1,4 @@
-package be.heh.myproject;
+package be.heh.session;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 import BDD.User;
 import BDD.UserAccessBDD;
+import be.heh.myproject.HomeActivity;
+import be.heh.myproject.R;
+import be.heh.myproject.SuperHomeActivity;
 
 public class LoginActivity extends Activity {
 
