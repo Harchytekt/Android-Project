@@ -11,14 +11,16 @@ public class User {
     private String firstname;
     private String password;
     private String email;
+    private String type;
 
     public User(){}
 
-    public User(String lastname, String firstname, String password, String email) {
+    public User(String lastname, String firstname, String password, String email, String type) {
         this.lastname  = lastname;
         this.firstname = firstname;
         this.password  = password;
         this.email     = email;
+        this.type      = type;
     }
 
     public int getId() {
@@ -61,6 +63,14 @@ public class User {
         this.email = email;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -69,7 +79,8 @@ public class User {
                 "Lastname : " + getLastname() + "\n" +
                 "Firstname : " + getFirstname() + "\n" +
                 "Password : " + getPassword() + "\n" +
-                "Email : " + getEmail());
+                "Email : " + getEmail() + "\n" +
+                "Type : " + getType());
         return sb.toString();
     }
 

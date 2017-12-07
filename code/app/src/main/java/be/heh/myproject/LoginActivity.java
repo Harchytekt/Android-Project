@@ -100,10 +100,10 @@ public class LoginActivity extends Activity {
      * Verify if the user is a superuser.
      * @param user
      *      The user to test.
-     * @return true if the user is android, false otherwise.
+     * @return true if the user type is 1, false otherwise.
      */
     public boolean isSuper(User user) {
-        return (user.getEmail().equals("android"));
+        return (user.getType().equals("1"));
     }
 
 }

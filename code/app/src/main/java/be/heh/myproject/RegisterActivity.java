@@ -65,7 +65,7 @@ public class RegisterActivity extends Activity {
 
                     User user1 = new User(et_register_lastname.getText().toString(),
                             et_register_firstname.getText().toString(),
-                            pwd.getGeneratedPassword(), et_register_email.getText().toString());
+                            pwd.getGeneratedPassword(), et_register_email.getText().toString(), "0");
 
                     UserAccessBDD userDB = new UserAccessBDD(this);
                     userDB.openForWrite();

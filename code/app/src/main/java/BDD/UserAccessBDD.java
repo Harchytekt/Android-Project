@@ -24,12 +24,14 @@ public class UserAccessBDD {
     private static final String COL_FIRSTNAME = "FIRSTNAME";
     private static final String COL_PASSWORD = "PASSWORD";
     private static final String COL_EMAIL = "EMAIL";
+    private static final String COL_TYPE = "TYPE";
 
     private static final int NUM_COL_ID = 0;
     private static final int NUM_COL_LASTNAME = 1;
     private static final int NUM_COL_FIRSTNAME = 2;
     private static final int NUM_COL_PASSWORD = 3;
     private static final int NUM_COL_EMAIL = 4;
+    private static final int NUM_COL_TYPE = 5;
 
     private SQLiteDatabase db;
     private UserBDDSQlite userdb;
@@ -57,6 +59,7 @@ public class UserAccessBDD {
         content.put(COL_FIRSTNAME, u.getFirstname());
         content.put(COL_PASSWORD, pwd.getGeneratedPassword());
         content.put(COL_EMAIL, u.getEmail());
+        content.put(COL_TYPE, u.getType());
         return db.insert(TABLE_USER, null, content);
     }
 
@@ -67,6 +70,7 @@ public class UserAccessBDD {
         content.put(COL_FIRSTNAME, u.getFirstname());
         content.put(COL_PASSWORD, pwd.getGeneratedPassword());
         content.put(COL_EMAIL, u.getEmail());
+        content.put(COL_TYPE, u.getType());
         return db.update(TABLE_USER, content, COL_ID + " = " + i, null);
     }
 
@@ -76,7 +80,7 @@ public class UserAccessBDD {
 
     public ArrayList<User> getAllUser() {
         Cursor c = db.query(TABLE_USER, new String[]{
-                COL_ID, COL_LASTNAME, COL_FIRSTNAME, COL_PASSWORD, COL_EMAIL}, null, null, null, null, COL_EMAIL);
+                COL_ID, COL_LASTNAME, COL_FIRSTNAME, COL_PASSWORD, COL_EMAIL, COL_TYPE}, null, null, null, null, COL_EMAIL);
         ArrayList<User> tabUser = new ArrayList<User>();
 
         if (c.getCount() == 0) {
@@ -91,6 +95,7 @@ public class UserAccessBDD {
             user1.setFirstname(c.getString(NUM_COL_FIRSTNAME));
             user1.setPassword(c.getString(NUM_COL_PASSWORD));
             user1.setEmail(c.getString(NUM_COL_EMAIL));
+            user1.setType(c.getString(NUM_COL_TYPE));
             tabUser.add(user1);
         }
 
