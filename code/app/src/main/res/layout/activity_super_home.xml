@@ -6,23 +6,37 @@
     android:background="@color/green"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".LoginActivity">
+    tools:context=".SuperHomeActivity">
 
     <ImageView
-        android:id="@+id/iv_login_icon"
+        android:id="@+id/iv_superHome_icon"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:src="@drawable/super_home" />
 
     <TextView
-        android:id="@+id/tv_login_title"
+        android:id="@+id/tv_superHome_email"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_superHome_title"
         android:layout_marginTop="50dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="Accueil- SuperUser"
+        android:text="Accueil- Admin"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/white"/>
+
+
+    <Button android:id="@+id/btn_superHome_logout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Déconnexion"
+        android:onClick="onSuperHomeClickManager" />
 
 </LinearLayout>

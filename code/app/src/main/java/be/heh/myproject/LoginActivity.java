@@ -16,7 +16,11 @@ public class LoginActivity extends Activity {
 
     EditText et_login_email;
     EditText et_login_pwd;
-    boolean isSuper;
+
+    private Session session;
+
+    private boolean isSuper;
+    private String rights;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,8 @@ public class LoginActivity extends Activity {
 
         et_login_email = findViewById(R.id.et_login_email);
         et_login_pwd   = findViewById(R.id.et_login_pwd);
+
+        session = new Session(getApplicationContext());
 
         /*UserAccessBDD userDB = new UserAccessBDD(this);
         userDB.openForWrite();
@@ -41,7 +47,7 @@ public class LoginActivity extends Activity {
     }
 
     public void onLoginClickManager(View v) {
-        // Récupérer la vue et accéder au bouton
+
         switch (v.getId()) {
             case R.id.btn_login_register:
 
@@ -56,10 +62,19 @@ public class LoginActivity extends Activity {
                 userDB.Close();
 
                 if (login(tabUser)) {
+
+                    session.createUserLoginSession(et_login_email.getText().toString(), rights);
+
+                    // Starting home activity
                     Intent intentHome = isSuper ?
                             new Intent(this, SuperHomeActivity.class) :
                             new Intent(this, HomeActivity.class);
+                    intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intentHome);
+
+                    finish();
                 } else
                     Toast.makeText(getApplicationContext(), "⚠️ L'utilisateur n'existe pas ! ⚠️ ", Toast.LENGTH_LONG).show();
 
@@ -78,6 +93,7 @@ public class LoginActivity extends Activity {
 
         for (User user : tabUser) {
             if (isInBDD(user)) {
+                rights = user.getRights().toString();
                 isSuper = user.isSuper();
                 return true;
             }

@@ -6,23 +6,37 @@
     android:background="@color/veryLightYellow"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".LoginActivity">
+    tools:context=".HomeActivity">
 
     <ImageView
-        android:id="@+id/iv_login_icon"
+        android:id="@+id/iv_home_icon"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:src="@drawable/home" />
 
     <TextView
-        android:id="@+id/tv_login_title"
+        android:id="@+id/tv_home_email"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_home_title"
         android:layout_marginTop="50dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="Accueil- User"
+        android:text="Accueil"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
+
+
+    <Button android:id="@+id/btn_home_logout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Déconnexion"
+        android:onClick="onHomeClickManager" />
 
 </LinearLayout>
