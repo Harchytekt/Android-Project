@@ -55,16 +55,23 @@ public class RegisterActivity extends Activity {
                 break;
             case R.id.btn_register_register:
 
-                Password pwd = new Password(et_register_pwd.getText().toString());
+                if (et_register_lastname.getText().toString().isEmpty() ||
+                        et_register_firstname.getText().toString().isEmpty() ||
+                        et_register_email.getText().toString().isEmpty() ||
+                        et_register_pwd.getText().toString().isEmpty())
+                    Toast.makeText(getApplicationContext(), "⚠️️ Veuillez compléter tous les champs ! ⚠️ ", Toast.LENGTH_LONG).show();
+                else {
+                    Password pwd = new Password(et_register_pwd.getText().toString());
 
-                User user1 = new User(et_register_lastname.getText().toString(),
-                        et_register_firstname.getText().toString(),
-                        pwd.getGeneratedPassword(), et_register_email.getText().toString());
+                    User user1 = new User(et_register_lastname.getText().toString(),
+                            et_register_firstname.getText().toString(),
+                            pwd.getGeneratedPassword(), et_register_email.getText().toString());
 
-                UserAccessBDD userDB = new UserAccessBDD(this);
-                userDB.openForWrite();
-                userDB.insertUser(user1);
-                userDB.Close();
+                    UserAccessBDD userDB = new UserAccessBDD(this);
+                    userDB.openForWrite();
+                    userDB.insertUser(user1);
+                    userDB.Close();
+                }
 
                 break;
         }

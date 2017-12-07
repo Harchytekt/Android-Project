@@ -59,7 +59,7 @@ public class LoginActivity extends Activity {
                             new Intent(this, HomeActivity.class);
                     startActivity(intentHome);
                 } else
-                    Toast.makeText(getApplicationContext(), "⚠️ L'utilisateur n'existe pas ! ⚠", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "⚠️ L'utilisateur n'existe pas ! ⚠️ ", Toast.LENGTH_LONG).show();
 
                 break;
         }
