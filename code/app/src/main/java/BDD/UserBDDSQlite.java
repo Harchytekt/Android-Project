@@ -31,7 +31,7 @@ public class UserBDDSQlite extends SQLiteOpenHelper {
             " (" + COL_LASTNAME + ", " +
             COL_FIRSTNAME + ", " + COL_PASSWORD + ", " +
             COL_EMAIL + ", " + COL_RIGHTS + ") VALUES (" +
-            "'Super', 'Utilisateur'," +
+            "'Ducobu', 'Alexandre'," +
             "'1bf95edc5009fe6f2174bc6bf2938c562a8aaedfdcc91ee16756990013c7692e4692aef843090d874a2d601fa9267983b2a86bd27eb6e27d4c2c5110bef4611a'," +
             "'android', '0');";
 
