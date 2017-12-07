@@ -16,7 +16,7 @@ public class UserBDDSQlite extends SQLiteOpenHelper {
     private static final String COL_FIRSTNAME = "FIRSTNAME";
     private static final String COL_PASSWORD = "PASSWORD";
     private static final String COL_EMAIL = "EMAIL";
-    private static final String COL_TYPE = "TYPE";
+    private static final String COL_RIGHTS = "RIGHTS";
 
     private static final String CREATE_DB = "CREATE TABLE IF NOT EXISTS " +
             TABLE_USER + " (" +
@@ -25,23 +25,23 @@ public class UserBDDSQlite extends SQLiteOpenHelper {
             COL_FIRSTNAME + " TEXT NOT NULL, " +
             COL_PASSWORD + " TEXT NOT NULL, " +
             COL_EMAIL + " TEXT NOT NULL, " +
-            COL_TYPE + " TEXT NOT NULL);";
+            COL_RIGHTS + " TEXT NOT NULL);";
 
     private static final String ADD_SUPER = "INSERT INTO "+ TABLE_USER +
             " (" + COL_LASTNAME + ", " +
             COL_FIRSTNAME + ", " + COL_PASSWORD + ", " +
-            COL_EMAIL + ", " + COL_TYPE + ") VALUES (" +
+            COL_EMAIL + ", " + COL_RIGHTS + ") VALUES (" +
             "'Super', 'Utilisateur'," +
             "'1bf95edc5009fe6f2174bc6bf2938c562a8aaedfdcc91ee16756990013c7692e4692aef843090d874a2d601fa9267983b2a86bd27eb6e27d4c2c5110bef4611a'," +
-            "'android', '1');";
+            "'android', '0');";
 
     private static final String ADD_USER = "INSERT INTO "+ TABLE_USER +
             " (" + COL_LASTNAME + ", " +
             COL_FIRSTNAME + ", " + COL_PASSWORD + ", " +
-            COL_EMAIL + ", " + COL_TYPE + ") VALUES (" +
+            COL_EMAIL + ", " + COL_RIGHTS + ") VALUES (" +
             "'Ducobu', 'Alexandre'," +
             "'a66d85048925a32ab6e288a78e7a20c98b937d7e1fdbdc5f8b38e6b89792d896a7fbfa13573326fe3b12a39a2478b0a43f40ebf49dec90d35236bcf3c96b09f2'," +
-            "'test@heh.be', '0');";
+            "'alexandre@heh.be', '1');";
 
     public UserBDDSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);

@@ -11,16 +11,24 @@ public class User {
     private String firstname;
     private String password;
     private String email;
-    private String type;
+    private String rights;
 
     public User(){}
 
-    public User(String lastname, String firstname, String password, String email, String type) {
+    public User(String lastname, String firstname, String password, String email, String rights) {
         this.lastname  = lastname;
         this.firstname = firstname;
         this.password  = password;
         this.email     = email;
-        this.type      = type;
+        this.rights    = rights;
+    }
+
+    public User(String lastname, String firstname, String password, String email) {
+        this.lastname  = lastname;
+        this.firstname = firstname;
+        this.password  = password;
+        this.email     = email;
+        rights         = "2";
     }
 
     public int getId() {
@@ -63,12 +71,42 @@ public class User {
         this.email = email;
     }
 
-    public String getType() {
-        return type;
+    public String getRights() {
+        return rights;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRights(String rights) {
+        this.rights = rights;
+    }
+
+    /**
+     * Verify if the user is a superuser.
+     *
+     * @return true if the user rights is 1, false otherwise.
+     */
+    public boolean isSuper() {
+        return rights.equals("0");
+    }
+
+    /**
+     * Set the user rights to super.
+     */
+    public void setSuper() {
+        rights = "0";
+    }
+
+    /**
+     * Set the user rights to normal with R/W privileges.
+     */
+    public void setReadWrite() {
+        rights = "1";
+    }
+
+    /**
+     * Set the user rights to normal with R privileges.
+     */
+    public void setRead() {
+        rights = "2";
     }
 
     @Override
@@ -80,7 +118,7 @@ public class User {
                 "Firstname : " + getFirstname() + "\n" +
                 "Password : " + getPassword() + "\n" +
                 "Email : " + getEmail() + "\n" +
-                "Type : " + getType());
+                "Type : " + getRights());
         return sb.toString();
     }
 

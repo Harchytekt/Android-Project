@@ -2,7 +2,6 @@ package be.heh.myproject;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -27,14 +26,17 @@ public class LoginActivity extends Activity {
         et_login_email = findViewById(R.id.et_login_email);
         et_login_pwd   = findViewById(R.id.et_login_pwd);
 
-        UserAccessBDD userDB = new UserAccessBDD(this);
+        /*UserAccessBDD userDB = new UserAccessBDD(this);
         userDB.openForWrite();
         ArrayList<User> tabUser = userDB.getAllUser();
         userDB.Close();
 
         for (User u: tabUser) {
-            Toast.makeText(getApplicationContext(), u.getId() + " " + u.getEmail(), Toast.LENGTH_LONG).show();
-        }
+            //Password pwd = new Password("Test123*");
+            //System.out.println(pwd.getGeneratedPassword());
+            //Toast.makeText(getApplicationContext(), u.getId() + " " + u.getEmail(), Toast.LENGTH_LONG).show();
+            System.out.println("id: " + u.getId() + ", rights: " + u.getRights());
+        }*/
 
     }
 
@@ -76,7 +78,7 @@ public class LoginActivity extends Activity {
 
         for (User user : tabUser) {
             if (isInBDD(user)) {
-                isSuper = isSuper(user);
+                isSuper = user.isSuper();
                 return true;
             }
         }
@@ -94,16 +96,6 @@ public class LoginActivity extends Activity {
         Password pwd = new Password(et_login_pwd.getText().toString());
         return (user.getEmail().equals(et_login_email.getText().toString())
                 && user.getPassword().equals(pwd.getGeneratedPassword()));
-    }
-
-    /**
-     * Verify if the user is a superuser.
-     * @param user
-     *      The user to test.
-     * @return true if the user type is 1, false otherwise.
-     */
-    public boolean isSuper(User user) {
-        return (user.getType().equals("1"));
     }
 
 }

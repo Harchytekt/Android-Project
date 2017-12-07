@@ -65,12 +65,16 @@ public class RegisterActivity extends Activity {
 
                     User user1 = new User(et_register_lastname.getText().toString(),
                             et_register_firstname.getText().toString(),
-                            pwd.getGeneratedPassword(), et_register_email.getText().toString(), "0");
+                            pwd.getGeneratedPassword(), et_register_email.getText().toString());
 
                     UserAccessBDD userDB = new UserAccessBDD(this);
                     userDB.openForWrite();
                     userDB.insertUser(user1);
                     userDB.Close();
+
+                    Toast.makeText(getApplicationContext(), "✔️ L'utilisateur a bien été créé ! ✔️ ", Toast.LENGTH_LONG).show();
+
+                    Intent intentLogin = new Intent(this, LoginActivity.class); startActivity(intentLogin);
                 }
 
                 break;
