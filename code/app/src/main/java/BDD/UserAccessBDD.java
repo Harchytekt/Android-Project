@@ -71,7 +71,7 @@ public class UserAccessBDD {
     }
 
     public int removeUser(String email) {
-        return db.delete(TABLE_USER, COL_EMAIL + " = " + email, null);
+        return db.delete(TABLE_USER, COL_EMAIL + " = ?", new String[] {email});
     }
 
     public ArrayList<User> getAllUser() {
@@ -98,6 +98,15 @@ public class UserAccessBDD {
         c.close();
         return tabUser;
 
+    }
+
+    public boolean isAlreadyUsed(String email) {
+        ArrayList<User> tabUser = this.getAllUser();
+        for (User user : tabUser) {
+            if (user.getEmail().equals(email))
+                return true;
+        }
+        return false;
     }
 
 }
