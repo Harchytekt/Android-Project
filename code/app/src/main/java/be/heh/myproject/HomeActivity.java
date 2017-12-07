@@ -36,9 +36,7 @@ public class HomeActivity extends Activity {
             finish();
 
         HashMap<String, String> user = session.getUserDetails();
-
         String email = user.get(Session.KEY_EMAIl);
-
         String rights = user.get(Session.KEY_RIGHTS);
 
         tv_home_email.setText(Html.fromHtml("<b>" + email + "</b> est connecté !"));
