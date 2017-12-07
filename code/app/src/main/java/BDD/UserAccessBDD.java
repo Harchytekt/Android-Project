@@ -16,12 +16,18 @@ public class UserAccessBDD {
     private static final int VERSION = 1;
     private static final String NOM_DB = "User.db";
 
-    private static final String TABLE_USER = "table_user"; private static final String COL_ID = "ID";
+    private static final String TABLE_USER = "table_user";
+    private static final String COL_ID = "ID";
+    private static final String COL_LASTNAME = "LASTNAME";
+    private static final String COL_FIRSTNAME = "FIRSTNAME";
+    private static final String COL_PASSWORD = "PASSWORD";
+    private static final String COL_EMAIL = "EMAIL";
+    
     private static final int NUM_COL_ID = 0;
-    private static final String COL_LASTNAME = "LASTNAME"; private static final int NUM_COL_LASTNAME = 1;
-    private static final String COL_FIRSTNAME = "FIRSTNAME"; private static final int NUM_COL_FIRSTNAME = 2;
-    private static final String COL_PASSWORD = "PASSWORD"; private static final int NUM_COL_PASSWORD = 3;
-    private static final String COL_EMAIL = "EMAIL"; private static final int NUM_COL_EMAIL = 4;
+    private static final int NUM_COL_LASTNAME = 1;
+    private static final int NUM_COL_FIRSTNAME = 2;
+    private static final int NUM_COL_PASSWORD = 3;
+    private static final int NUM_COL_EMAIL = 4;
 
     private SQLiteDatabase db;
     private UserBDDSQlite userdb;

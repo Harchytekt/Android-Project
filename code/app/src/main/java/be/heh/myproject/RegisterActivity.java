@@ -52,17 +52,6 @@ public class RegisterActivity extends Activity {
 
                 break;
             case R.id.btn_register_register:
-                /*Toast.makeText(getApplicationContext()
-                        ,"Lastname : " + et_register_lastname.getText() + "\nFirstname : " + et_register_firstname.getText() + "\nEmail : " + et_register_email.getText() + "\nPassword : " + et_register_pwd.getText()
-                        , Toast.LENGTH_SHORT)
-                        .show();*/
-
-                String str = et_register_lastname.getText().toString() + "#" +
-                        et_register_firstname.getText().toString() + "#" +
-                        et_register_pwd.getText().toString() + "#" +
-                        et_register_email.getText().toString()+ "#";
-
-                Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
 
                 User user1 = new User(et_register_lastname.getText().toString(),
                         et_register_firstname.getText().toString(),
