@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 import BDD.User;
 import BDD.UserAccessBDD;
 
@@ -53,9 +55,11 @@ public class RegisterActivity extends Activity {
                 break;
             case R.id.btn_register_register:
 
+                Password pwd = new Password(et_register_pwd.getText().toString());
+
                 User user1 = new User(et_register_lastname.getText().toString(),
                         et_register_firstname.getText().toString(),
-                        et_register_pwd.getText().toString(), et_register_email.getText().toString());
+                        pwd.getGeneratedPassword(), et_register_email.getText().toString());
 
                 UserAccessBDD userDB = new UserAccessBDD(this);
                 userDB.openForWrite();
@@ -76,8 +80,8 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-            if ( et_register_lastname.getText().toString().length() <= 2 )
-                et_register_lastname.setError("Taille minimale de 2 caractères !");
+                if (!Pattern.matches("^(([A-za-z]+[\\s|-]{1}[A-za-z]+)|([A-Za-z]+))$", et_register_lastname.getText().toString()))
+                    et_register_lastname.setError("Format incorrect !");
             }
         };
 
@@ -90,8 +94,8 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if ( et_register_firstname.getText().toString().length() <= 2 )
-                    et_register_firstname.setError("Taille minimale de 2 caractères !");
+                if (!Pattern.matches("^(([A-za-z]+[\\s|-]{1}[A-za-z]+)|([A-Za-z]+))$", et_register_firstname.getText().toString()))
+                    et_register_firstname.setError("Format incorrect !");
             }
         };
 
@@ -105,7 +109,7 @@ public class RegisterActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!isValidEmail(et_register_email.getText().toString()))
-                    et_register_email.setError("Mauvais format");
+                    et_register_email.setError("Format d'email incorrect !");
             }
         };
 
@@ -118,8 +122,8 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (et_register_pwd.getText().toString().length() <= 4)
-                    et_register_pwd.setError("Longueur minimale de 4 caractères");
+                if (!Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,16}$", et_register_pwd.getText().toString()))
+                    et_register_pwd.setError("Minimum 4 caractères, au moins 1 majuscule, 1 minuscule et 1 chiffre.");
             }
         };
     }
