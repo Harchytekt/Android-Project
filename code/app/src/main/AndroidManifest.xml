@@ -18,7 +18,7 @@
         </activity>
         <activity android:name="be.heh.session.RegisterActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".SuperHomeActivity"></activity>
+        <activity android:name=".SuperHomeActivity" />
     </application>
 
 </manifest>
