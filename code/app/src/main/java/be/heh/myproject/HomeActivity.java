@@ -29,8 +29,6 @@ public class HomeActivity extends Activity {
 
         btn_home_logout = findViewById(R.id.btn_home_logout);
 
-        //Toast.makeText(getApplicationContext(),"User Login Status: " + session.isUserLoggedIn(), Toast.LENGTH_LONG).show();
-
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin())
             finish();
