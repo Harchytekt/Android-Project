@@ -1,4 +1,4 @@
-package BDD;
+package db;
 
 /**
  * Created by alexandre on 1/12/17.

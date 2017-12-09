@@ -1,4 +1,4 @@
-package BDD;
+package db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -107,6 +107,30 @@ public class UserAccessBDD {
                 return true;
         }
         return false;
+    }
+
+    public int getNumberOfUsers() {
+        return this.getAllUser().size();
+    }
+
+    public String getRUsers() {
+        Cursor c = db.rawQuery("SELECT COUNT(*) AS nbR FROM " + TABLE_USER + " where " + COL_RIGHTS + " = '2'", null);
+
+        c.moveToFirst();
+        String res = String.valueOf(c.getInt(0));
+
+        c.close();
+        return res;
+    }
+
+    public String getRWUsers() {
+        Cursor c = db.rawQuery("SELECT COUNT(*) AS nbR FROM " + TABLE_USER + " where " + COL_RIGHTS + " = '1'", null);
+
+        c.moveToFirst();
+        String res = String.valueOf(c.getInt(0));
+
+        c.close();
+        return res;
     }
 
 }

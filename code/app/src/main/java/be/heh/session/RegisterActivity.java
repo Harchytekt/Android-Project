@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
-import BDD.User;
-import BDD.UserAccessBDD;
+import db.User;
+import db.UserAccessBDD;
 import be.heh.myproject.R;
 
 public class RegisterActivity extends Activity {

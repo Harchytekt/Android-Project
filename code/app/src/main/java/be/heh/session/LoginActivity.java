@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-import BDD.User;
-import BDD.UserAccessBDD;
+import db.User;
+import db.UserAccessBDD;
 import be.heh.myproject.HomeActivity;
 import be.heh.myproject.R;
 import be.heh.myproject.SuperHomeActivity;
