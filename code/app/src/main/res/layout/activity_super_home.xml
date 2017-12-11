@@ -26,7 +26,7 @@
         android:layout_marginTop="50dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="Bienvenue ! 👋🏻"
+        android:text="Bienvenue !"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -39,6 +39,15 @@
         android:layout_height="wrap_content"
         android:textColor="@color/grey"
         android:textSize="16sp" />
+
+
+    <Button android:id="@+id/btn_superHome_users"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifier les utilisateurs"
+        android:onClick="onSuperHomeClickManager"
+        android:textColor="@color/darkYellow"
+        style="?android:attr/borderlessButtonStyle" />
 
 
     <Button android:id="@+id/btn_superHome_logout"
