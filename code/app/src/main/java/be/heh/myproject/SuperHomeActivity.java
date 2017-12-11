@@ -1,6 +1,8 @@
 package be.heh.myproject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -48,7 +50,10 @@ public class SuperHomeActivity extends Activity {
         userDB.Close();
 
         tv_superHome_email.setText(Html.fromHtml("<b>" + email + "</b> est connecté !"));
-        tv_superHome_users.setText(Html.fromHtml("Il y a <b>"+ nbUsers + "</b> utilisateurs dont :<br><br><b>" + nbRUsers + "</b> avec un accès en lecture seule;<br><b>" + nbRWUsers + "</b> avec un accès en lecture et écriture."));
+        tv_superHome_users.setText(Html.fromHtml("Il y a <b>"+ nbUsers +
+                "</b> utilisateurs dont :<br><br><b>"+ nbRUsers +
+                "</b> avec un accès en lecture seule;<br><b>" + nbRWUsers +
+                "</b> avec un accès en lecture et écriture."));
     }
 
     public void onSuperHomeClickManager(View v) {
@@ -56,7 +61,22 @@ public class SuperHomeActivity extends Activity {
         switch (v.getId()) {
             case R.id.btn_superHome_logout:
 
-                session.logoutUser();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("Déconnexion")
+                        .setMessage("Voulez-vous vraiment vous déconnecter ?")
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                session.logoutUser();
+                            }
+                        })
+                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).create().show();
 
                 break;
         }
