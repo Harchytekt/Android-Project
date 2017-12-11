@@ -19,7 +19,7 @@ import db.User;
 
 public class UsersAdapter extends ArrayAdapter<User> {
 
-    ImageView iv_userItem_icon;
+    ImageView iv_userItem_userIcon;
     TextView tv_userItem_lastname;
     TextView tv_userItem_firstname;
     TextView tv_userItem_email;
@@ -52,13 +52,13 @@ public class UsersAdapter extends ArrayAdapter<User> {
         }
 
 
-        iv_userItem_icon = convertView.findViewById(R.id.iv_userItem_icon);
+        iv_userItem_userIcon = convertView.findViewById(R.id.iv_userItem_userIcon);
         tv_userItem_lastname = convertView.findViewById(R.id.tv_userItem_lastname);
         tv_userItem_firstname = convertView.findViewById(R.id.tv_userItem_firstname);
         tv_userItem_email = convertView.findViewById(R.id.tv_userItem_email);
         tv_userItem_rights = convertView.findViewById(R.id.tv_userItem_rights);
 
-        iv_userItem_icon.setImageResource(icon);
+        iv_userItem_userIcon.setImageResource(icon);
         tv_userItem_lastname.setText(Html.fromHtml("Nom de famille : <b>" + user.getLastname() + "</b>"));
         tv_userItem_firstname.setText(Html.fromHtml("Prénom : <b>" + user.getFirstname() + "</b>"));
         tv_userItem_email.setText(Html.fromHtml("Email : <b>" + user.getEmail() + "</b>"));

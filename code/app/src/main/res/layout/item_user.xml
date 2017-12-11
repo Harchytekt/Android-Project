@@ -11,7 +11,7 @@
         android:background="#FDF3C8">
 
         <ImageView
-            android:id="@+id/iv_userItem_icon"
+            android:id="@+id/iv_userItem_userIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
@@ -21,9 +21,10 @@
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
+            android:id="@+id/ll"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/iv_userItem_icon"
+            android:layout_toRightOf="@+id/iv_userItem_userIcon"
             android:layout_marginTop="10dp"
             android:orientation="vertical" >
 
@@ -52,6 +53,28 @@
                 android:textSize="18dp" />
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_userItem_editIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_toRightOf="@+id/ll"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="44dp"
+            android:src="@drawable/ic_edit"
+            android:background="@android:color/transparent" />
+
+        <!--<ImageView
+            android:id="@+id/iv_userItem_editIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_toRightOf="@+id/ll"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="44dp"
+            android:src="@drawable/ic_edit" />-->
 
     </RelativeLayout>
 
