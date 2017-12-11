@@ -1,4 +1,4 @@
-package be.heh.myproject;
+package be.heh.main;
 
 import org.junit.Test;
 

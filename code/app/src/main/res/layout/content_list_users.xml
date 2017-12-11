@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    android:orientation="vertical"
+    android:gravity="center_horizontal" >
+
+    <TextView
+        android:id="@+id/tv_listUsers_email"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_listUsers_title"
+        android:layout_marginTop="50dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:text="Liste des utilisateurs"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <ListView
+        android:layout_below="@+id/tv_listUsers_title"
+        android:id="@+id/lv_listUsers_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="be.heh.myproject">
+    package="be.heh.main">
 
     <application
         android:allowBackup="true"
@@ -30,6 +30,7 @@
             android:name=".SuperHomeActivity"
             android:label="@string/title_activity_super_home"
             android:screenOrientation="portrait" />
+        <activity android:name=".ListUsersActivity"></activity>
     </application>
 
 </manifest>

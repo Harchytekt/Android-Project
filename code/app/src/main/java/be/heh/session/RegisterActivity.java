@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 import db.User;
 import db.UserAccessBDD;
-import be.heh.myproject.R;
+import be.heh.main.R;
 
 public class RegisterActivity extends Activity {
 

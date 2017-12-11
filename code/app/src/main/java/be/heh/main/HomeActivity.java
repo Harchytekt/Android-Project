@@ -1,4 +1,4 @@
-package be.heh.myproject;
+package be.heh.main;
 
 import android.app.Activity;
 import android.os.Bundle;

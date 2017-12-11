@@ -1,14 +1,13 @@
-package be.heh.myproject;
+package be.heh.main;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.Html;
 import android.view.View;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -19,8 +18,6 @@ import db.UserAccessBDD;
 public class SuperHomeActivity extends Activity {
 
     private Session session;
-    Button btn_superHome_logout;
-    TextView tv_superHome_title;
     TextView tv_superHome_email;
     TextView tv_superHome_users;
     FloatingActionButton fab_superHome_logout;
@@ -32,7 +29,6 @@ public class SuperHomeActivity extends Activity {
 
         session = new Session(getApplicationContext());
 
-        tv_superHome_title = findViewById(R.id.tv_superHome_title);
         tv_superHome_email = findViewById(R.id.tv_superHome_email);
         tv_superHome_users = findViewById(R.id.tv_superHome_users);
 
@@ -43,8 +39,6 @@ public class SuperHomeActivity extends Activity {
             finish();
 
         HashMap<String, String> user = session.getUserDetails();
-        String email = user.get(Session.KEY_EMAIl);
-        String rights = user.get(Session.KEY_RIGHTS);
 
         UserAccessBDD userDB = new UserAccessBDD(this);
         userDB.openForWrite();
@@ -53,25 +47,19 @@ public class SuperHomeActivity extends Activity {
         String nbRWUsers = userDB.getRWUsers();
         userDB.Close();
 
-        tv_superHome_email.setText(Html.fromHtml("<b>" + email + "</b> est connecté !"));
+        tv_superHome_email.setText(Html.fromHtml("<b>" + user.get(Session.KEY_EMAIl) + "</b> est connecté !"));
         tv_superHome_users.setText(Html.fromHtml("Il y a <b>"+ nbUsers +
-                "</b> utilisateurs dont :<br><br><b>"+ nbRUsers +
-                "</b> avec un accès en lecture seule;<br><b>" + nbRWUsers +
-                "</b> avec un accès en lecture et écriture."));
-
-
-        /*fab_superHome_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Déconnexion", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+                "</b> utilisateurs dont :<br><br>" +
+                "<b>"+ nbRUsers + "</b> avec un accès en lecture seule;<br>" +
+                "<b>" + nbRWUsers + "</b> avec un accès en lecture et écriture."));
     }
 
     public void onSuperHomeClickManager(View v) {
 
         switch (v.getId()) {
+            case R.id.btn_superHome_users:
+                Intent intentListUsers = new Intent(this, ListUsersActivity.class); startActivity(intentListUsers);
+                break;
             case R.id.fab_superHome_logout:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);

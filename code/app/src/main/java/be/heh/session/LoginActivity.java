@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 import db.User;
 import db.UserAccessBDD;
-import be.heh.myproject.HomeActivity;
-import be.heh.myproject.R;
-import be.heh.myproject.SuperHomeActivity;
+import be.heh.main.HomeActivity;
+import be.heh.main.R;
+import be.heh.main.SuperHomeActivity;
 
 public class LoginActivity extends Activity {
 
