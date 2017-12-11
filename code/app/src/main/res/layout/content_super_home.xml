@@ -9,6 +9,7 @@
 
     <ImageView
         android:id="@+id/iv_superHome_icon"
+        android:layout_marginTop="15dp"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:src="@drawable/super_home" />
@@ -46,6 +47,6 @@
         android:text="Modifier les utilisateurs"
         android:onClick="onSuperHomeClickManager"
         android:textColor="@color/darkYellow"
-        style="?android:attr/borderlessButtonStyle" />
+        android:background="@android:color/transparent" />
 
 </LinearLayout>
