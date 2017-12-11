@@ -22,7 +22,7 @@ public class ListUsersActivity extends Activity {
     private Session session;
     ArrayList<User> tabUser;
     TextView tv_listUsers_email;
-    ArrayAdapter<User> adapter;
+    UsersAdapter adapter;
     ListView lv_listUsers_list;
 
     @Override
@@ -48,7 +48,7 @@ public class ListUsersActivity extends Activity {
 
         tv_listUsers_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tabUser);
+        adapter = new UsersAdapter(this, tabUser);
         lv_listUsers_list.setAdapter(adapter);
 
     }
