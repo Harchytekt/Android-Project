@@ -4,15 +4,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name="be.heh.session.LoginActivity"
-            android:screenOrientation="portrait" >
-
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +28,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".SuperHomeActivity"
+            android:label="@string/title_activity_super_home"
             android:screenOrientation="portrait" />
     </application>
 

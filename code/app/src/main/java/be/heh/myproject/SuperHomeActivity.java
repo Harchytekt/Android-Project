@@ -1,17 +1,20 @@
 package be.heh.myproject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.app.Activity;
 import android.text.Html;
 import android.view.View;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.widget.Button;
 import android.widget.TextView;
+
 import java.util.HashMap;
 
-import db.UserAccessBDD;
 import be.heh.session.Session;
+import db.UserAccessBDD;
 
 public class SuperHomeActivity extends Activity {
 
@@ -20,6 +23,7 @@ public class SuperHomeActivity extends Activity {
     TextView tv_superHome_title;
     TextView tv_superHome_email;
     TextView tv_superHome_users;
+    FloatingActionButton fab_superHome_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class SuperHomeActivity extends Activity {
         tv_superHome_email = findViewById(R.id.tv_superHome_email);
         tv_superHome_users = findViewById(R.id.tv_superHome_users);
 
-        btn_superHome_logout = findViewById(R.id.btn_superHome_logout);
+        fab_superHome_logout = findViewById(R.id.fab_superHome_logout);
 
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin())
@@ -54,12 +58,21 @@ public class SuperHomeActivity extends Activity {
                 "</b> utilisateurs dont :<br><br><b>"+ nbRUsers +
                 "</b> avec un accès en lecture seule;<br><b>" + nbRWUsers +
                 "</b> avec un accès en lecture et écriture."));
+
+
+        /*fab_superHome_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Déconnexion", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
     }
 
     public void onSuperHomeClickManager(View v) {
 
         switch (v.getId()) {
-            case R.id.btn_superHome_logout:
+            case R.id.fab_superHome_logout:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -81,4 +94,5 @@ public class SuperHomeActivity extends Activity {
                 break;
         }
     }
+
 }

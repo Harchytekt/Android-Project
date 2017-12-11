@@ -1,60 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     tools:context=".SuperHomeActivity">
 
-    <ImageView
-        android:id="@+id/iv_superHome_icon"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:src="@drawable/super_home" />
+    <include layout="@layout/content_super_home" />
 
-    <TextView
-        android:id="@+id/tv_superHome_email"
-        android:layout_width="325dp"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_superHome_logout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:singleLine="true" />
-
-    <TextView
-        android:id="@+id/tv_superHome_title"
-        android:layout_marginTop="50dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:text="Bienvenue !"
-        android:textAlignment="center"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
-
-    <TextView
-        android:id="@+id/tv_superHome_users"
-        android:layout_marginTop="35dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/grey"
-        android:textSize="16sp" />
-
-
-    <Button android:id="@+id/btn_superHome_users"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Modifier les utilisateurs"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        app:srcCompat="@android:drawable/ic_lock_power_off"
         android:onClick="onSuperHomeClickManager"
-        android:textColor="@color/darkYellow"
-        style="?android:attr/borderlessButtonStyle" />
+        app:backgroundTint="@color/red" />
 
-
-    <Button android:id="@+id/btn_superHome_logout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Déconnexion"
-        android:onClick="onSuperHomeClickManager"
-        android:textColor="@color/red" />
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
