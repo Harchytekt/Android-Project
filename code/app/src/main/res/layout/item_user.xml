@@ -78,6 +78,7 @@
                 android:layout_height="32dp"
                 android:layout_marginLeft="15dp"
                 android:src="@drawable/ic_edit"
+                android:onClick="onListUsersClickManager"
                 android:background="@android:color/transparent" />
 
             <ImageButton
@@ -87,20 +88,10 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="19dp"
                 android:src="@drawable/ic_edit"
+                android:onClick="onListUsersClickManager"
                 android:background="@android:color/transparent" />
 
         </LinearLayout>
-
-        <!--<ImageButton
-            android:id="@+id/btn_userItem_editIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_toRightOf="@+id/ll"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="44dp"
-            android:src="@drawable/ic_edit"
-            android:background="@android:color/transparent" />-->
 
     </RelativeLayout>
 

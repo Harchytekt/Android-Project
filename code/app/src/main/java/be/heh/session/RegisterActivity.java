@@ -58,7 +58,8 @@ public class RegisterActivity extends Activity {
         switch (v.getId()) {
             case R.id.btn_register_login:
 
-                Intent intentMain = new Intent(this, LoginActivity.class); startActivity(intentMain);
+                Intent intentMain = new Intent(this, LoginActivity.class);
+                startActivity(intentMain);
 
                 break;
             case R.id.btn_register_register:

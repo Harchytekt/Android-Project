@@ -54,6 +54,30 @@ public class SuperHomeActivity extends Activity {
                 "<b>" + nbRWUsers + "</b> avec un accès en lecture et écriture."));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (session.checkLogin())
+            finish();
+
+        HashMap<String, String> user = session.getUserDetails();
+
+        UserAccessBDD userDB = new UserAccessBDD(this);
+        userDB.openForWrite();
+        int nbUsers = userDB.getNumberOfUsers();
+        String nbRUsers = userDB.getRUsers();
+        String nbRWUsers = userDB.getRWUsers();
+        userDB.Close();
+
+        tv_superHome_email.setText(Html.fromHtml("<b>" + user.get(Session.KEY_EMAIl) + "</b> est connecté !"));
+        tv_superHome_users.setText(Html.fromHtml("Il y a <b>"+ nbUsers +
+                "</b> utilisateurs dont :<br><br>" +
+                "<b>"+ nbRUsers + "</b> avec un accès en lecture seule;<br>" +
+                "<b>" + nbRWUsers + "</b> avec un accès en lecture et écriture."));
+
+    }
+
     public void onSuperHomeClickManager(View v) {
 
         switch (v.getId()) {

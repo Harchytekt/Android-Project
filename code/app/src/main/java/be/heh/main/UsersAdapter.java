@@ -1,16 +1,24 @@
 package be.heh.main;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.Editable;
 import android.text.Html;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import db.User;
 
@@ -25,7 +33,12 @@ public class UsersAdapter extends ArrayAdapter<User> {
     TextView tv_userItem_firstname;
     TextView tv_userItem_email;
     TextView tv_userItem_rights;
+    ImageButton btn_userItem_editIcon;
     ImageButton btn_userItem_removeIcon;
+    CharSequence[] rights = {" Lecture seule "," Lecture-Écriture "};
+    AlertDialog rightsDialog;
+    String chosenRights;
+    User user;
 
     public UsersAdapter(Context context, ArrayList<User> users) {
         super(context, 0, users);
@@ -35,7 +48,7 @@ public class UsersAdapter extends ArrayAdapter<User> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         User user = getItem(position);
-        String rights;
+        final String rights;
         Integer icon;
 
         if (convertView == null) {
@@ -48,6 +61,7 @@ public class UsersAdapter extends ArrayAdapter<User> {
         tv_userItem_firstname = convertView.findViewById(R.id.tv_userItem_firstname);
         tv_userItem_email = convertView.findViewById(R.id.tv_userItem_email);
         tv_userItem_rights = convertView.findViewById(R.id.tv_userItem_rights);
+        btn_userItem_editIcon = convertView.findViewById(R.id.btn_userItem_editIcon);
         btn_userItem_removeIcon = convertView.findViewById(R.id.btn_userItem_removeIcon);
 
 
@@ -68,7 +82,25 @@ public class UsersAdapter extends ArrayAdapter<User> {
         tv_userItem_firstname.setText(Html.fromHtml("Prénom : <b>" + user.getFirstname() + "</b>"));
         tv_userItem_email.setText(Html.fromHtml("Email : <b>" + user.getEmail() + "</b>"));
         tv_userItem_rights.setText(Html.fromHtml("Droits : <b>" + rights + "</b>"));
+        btn_userItem_editIcon.setTag(position);
+        btn_userItem_removeIcon.setTag(position);
 
+
+        /*btn_userItem_editIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (Integer) view.getTag();
+
+                User user = getItem(position);
+
+                if (position == 0) {
+                    createPasswordDialog();
+                } else {
+                    createRightsDialog(Integer.parseInt(user.getRights()) % 2);
+                    System.out.println("here: " + user.getRights());
+                }
+            }
+        });*/
 
         return convertView;
     }
