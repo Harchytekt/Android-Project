@@ -71,7 +71,7 @@ public class ListUsersActivity extends Activity {
     public void onListUsersClickManager(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         switch (v.getId()) {
-            case R.id.btn_userItem_editIcon:
+            case R.id.btn_userItem_passwordIcon:
                 position = (Integer) v.getTag();
 
                 user = adapter.getItem(position);
