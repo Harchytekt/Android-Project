@@ -85,23 +85,6 @@ public class UsersAdapter extends ArrayAdapter<User> {
         btn_userItem_editIcon.setTag(position);
         btn_userItem_removeIcon.setTag(position);
 
-
-        /*btn_userItem_editIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = (Integer) view.getTag();
-
-                User user = getItem(position);
-
-                if (position == 0) {
-                    createPasswordDialog();
-                } else {
-                    createRightsDialog(Integer.parseInt(user.getRights()) % 2);
-                    System.out.println("here: " + user.getRights());
-                }
-            }
-        });*/
-
         return convertView;
     }
 }

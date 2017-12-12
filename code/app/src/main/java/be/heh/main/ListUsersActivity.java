@@ -33,7 +33,6 @@ public class ListUsersActivity extends Activity {
 
     CharSequence[] rights = {" Lecture seule "," Lecture-Écriture "};
     AlertDialog rightsDialog;
-    String chosenRights;
     User user;
     UserAccessBDD userDB = new UserAccessBDD(this);
 
@@ -136,11 +135,9 @@ public class ListUsersActivity extends Activity {
 
                 switch(item) {
                     case 0:
-                        //user.setRights("2");
                         userDB.updateUserRights(user.getId(), "2");
                         break;
                     case 1:
-                        //user.setRights("1");
                         userDB.updateUserRights(user.getId(), "1");
                         break;
                 }
