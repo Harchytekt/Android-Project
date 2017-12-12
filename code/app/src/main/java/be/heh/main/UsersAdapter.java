@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class UsersAdapter extends ArrayAdapter<User> {
     TextView tv_userItem_firstname;
     TextView tv_userItem_email;
     TextView tv_userItem_rights;
+    ImageButton btn_userItem_removeIcon;
 
     public UsersAdapter(Context context, ArrayList<User> users) {
         super(context, 0, users);
@@ -40,6 +42,15 @@ public class UsersAdapter extends ArrayAdapter<User> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_user, parent, false);
         }
 
+
+        iv_userItem_userIcon = convertView.findViewById(R.id.iv_userItem_userIcon);
+        tv_userItem_lastname = convertView.findViewById(R.id.tv_userItem_lastname);
+        tv_userItem_firstname = convertView.findViewById(R.id.tv_userItem_firstname);
+        tv_userItem_email = convertView.findViewById(R.id.tv_userItem_email);
+        tv_userItem_rights = convertView.findViewById(R.id.tv_userItem_rights);
+        btn_userItem_removeIcon = convertView.findViewById(R.id.btn_userItem_removeIcon);
+
+
         if (user.getRights().equals("2")) {
             rights = "Lecture seule";
             icon = R.drawable.r_user;
@@ -48,15 +59,9 @@ public class UsersAdapter extends ArrayAdapter<User> {
             icon = R.drawable.rw_user;
         } else {
             rights = "Super-utilisateur";
+            btn_userItem_removeIcon.setVisibility(View.GONE);
             icon = R.drawable.super_user;
         }
-
-
-        iv_userItem_userIcon = convertView.findViewById(R.id.iv_userItem_userIcon);
-        tv_userItem_lastname = convertView.findViewById(R.id.tv_userItem_lastname);
-        tv_userItem_firstname = convertView.findViewById(R.id.tv_userItem_firstname);
-        tv_userItem_email = convertView.findViewById(R.id.tv_userItem_email);
-        tv_userItem_rights = convertView.findViewById(R.id.tv_userItem_rights);
 
         iv_userItem_userIcon.setImageResource(icon);
         tv_userItem_lastname.setText(Html.fromHtml("Nom de famille : <b>" + user.getLastname() + "</b>"));
