@@ -87,7 +87,7 @@
                 android:layout_height="32dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="19dp"
-                android:src="@drawable/ic_edit"
+                android:src="@drawable/ic_trash"
                 android:onClick="onListUsersClickManager"
                 android:background="@android:color/transparent" />
 
