@@ -69,18 +69,18 @@ public class ListUsersActivity extends Activity {
     }
 
     public void onListUsersClickManager(View v) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder;
         switch (v.getId()) {
             case R.id.btn_userItem_passwordIcon:
+
+                createPasswordDialog();
+
+                break;
+            case R.id.btn_userItem_rightsIcon:
                 position = (Integer) v.getTag();
 
                 user = adapter.getItem(position);
-
-                if (position == 0) {
-                    createPasswordDialog();
-                } else {
-                    createRightsDialog(Integer.parseInt(user.getRights()) % 2);
-                }
+                createRightsDialog(Integer.parseInt(user.getRights()) % 2);
                 break;
             case R.id.btn_userItem_removeIcon:
                 position = (Integer) v.getTag();
