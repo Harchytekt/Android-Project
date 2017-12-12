@@ -76,6 +76,12 @@ public class UserAccessBDD {
         return db.update(TABLE_USER, content, COL_ID + " = " + id, null);
     }
 
+    public int updateUserPassword(int id, String password) {
+        ContentValues content = new ContentValues();
+        content.put(COL_PASSWORD, password);
+        return db.update(TABLE_USER, content, COL_ID + " = " + id, null);
+    }
+
     public int removeUser(String email) {
         return db.delete(TABLE_USER, COL_EMAIL + " = ?", new String[] {email});
     }

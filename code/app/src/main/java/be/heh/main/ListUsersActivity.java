@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import be.heh.session.Password;
 import be.heh.session.Session;
 import db.User;
 import db.UserAccessBDD;
@@ -35,6 +36,8 @@ public class ListUsersActivity extends Activity {
     AlertDialog rightsDialog;
     User user;
     UserAccessBDD userDB = new UserAccessBDD(this);
+    int position;
+    Password pwd;
 
 
     @Override
@@ -66,9 +69,10 @@ public class ListUsersActivity extends Activity {
     }
 
     public void onListUsersClickManager(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         switch (v.getId()) {
             case R.id.btn_userItem_editIcon:
-                int position = (Integer) v.getTag();
+                position = (Integer) v.getTag();
 
                 user = adapter.getItem(position);
 
@@ -78,9 +82,37 @@ public class ListUsersActivity extends Activity {
                     createRightsDialog(Integer.parseInt(user.getRights()) % 2);
                 }
                 break;
+            case R.id.btn_userItem_removeIcon:
+                position = (Integer) v.getTag();
+
+                user = adapter.getItem(position);
+
+                builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("Suppression")
+                        .setMessage("Voulez-vous vraiment supprimer l'utilisateur ?")
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                userDB.openForWrite();
+                                userDB.removeUser(user.getEmail());
+                                tabUser = userDB.getAllUser();
+                                adapter.clear();
+                                adapter.addAll(tabUser);
+                                userDB.Close();
+                            }
+                        })
+                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).create().show();
+
+                break;
             case R.id.fab_superHome_logout:
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder = new AlertDialog.Builder(this);
 
                 builder.setTitle("Déconnexion")
                         .setMessage("Voulez-vous vraiment vous déconnecter ?")
@@ -112,7 +144,17 @@ public class ListUsersActivity extends Activity {
                 .setPositiveButton("Enregistrer", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), inputPassword.getText().toString(), Toast.LENGTH_LONG).show();
+                        pwd = new Password(inputPassword.getText().toString());
+
+                        userDB.openForWrite();
+
+                        userDB.updateUserPassword(user.getId(), pwd.getGeneratedPassword());
+
+                        tabUser = userDB.getAllUser();
+                        adapter.clear();
+                        adapter.addAll(tabUser);
+                        userDB.Close();
+                        System.out.println(inputPassword.getText().toString());
                     }
                 })
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
