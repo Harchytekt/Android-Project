@@ -69,15 +69,25 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ll_textViews"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="8dp"
             android:orientation="vertical" >
 
             <ImageButton
-                android:id="@+id/btn_userItem_editIcon"
+                android:id="@+id/btn_userItem_passwordIcon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_edit"
+                android:src="@drawable/ic_password"
+                android:onClick="onListUsersClickManager"
+                android:background="@android:color/transparent" />
+
+            <ImageButton
+                android:id="@+id/btn_userItem_rightsIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rights"
                 android:onClick="onListUsersClickManager"
                 android:background="@android:color/transparent" />
 
@@ -86,7 +96,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="8dp"
                 android:src="@drawable/ic_trash"
                 android:onClick="onListUsersClickManager"
                 android:background="@android:color/transparent" />

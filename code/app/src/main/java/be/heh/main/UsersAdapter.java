@@ -2,23 +2,16 @@ package be.heh.main;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.text.Editable;
 import android.text.Html;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 import db.User;
 
@@ -29,12 +22,16 @@ import db.User;
 public class UsersAdapter extends ArrayAdapter<User> {
 
     ImageView iv_userItem_userIcon;
+
     TextView tv_userItem_lastname;
     TextView tv_userItem_firstname;
     TextView tv_userItem_email;
     TextView tv_userItem_rights;
-    ImageButton btn_userItem_editIcon;
+
+    ImageButton btn_userItem_passwordIcon;
+    ImageButton btn_userItem_rightsIcon;
     ImageButton btn_userItem_removeIcon;
+
     CharSequence[] rights = {" Lecture seule "," Lecture-Écriture "};
     AlertDialog rightsDialog;
     String chosenRights;
@@ -61,7 +58,8 @@ public class UsersAdapter extends ArrayAdapter<User> {
         tv_userItem_firstname = convertView.findViewById(R.id.tv_userItem_firstname);
         tv_userItem_email = convertView.findViewById(R.id.tv_userItem_email);
         tv_userItem_rights = convertView.findViewById(R.id.tv_userItem_rights);
-        btn_userItem_editIcon = convertView.findViewById(R.id.btn_userItem_editIcon);
+        btn_userItem_passwordIcon = convertView.findViewById(R.id.btn_userItem_passwordIcon);
+        btn_userItem_rightsIcon = convertView.findViewById(R.id.btn_userItem_rightsIcon);
         btn_userItem_removeIcon = convertView.findViewById(R.id.btn_userItem_removeIcon);
 
 
@@ -73,6 +71,7 @@ public class UsersAdapter extends ArrayAdapter<User> {
             icon = R.drawable.rw_user;
         } else {
             rights = "Super-utilisateur";
+            btn_userItem_rightsIcon.setVisibility(View.GONE);
             btn_userItem_removeIcon.setVisibility(View.GONE);
             icon = R.drawable.super_user;
         }
@@ -82,7 +81,8 @@ public class UsersAdapter extends ArrayAdapter<User> {
         tv_userItem_firstname.setText(Html.fromHtml("Prénom : <b>" + user.getFirstname() + "</b>"));
         tv_userItem_email.setText(Html.fromHtml("Email : <b>" + user.getEmail() + "</b>"));
         tv_userItem_rights.setText(Html.fromHtml("Droits : <b>" + rights + "</b>"));
-        btn_userItem_editIcon.setTag(position);
+        btn_userItem_passwordIcon.setTag(position);
+        btn_userItem_rightsIcon.setTag(position);
         btn_userItem_removeIcon.setTag(position);
 
         return convertView;
