@@ -33,9 +33,6 @@ public class UsersAdapter extends ArrayAdapter<User> {
     ImageButton btn_userItem_removeIcon;
 
     CharSequence[] rights = {" Lecture seule "," Lecture-Écriture "};
-    AlertDialog rightsDialog;
-    String chosenRights;
-    User user;
 
     public UsersAdapter(Context context, ArrayList<User> users) {
         super(context, 0, users);
