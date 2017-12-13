@@ -69,7 +69,6 @@ public class ListUsersActivity extends Activity {
     }
 
     public void onListUsersClickManager(View v) {
-        AlertDialog.Builder builder;
         switch (v.getId()) {
             case R.id.btn_userItem_passwordIcon:
 
@@ -87,32 +86,12 @@ public class ListUsersActivity extends Activity {
 
                 user = adapter.getItem(position);
 
-                builder = new AlertDialog.Builder(this);
-
-                builder.setTitle("Suppression")
-                        .setMessage("Voulez-vous vraiment supprimer l'utilisateur ?")
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                userDB.openForWrite();
-                                userDB.removeUser(user.getEmail());
-                                tabUser = userDB.getAllUser();
-                                adapter.clear();
-                                adapter.addAll(tabUser);
-                                userDB.Close();
-                            }
-                        })
-                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        }).create().show();
+                createRemoveUserDialog();
 
                 break;
             case R.id.fab_superHome_logout:
 
-                builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
                 builder.setTitle("Déconnexion")
                         .setMessage("Voulez-vous vraiment vous déconnecter ?")
@@ -192,5 +171,29 @@ public class ListUsersActivity extends Activity {
         });
         rightsDialog = builder.create();
         rightsDialog.show();
+    }
+
+    public void createRemoveUserDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Suppression")
+                .setMessage("Voulez-vous vraiment supprimer l'utilisateur ?")
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        userDB.openForWrite();
+                        userDB.removeUser(user.getEmail());
+                        tabUser = userDB.getAllUser();
+                        adapter.clear();
+                        adapter.addAll(tabUser);
+                        userDB.Close();
+                    }
+                })
+                .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).create().show();
     }
 }
