@@ -40,22 +40,32 @@
         android:textColor="@color/grey"
         android:textSize="16sp" />
 
-
-    <Button android:id="@+id/btn_home_editAuto"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modifier les automates"
-        android:onClick="onHomeClickManager"
-        android:textColor="@color/darkGreen"
-        android:background="@android:color/transparent" />
+        android:orientation="horizontal"
+        android:gravity="center_horizontal" >
 
+        <Button
+            android:id="@+id/btn_login_register"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modifier les automates"
+            android:onClick="onHomeClickManager"
+            android:textColor="@color/blue"
+            android:background="@android:color/transparent" />
 
-    <Button android:id="@+id/btn_home_seeAuto"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Voir les automates"
-        android:onClick="onHomeClickManager"
-        android:textColor="@color/darkGreen"
-        android:background="@android:color/transparent" />
+        <Button
+            android:id="@+id/btn_login_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voir les automates"
+            android:onClick="onHomeClickManager"
+            android:textColor="@color/darkGreen"
+            android:background="@android:color/transparent" />
+
+    </LinearLayout>
 
 </LinearLayout>

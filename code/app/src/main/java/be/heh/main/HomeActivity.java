@@ -11,14 +11,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import java.util.HashMap;
 
+import be.heh.database.UserAccessDB;
 import be.heh.session.Session;
 
 public class HomeActivity extends Activity {
 
     private Session session;
     FloatingActionButton fab_home_logout;
-    TextView tv_home_title;
     TextView tv_home_email;
+    TextView tv_home_automatons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,8 @@ public class HomeActivity extends Activity {
 
         session = new Session(getApplicationContext());
 
-        tv_home_title = findViewById(R.id.tv_home_title);
         tv_home_email = findViewById(R.id.tv_home_email);
+        tv_home_automatons = findViewById(R.id.tv_home_automatons);
 
         fab_home_logout = findViewById(R.id.fab_home_logout);
 
@@ -39,6 +40,31 @@ public class HomeActivity extends Activity {
         HashMap<String, String> user = session.getUserDetails();
 
         tv_home_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_home_automatons.setText(Html.fromHtml("Il y a <b>"+ "0" +
+                "</b> automates dont :<br><br>" +
+                "<b>"+ "0" + "</b> pour le <i>conditionnement de comprimés</i>;<br>" +
+                "<b>" + "0" + "</b> pour l'<i>asservissement de niveau de liquide</i>."));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (session.checkLogin())
+            finish();
+
+        /*UserAccessDB userDB = new UserAccessDB(this);
+        userDB.openForWrite();
+        int nbUsers = userDB.getNumberOfUsers();
+        String nbRUsers = userDB.getRUsers();
+        String nbRWUsers = userDB.getRWUsers();
+        userDB.Close();*/
+
+        tv_home_automatons.setText(Html.fromHtml("Il y a <b>"+ "0" +
+                "</b> automates dont :<br><br>" +
+                "<b>"+ "0" + "</b> pour le <i>conditionnement de comprimés</i>;<br>" +
+                "<b>" + "0" + "</b> pour l'<i>asservissement de niveau de liquide</i>."));
+
     }
 
     public void onHomeClickManager(View v) {
