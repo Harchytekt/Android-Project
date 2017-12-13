@@ -1,4 +1,4 @@
-package be.heh.database;
+package be.heh.databases;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

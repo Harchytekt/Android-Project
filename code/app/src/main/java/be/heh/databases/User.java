@@ -1,4 +1,4 @@
-package be.heh.database;
+package be.heh.databases;
 
 /**
  * Created by alexandre on 1/12/17.
