@@ -7,20 +7,17 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.InputType;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import be.heh.database.UserAccessDB;
 import be.heh.session.Password;
 import be.heh.session.Session;
-import db.User;
-import db.UserAccessBDD;
+import be.heh.database.User;
 
 public class ListUsersActivity extends Activity {
 
@@ -35,7 +32,7 @@ public class ListUsersActivity extends Activity {
     CharSequence[] rights = {" Lecture seule "," Lecture-Écriture "};
     AlertDialog rightsDialog;
     User user;
-    UserAccessBDD userDB = new UserAccessBDD(this);
+    UserAccessDB userDB = new UserAccessDB(this);
     int position;
     Password pwd;
 
@@ -56,7 +53,7 @@ public class ListUsersActivity extends Activity {
 
         HashMap<String, String> user = session.getUserDetails();
 
-        UserAccessBDD userDB = new UserAccessBDD(this);
+        UserAccessDB userDB = new UserAccessDB(this);
         userDB.openForWrite();
         tabUser = userDB.getAllUser();
         userDB.Close();

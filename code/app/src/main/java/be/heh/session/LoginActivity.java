@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-import db.User;
-import db.UserAccessBDD;
+import be.heh.database.User;
+import be.heh.database.UserAccessDB;
 import be.heh.main.HomeActivity;
 import be.heh.main.R;
 import be.heh.main.SuperHomeActivity;
@@ -34,18 +34,6 @@ public class LoginActivity extends Activity {
 
         session = new Session(getApplicationContext());
 
-        /*UserAccessBDD userDB = new UserAccessBDD(this);
-        userDB.openForWrite();
-        ArrayList<User> tabUser = userDB.getAllUser();
-        userDB.Close();
-
-        for (User u: tabUser) {
-            //Password pwd = new Password("Test123*");
-            //System.out.println(pwd.getGeneratedPassword());
-            //Toast.makeText(getApplicationContext(), u.getId() + " " + u.getEmail(), Toast.LENGTH_LONG).show();
-            System.out.println("id: " + u.getId() + ", rights: " + u.getRights());
-        }*/
-
     }
 
     public void onLoginClickManager(View v) {
@@ -58,7 +46,7 @@ public class LoginActivity extends Activity {
                 break;
             case R.id.btn_login_login:
 
-                UserAccessBDD userDB = new UserAccessBDD(this);
+                UserAccessDB userDB = new UserAccessDB(this);
                 userDB.openForWrite();
                 ArrayList<User> tabUser = userDB.getAllUser();
                 userDB.Close();
@@ -88,13 +76,13 @@ public class LoginActivity extends Activity {
      * Log the user in if it's in the database.
      *
      * @param tabUser
-     *      The arraylist containing the list of all users of the database.
+     *      The arraylist containing the list of all users of the be.heh.database.
      * @return true if the user is known, false otherwise.
      */
     public boolean login(ArrayList<User> tabUser) {
 
         for (User user : tabUser) {
-            if (isInBDD(user)) {
+            if (isInDB(user)) {
                 rights = user.getRights().toString();
                 isSuper = user.isSuper();
                 return true;
@@ -110,7 +98,7 @@ public class LoginActivity extends Activity {
      *      The user to test.
      * @return true if the credentials are corrects, false otherwise.
      */
-    public boolean isInBDD(User user) {
+    public boolean isInDB(User user) {
         Password pwd = new Password(et_login_pwd.getText().toString());
         return (user.getEmail().equals(et_login_email.getText().toString())
                 && user.getPassword().equals(pwd.getGeneratedPassword()));

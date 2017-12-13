@@ -1,6 +1,5 @@
 package be.heh.main;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import db.User;
+import be.heh.database.User;
 
 /**
  * Created by alexandre on 11/12/17.

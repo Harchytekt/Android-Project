@@ -1,4 +1,4 @@
-package db;
+package be.heh.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by alexandre on 1/12/17.
  */
 
-public class UserBDDSQlite extends SQLiteOpenHelper {
+public class UserDBSQlite extends SQLiteOpenHelper {
 
     private static final String TABLE_USER = "table_user";
     private static final String COL_ID = "ID";
@@ -43,7 +43,7 @@ public class UserBDDSQlite extends SQLiteOpenHelper {
             "'a66d85048925a32ab6e288a78e7a20c98b937d7e1fdbdc5f8b38e6b89792d896a7fbfa13573326fe3b12a39a2478b0a43f40ebf49dec90d35236bcf3c96b09f2'," +
             "'alexandre@heh.be', '1');";
 
-    public UserBDDSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public UserDBSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);
     }
 

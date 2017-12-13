@@ -1,4 +1,4 @@
-package db;
+package be.heh.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by alexandre on 1/12/17.
  */
 
-public class UserAccessBDD {
+public class UserAccessDB {
 
     private static final int VERSION = 1;
     private static final String NOM_DB = "User.db";
@@ -32,10 +32,10 @@ public class UserAccessBDD {
     private static final int NUM_COL_RIGHTS = 5;
 
     private SQLiteDatabase db;
-    private UserBDDSQlite userdb;
+    private UserDBSQlite userdb;
 
-    public UserAccessBDD(Context c) {
-        userdb = new UserBDDSQlite(c, NOM_DB, null, VERSION);
+    public UserAccessDB(Context c) {
+        userdb = new UserDBSQlite(c, NOM_DB, null, VERSION);
     }
 
     public void openForWrite() {

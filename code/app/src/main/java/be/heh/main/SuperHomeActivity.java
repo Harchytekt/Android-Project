@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
+import be.heh.database.UserAccessDB;
 import be.heh.session.Session;
-import db.UserAccessBDD;
 
 public class SuperHomeActivity extends Activity {
 
@@ -40,7 +40,7 @@ public class SuperHomeActivity extends Activity {
 
         HashMap<String, String> user = session.getUserDetails();
 
-        UserAccessBDD userDB = new UserAccessBDD(this);
+        UserAccessDB userDB = new UserAccessDB(this);
         userDB.openForWrite();
         int nbUsers = userDB.getNumberOfUsers();
         String nbRUsers = userDB.getRUsers();
@@ -63,7 +63,7 @@ public class SuperHomeActivity extends Activity {
 
         HashMap<String, String> user = session.getUserDetails();
 
-        UserAccessBDD userDB = new UserAccessBDD(this);
+        UserAccessDB userDB = new UserAccessDB(this);
         userDB.openForWrite();
         int nbUsers = userDB.getNumberOfUsers();
         String nbRUsers = userDB.getRUsers();

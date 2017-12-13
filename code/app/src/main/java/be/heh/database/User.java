@@ -1,4 +1,4 @@
-package db;
+package be.heh.database;
 
 /**
  * Created by alexandre on 1/12/17.

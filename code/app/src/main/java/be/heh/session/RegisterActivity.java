@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
-import db.User;
-import db.UserAccessBDD;
+import be.heh.database.User;
+import be.heh.database.UserAccessDB;
 import be.heh.main.R;
 
 public class RegisterActivity extends Activity {
@@ -32,7 +32,7 @@ public class RegisterActivity extends Activity {
     private boolean validPassword;
     private boolean validEmail;
 
-    UserAccessBDD userDB = new UserAccessBDD(this);
+    UserAccessDB userDB = new UserAccessDB(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class RegisterActivity extends Activity {
                             et_register_firstname.getText().toString(),
                             pwd.getGeneratedPassword(), et_register_email.getText().toString());
 
-                    UserAccessBDD userDB = new UserAccessBDD(this);
+                    UserAccessDB userDB = new UserAccessDB(this);
                     userDB.openForWrite();
                     userDB.insertUser(user1);
                     userDB.Close();
