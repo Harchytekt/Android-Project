@@ -1,43 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/veryLightYellow"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     tools:context=".HomeActivity">
 
-    <ImageView
-        android:id="@+id/iv_home_icon"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:src="@drawable/home" />
+    <include layout="@layout/content_home" />
 
-    <TextView
-        android:id="@+id/tv_home_email"
-        android:layout_width="325dp"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_home_logout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:singleLine="true" />
-
-    <TextView
-        android:id="@+id/tv_home_title"
-        android:layout_marginTop="50dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:text="Accueil"
-        android:textAlignment="center"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
-
-
-    <Button android:id="@+id/btn_home_logout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Déconnexion"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        app:srcCompat="@android:drawable/ic_lock_power_off"
         android:onClick="onHomeClickManager"
-        android:textColor="@color/red" />
+        app:backgroundTint="@color/red" />
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

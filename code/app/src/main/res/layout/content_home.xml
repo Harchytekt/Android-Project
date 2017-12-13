@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/veryLightYellow"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".HomeActivity">
+
+    <ImageView
+        android:id="@+id/iv_home_icon"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/home" />
+
+    <TextView
+        android:id="@+id/tv_home_email"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_home_title"
+        android:layout_marginTop="50dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:text="Bienvenue !"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_home_automatons"
+        android:layout_marginTop="35dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:textSize="16sp" />
+
+
+    <Button android:id="@+id/btn_home_editAuto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifier les automates"
+        android:onClick="onHomeClickManager"
+        android:textColor="@color/darkGreen"
+        android:background="@android:color/transparent" />
+
+
+    <Button android:id="@+id/btn_home_seeAuto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Voir les automates"
+        android:onClick="onHomeClickManager"
+        android:textColor="@color/darkGreen"
+        android:background="@android:color/transparent" />
+
+</LinearLayout>
