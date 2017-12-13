@@ -61,8 +61,6 @@ public class SuperHomeActivity extends Activity {
         if (session.checkLogin())
             finish();
 
-        HashMap<String, String> user = session.getUserDetails();
-
         UserAccessDB userDB = new UserAccessDB(this);
         userDB.openForWrite();
         int nbUsers = userDB.getNumberOfUsers();
@@ -70,7 +68,6 @@ public class SuperHomeActivity extends Activity {
         String nbRWUsers = userDB.getRWUsers();
         userDB.Close();
 
-        tv_superHome_email.setText(Html.fromHtml("<b>" + user.get(Session.KEY_EMAIl) + "</b> est connecté !"));
         tv_superHome_users.setText(Html.fromHtml("Il y a <b>"+ nbUsers +
                 "</b> utilisateurs dont :<br><br>" +
                 "<b>"+ nbRUsers + "</b> avec un accès en lecture seule;<br>" +
