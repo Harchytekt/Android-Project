@@ -47,7 +47,7 @@ public class SuperHomeActivity extends Activity {
         String nbRWUsers = userDB.getRWUsers();
         userDB.Close();
 
-        tv_superHome_email.setText(Html.fromHtml("<b>" + user.get(Session.KEY_EMAIl) + "</b> est connecté !"));
+        tv_superHome_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
         tv_superHome_users.setText(Html.fromHtml("Il y a <b>"+ nbUsers +
                 "</b> utilisateurs dont :<br><br>" +
                 "<b>"+ nbRUsers + "</b> avec un accès en lecture seule;<br>" +
