@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.text.InputType;
 import android.view.View;
@@ -27,6 +28,7 @@ public class ListUsersActivity extends Activity {
     TextView tv_listUsers_email;
     UsersAdapter adapter;
     ListView lv_listUsers_list;
+    FloatingActionButton fab_listUsers_logout;
 
 
     CharSequence[] rights = {" Lecture seule "," Lecture-Écriture "};
@@ -46,6 +48,7 @@ public class ListUsersActivity extends Activity {
 
         tv_listUsers_email = findViewById(R.id.tv_listUsers_email);
         lv_listUsers_list = findViewById(R.id.lv_listUsers_list);
+        fab_listUsers_logout = findViewById(R.id.fab_listUsers_logout);
 
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin())
@@ -86,7 +89,7 @@ public class ListUsersActivity extends Activity {
                 createRemoveUserDialog();
 
                 break;
-            case R.id.fab_superHome_logout:
+            case R.id.fab_listUsers_logout:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

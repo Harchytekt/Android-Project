@@ -16,24 +16,28 @@ public class AutomatonDBSQlite extends SQLiteOpenHelper {
     private static final String COL_IP = "IP";
     private static final String COL_RACK = "RACK";
     private static final String COL_SLOT = "SLOT";
+    private static final String COL_TYPE = "TYPE";
+    private static final String COL_MAC = "MAC";
 
     private static final String CREATE_DB = "CREATE TABLE IF NOT EXISTS " +
             TABLE_AUTOMATON + " (" +
-            COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COL_ID   + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COL_NAME + " TEXT NOT NULL, " +
-            COL_IP + " TEXT NOT NULL, " +
+            COL_IP   + " TEXT NOT NULL, " +
             COL_RACK + " TEXT NOT NULL, " +
-            COL_SLOT + " TEXT NOT NULL);";
+            COL_SLOT + " TEXT NOT NULL)" +
+            COL_TYPE + " TEXT NOT NULL)" +
+            COL_MAC  + " TEXT);";
 
     private static final String ADD_PILLS = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
-            COL_RACK + ", " + COL_SLOT + ") VALUES (" +
-            "'Conditionnement de comprimés', '10.1.0.130', '0', '1');";
+            COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ") VALUES (" +
+            "'Conditionnement de comprimés 1', '10.1.0.130', '0', '1', '0');";
 
     private static final String ADD_LIQUID = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
-            COL_RACK + ", " + COL_SLOT + ") VALUES (" +
-            "'Asservissement de niveau de liquide', '10.1.0.130', '0', '1');";
+            COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ") VALUES (" +
+            "'Asservissement de niveau de liquide 1', '10.1.0.130', '0', '1', '1');";
 
     public AutomatonDBSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);

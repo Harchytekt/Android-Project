@@ -32,7 +32,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ListUsersActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ListAutomatonsActivity"></activity>
     </application>
 
 </manifest>

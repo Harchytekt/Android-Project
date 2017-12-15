@@ -3,10 +3,12 @@ package be.heh.main;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import java.util.HashMap;
 
@@ -18,6 +20,7 @@ public class HomeActivity extends Activity {
     FloatingActionButton fab_home_logout;
     TextView tv_home_email;
     TextView tv_home_automatons;
+    Button btn_home_seeAutomatons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class HomeActivity extends Activity {
 
         tv_home_email = findViewById(R.id.tv_home_email);
         tv_home_automatons = findViewById(R.id.tv_home_automatons);
+        btn_home_seeAutomatons = findViewById(R.id.btn_home_seeAutomatons);
 
         fab_home_logout = findViewById(R.id.fab_home_logout);
 
@@ -68,6 +72,9 @@ public class HomeActivity extends Activity {
     public void onHomeClickManager(View v) {
 
         switch (v.getId()) {
+            case R.id.btn_home_seeAutomatons:
+                Intent intentListAutomatons = new Intent(this, ListAutomatonsActivity.class); startActivity(intentListAutomatons);
+                break;
             case R.id.fab_home_logout:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
