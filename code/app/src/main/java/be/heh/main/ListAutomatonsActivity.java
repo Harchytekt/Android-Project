@@ -57,7 +57,7 @@ public class ListAutomatonsActivity extends Activity {
         tabAutomaton = automatonDB.getAllAutomatons();
         automatonDB.Close();
 
-        tv_listAutomatons_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_listAutomatons_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
         adapter = new AutomatonsAdapter(this, tabAutomaton);
         lv_listAutomatons_list.setAdapter(adapter);
@@ -95,16 +95,16 @@ public class ListAutomatonsActivity extends Activity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                builder.setTitle("Déconnexion")
-                        .setMessage("Voulez-vous vraiment vous déconnecter ?")
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.logout_title)
+                        .setMessage(R.string.logout_message)
+                        .setPositiveButton(R.string.yes_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 session.logoutUser();
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             }
                         })
-                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.no_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();

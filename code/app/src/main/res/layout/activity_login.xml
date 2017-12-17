@@ -19,7 +19,7 @@
         android:layout_marginTop="50dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="Identification"
+        android:text="@string/login_title"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="Adresse email"
+        android:hint="@string/email_address"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:ems="10"
-        android:hint="Mot de passe"
+        android:hint="@string/password"
         android:inputType="textPassword" />
 
     <LinearLayout
@@ -54,7 +54,7 @@
             android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inscription"
+            android:text="@string/inscription"
             android:onClick="onLoginClickManager"
             android:textColor="@color/blue"
             android:background="@android:color/transparent" />
@@ -63,7 +63,7 @@
             android:id="@+id/btn_login_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Connexion"
+            android:text="@string/connection"
             android:onClick="onLoginClickManager" />
 
     </LinearLayout>

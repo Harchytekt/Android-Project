@@ -63,7 +63,7 @@ public class ListUsersActivity extends Activity {
         tabUser = userDB.getAllUsers();
         userDB.Close();
 
-        tv_listUsers_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_listUsers_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
         adapter = new UsersAdapter(this, tabUser);
         lv_listUsers_list.setAdapter(adapter);
@@ -103,16 +103,16 @@ public class ListUsersActivity extends Activity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                builder.setTitle("Déconnexion")
-                        .setMessage("Voulez-vous vraiment vous déconnecter ?")
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.logout_title)
+                        .setMessage(R.string.logout_message)
+                        .setPositiveButton(R.string.yes_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 session.logoutUser();
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             }
                         })
-                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.no_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -128,10 +128,10 @@ public class ListUsersActivity extends Activity {
         final EditText inputPassword = new EditText(this);
         inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-        builder.setTitle("Modifier le mot de passe")
-                .setMessage("Veuillez entrer votre nouveau mot de passe")
+        builder.setTitle(R.string.change_password_title)
+                .setMessage(R.string.change_password_message)
                 .setView(inputPassword)
-                .setPositiveButton("Enregistrer", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.save_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         pwd = new Password(inputPassword.getText().toString());
@@ -147,7 +147,7 @@ public class ListUsersActivity extends Activity {
                         System.out.println(inputPassword.getText().toString());
                     }
                 })
-                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -158,7 +158,7 @@ public class ListUsersActivity extends Activity {
     public void createRightsDialog(int checked) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Modifier les droits");
+        builder.setTitle(R.string.change_rights_title);
         builder.setSingleChoiceItems(rights, checked, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
 
@@ -187,9 +187,9 @@ public class ListUsersActivity extends Activity {
     public void createRemoveUserDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Suppression")
-                .setMessage("Voulez-vous vraiment supprimer l'utilisateur ?")
-                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.delete_title)
+                .setMessage(R.string.delete_user_message)
+                .setPositiveButton(R.string.yes_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         userDB.openForWrite();
@@ -200,7 +200,7 @@ public class ListUsersActivity extends Activity {
                         userDB.Close();
                     }
                 })
-                .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

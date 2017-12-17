@@ -75,9 +75,9 @@ public class RegisterActivity extends Activity {
                         et_register_firstname.getText().toString().isEmpty() ||
                         et_register_email.getText().toString().isEmpty() ||
                         et_register_pwd.getText().toString().isEmpty())
-                    Toast.makeText(getApplicationContext(), "⚠️️ Veuillez compléter tous les champs ! ⚠️ ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.empty_input, Toast.LENGTH_LONG).show();
                 else if (!isValid())
-                    Toast.makeText(getApplicationContext(), "⚠️️ Veuillez vérifier les champs erronés ! ⚠️ ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.error_input, Toast.LENGTH_LONG).show();
                 else {
                     Password pwd = new Password(et_register_pwd.getText().toString());
 
@@ -90,7 +90,7 @@ public class RegisterActivity extends Activity {
                     userDB.insertUser(user1);
                     userDB.Close();
 
-                    Toast.makeText(getApplicationContext(), "✔️ L'utilisateur a bien été créé ! ✔️ ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.created_user, Toast.LENGTH_LONG).show();
 
                     Intent intentLogin = new Intent(this, LoginActivity.class);
                     startActivity(intentLogin);
@@ -112,7 +112,7 @@ public class RegisterActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!Pattern.matches("^(([A-z][a-z]+[\\s|-]{1}[A-z][a-z]+)|([A-Z][a-z]+))$", et_register_lastname.getText().toString())) {
-                    et_register_lastname.setError("Format incorrect !");
+                    et_register_lastname.setError(getString(R.string.wrong_format));
                     validLastname = false;
                 } else {
                     validLastname = true;
@@ -130,7 +130,7 @@ public class RegisterActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!Pattern.matches("^(([A-z][a-z]+[\\s|-]{1}[A-z][a-z]+)|([A-Z][a-z]+))$", et_register_firstname.getText().toString())) {
-                    et_register_firstname.setError("Format incorrect !");
+                    et_register_firstname.setError(getString(R.string.wrong_format));
                     validFirstname = false;
                 } else {
                     validFirstname = true;
@@ -148,7 +148,7 @@ public class RegisterActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!isValidEmail(et_register_email.getText().toString())) {
-                    et_register_email.setError("Format d'email incorrect !");
+                    et_register_email.setError(getString(R.string.wrong_email_format));
                     validEmail = false;
                 } else {
                     validEmail = true;
@@ -156,7 +156,7 @@ public class RegisterActivity extends Activity {
 
                 userDB.openForWrite();
                 if (userDB.isAlreadyUsed(et_register_email.getText().toString())) {
-                    et_register_email.setError("Cette adresse est déjà utilisée !");
+                    et_register_email.setError(getString(R.string.already_used_email));
                     userDB.Close();
                     validEmail = false;
                 } else {
@@ -175,7 +175,7 @@ public class RegisterActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,16}$", et_register_pwd.getText().toString())) {
-                    et_register_pwd.setError("Minimum 4 caractères, au moins 1 majuscule, 1 minuscule et 1 chiffre.");
+                    et_register_pwd.setError(getString(R.string.password_format));
                     validPassword = false;
                 } else {
                     validPassword = true;

@@ -18,7 +18,7 @@
         android:id="@+id/tv_register_title"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="Enregistrement"
+        android:text="@string/register_title"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Nom"
+        android:hint="@string/lastname"
         android:inputType="text" />
 
     <EditText
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="Prénom"
+        android:hint="@string/firstname"
         android:inputType="text" />
 
     <EditText
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="Adresse email"
+        android:hint="@string/email_address"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="Mot de passe"
+        android:hint="@string/password"
         android:inputType="textPassword" />
 
     <LinearLayout
@@ -71,7 +71,7 @@
             android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Connexion"
+            android:text="@string/connection"
             android:onClick="onRegisterClickManager"
             android:textColor="@color/blue"
             android:background="@android:color/transparent" />
@@ -80,7 +80,7 @@
             android:id="@+id/btn_register_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inscription"
+            android:text="@string/inscription"
             android:onClick="onRegisterClickManager" />
 
     </LinearLayout>

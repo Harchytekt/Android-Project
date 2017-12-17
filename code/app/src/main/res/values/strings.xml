@@ -1,8 +1,85 @@
 <resources>
     <string name="app_name">MyProject</string>
+
+    <!-- Activities -->
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_super_home">SuperHomeActivity</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_list_users">ListUsersActivity</string>
     <string name="title_activity_list_automatons">ListAutomatonsActivity</string>
+
+
+    <!-- Adapter -->
+    <string name="read">Lecture seule</string>
+    <string name="read_write">Lecture-Écriture</string>
+    <string name="super_user">Super-utilisateur</string>
+    <string name="pills">Conditionnement de comprimés</string>
+    <string name="liquids">Asservissement de niveau de liquide</string>
+    <string name="email">Email</string>
+    <string name="rights">Droits</string>
+    <string name="name">Nom</string>
+    <string name="type">Type</string>
+    <string name="ip">IP</string>
+    <string name="rack">Rack</string>
+    <string name="slot">Slot</string>
+    <string name="mac">MAC</string>
+
+
+    <!-- Alert dialogs -->
+    <string name="logout_title">Déconnexion</string>
+    <string name="change_password_title">Modifier le mot de passe</string>
+    <string name="change_rights_title">Modifier les droits</string>
+    <string name="delete_title">Suppression</string>
+    <string name="logout_message">Voulez-vous vraiment vous déconnecter ?</string>
+    <string name="change_password_message">Veuillez entrer votre nouveau mot de passe</string>
+    <string name="delete_user_message">Voulez-vous vraiment supprimer l\'utilisateur ?</string>
+    <string name="yes_button">Oui</string>
+    <string name="save_button">Enregistrer</string>
+    <string name="no_button">Non</string>
+    <string name="cancel_button">Annuler</string>
+
+
+    <!-- Buttons -->
+    <string name="inscription">Inscription</string>
+    <string name="connection">Connexion</string>
+    <string name="superHome_users">Modifier les utilisateurs</string>
+    <string name="home_seeAutomatons">Voir les automates</string>
+
+
+    <!-- Inputs -->
+    <string name="email_address">Adresse email</string>
+    <string name="password">Mot de passe</string>
+    <string name="lastname">Nom de famille</string>
+    <string name="firstname">Prénom</string>
+
+
+    <!-- Texts -->
+    <string name="connected_as">Connecté en tant que</string>
+    <string name="there_is">Il y a</string>
+    <string name="superHome_users_text1">utilisateurs dont :</string>
+    <string name="superHome_users_text2">avec un accès en lecture seule;</string>
+    <string name="superHome_users_text3">avec un accès en lecture et écriture.</string>
+    <string name="home_users_text1">automates dont :</string>
+    <string name="home_users_text2">pour le</string>
+    <string name="home_users_text3">pour l\'</string>
+
+
+    <!-- Titles -->
+    <string name="login_title">Identification</string>
+    <string name="register_title">Enregistrement</string>
+    <string name="welcome_title">Bienvenue !</string>
+    <string name="listUsers_title">Liste des utilisateurs</string>
+    <string name="listAutomatons_title">Liste des automates</string>
+
+
+    <!-- Toasts -->
+    <string name="no_user">⚠️ L\'utilisateur n\'existe pas ! ⚠️ </string>
+    <string name="empty_input">⚠️️ Veuillez compléter tous les champs ! ⚠️ </string>
+    <string name="error_input">⚠️️ Veuillez vérifier les champs erronés ! ⚠️ </string>
+    <string name="created_user">✔️ L\'utilisateur a bien été créé ! ✔️ </string>
+    <string name="wrong_format">Format incorrect !</string>
+    <string name="wrong_email_format">Format d\'email incorrect !</string>
+    <string name="already_used_email">Cette adresse est déjà utilisée !</string>
+    <string name="password_format">Minimum 4 caractères, au moins 1 majuscule, 1 minuscule et 1 chiffre.</string>
+
 </resources>

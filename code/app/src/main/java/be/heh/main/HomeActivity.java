@@ -44,11 +44,18 @@ public class HomeActivity extends Activity {
 
         HashMap<String, String> user = session.getUserDetails();
 
-        tv_home_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
-        tv_home_automatons.setText(Html.fromHtml("Vous avez <b>"+ "0" +
-                "</b> automates dont :<br><br>" +
-                "<b>"+ "0" + "</b> pour le <i>conditionnement de comprimés</i>;<br>" +
-                "<b>" + "0" + "</b> pour l'<i>asservissement de niveau de liquide</i>."));
+        AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
+        automatonDB.openForWrite();
+        int nbAutomatons = automatonDB.getNumberOfAutomatons();
+        String nbPills = automatonDB.getPills();
+        String nbLiquids = automatonDB.getLiquids();
+        automatonDB.Close();
+
+        tv_home_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_home_automatons.setText(Html.fromHtml(getString(R.string.there_is) + " <b>"+ nbAutomatons +
+                "</b> " + getString(R.string.home_users_text1) + "<br><br>" +
+                "<b>"+ nbPills + "</b> " + getString(R.string.home_users_text2) + " <i>" + getString(R.string.pills) + "</i>;<br>" +
+                "<b>" + nbLiquids + "</b> " + getString(R.string.home_users_text3) + "<i>" + getString(R.string.liquids) + "</i>."));
     }
 
     @Override
@@ -67,10 +74,10 @@ public class HomeActivity extends Activity {
         String nbLiquids = automatonDB.getLiquids();
         automatonDB.Close();
 
-        tv_home_automatons.setText(Html.fromHtml("Vous avez <b>"+ nbAutomatons +
-                "</b> automates dont :<br><br>" +
-                "<b>"+ nbPills + "</b> pour le <i>conditionnement de comprimés</i>;<br>" +
-                "<b>" + nbLiquids + "</b> pour l'<i>asservissement de niveau de liquide</i>."));
+        tv_home_automatons.setText(Html.fromHtml(getString(R.string.there_is) + " <b>"+ nbAutomatons +
+                "</b> " + getString(R.string.home_users_text1) + "<br><br>" +
+                "<b>"+ nbPills + "</b> " + getString(R.string.home_users_text2) + " <i>" + getString(R.string.pills) + "</i>;<br>" +
+                "<b>" + nbLiquids + "</b> " + getString(R.string.home_users_text3) + "<i>" + getString(R.string.liquids) + "</i>."));
 
     }
 
@@ -92,16 +99,16 @@ public class HomeActivity extends Activity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                builder.setTitle("Déconnexion")
-                        .setMessage("Voulez-vous vraiment vous déconnecter ?")
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.logout_title)
+                        .setMessage(R.string.logout_message)
+                        .setPositiveButton(R.string.yes_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 session.logoutUser();
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             }
                         })
-                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.no_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();

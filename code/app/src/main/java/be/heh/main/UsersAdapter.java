@@ -20,6 +20,8 @@ import be.heh.database.User;
 
 public class UsersAdapter extends ArrayAdapter<User> {
 
+    Context context;
+
     ImageView iv_userItem_userIcon;
 
     TextView tv_userItem_lastname;
@@ -31,10 +33,9 @@ public class UsersAdapter extends ArrayAdapter<User> {
     ImageButton btn_userItem_rightsIcon;
     ImageButton btn_userItem_removeIcon;
 
-    CharSequence[] rights = {" Lecture seule "," Lecture-Écriture "};
-
     public UsersAdapter(Context context, ArrayList<User> users) {
         super(context, 0, users);
+        this.context = context;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class UsersAdapter extends ArrayAdapter<User> {
         Integer icon;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_user, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
         }
 
 
@@ -60,23 +61,23 @@ public class UsersAdapter extends ArrayAdapter<User> {
 
 
         if (user.getRights().equals("2")) {
-            rights = "Lecture seule";
+            rights = context.getString(R.string.read);
             icon = R.drawable.r_user;
         } else if (user.getRights().equals("1")) {
-            rights = "Lecture-Écriture";
+            rights = context.getString(R.string.read_write);
             icon = R.drawable.rw_user;
         } else {
-            rights = "Super-utilisateur";
+            rights = context.getString(R.string.super_user);
             btn_userItem_rightsIcon.setVisibility(View.GONE);
             btn_userItem_removeIcon.setVisibility(View.GONE);
             icon = R.drawable.super_user;
         }
 
         iv_userItem_userIcon.setImageResource(icon);
-        tv_userItem_lastname.setText(Html.fromHtml("Nom de famille : <b>" + user.getLastname() + "</b>"));
-        tv_userItem_firstname.setText(Html.fromHtml("Prénom : <b>" + user.getFirstname() + "</b>"));
-        tv_userItem_email.setText(Html.fromHtml("Email : <b>" + user.getEmail() + "</b>"));
-        tv_userItem_rights.setText(Html.fromHtml("Droits : <b>" + rights + "</b>"));
+        tv_userItem_lastname.setText(Html.fromHtml(context.getString(R.string.lastname) + " : <b>" + user.getLastname() + "</b>"));
+        tv_userItem_firstname.setText(Html.fromHtml(context.getString(R.string.firstname) + " : <b>" + user.getFirstname() + "</b>"));
+        tv_userItem_email.setText(Html.fromHtml(context.getString(R.string.email) + " : <b>" + user.getEmail() + "</b>"));
+        tv_userItem_rights.setText(Html.fromHtml(context.getString(R.string.rights) + " : <b>" + rights + "</b>"));
 
         btn_userItem_passwordIcon.setTag(position);
         btn_userItem_rightsIcon.setTag(position);

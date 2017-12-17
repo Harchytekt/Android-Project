@@ -19,7 +19,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="Liste des automates"
+        android:text="@string/listAutomatons_title"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"

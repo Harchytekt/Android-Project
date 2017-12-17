@@ -20,6 +20,8 @@ import be.heh.database.Automaton;
 
 public class AutomatonsAdapter extends ArrayAdapter<Automaton> {
 
+    Context context;
+
     ImageView iv_automatonItem_automatonIcon;
 
     TextView tv_automatonItem_name;
@@ -33,6 +35,7 @@ public class AutomatonsAdapter extends ArrayAdapter<Automaton> {
 
     public AutomatonsAdapter(Context context, ArrayList<Automaton> automaton) {
         super(context, 0, automaton);
+        this.context = context;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class AutomatonsAdapter extends ArrayAdapter<Automaton> {
         Integer icon;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_automaton, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_automaton, parent, false);
         }
 
 
@@ -57,20 +60,20 @@ public class AutomatonsAdapter extends ArrayAdapter<Automaton> {
         btn_automatonItem_removeIcon = convertView.findViewById(R.id.btn_automatonItem_removeIcon);
 
         if (automaton.getType().equals("0")) {
-            type = "Conditionnement de comprimés";
+            type = context.getString(R.string.pills);
             icon = R.drawable.pill_automaton;
         } else {
-            type = "Asservissement de niveau de liquide";
+            type = context.getString(R.string.liquids);
             icon = R.drawable.liquid_automaton;
         }
 
         iv_automatonItem_automatonIcon.setImageResource(icon);
-        tv_automatonItem_name.setText(Html.fromHtml("Nom : <b>" + automaton.getName() + "</b>"));
-        tv_automatonItem_type.setText(Html.fromHtml("Type : <b>" + type + "</b>"));
-        tv_automatonItem_ip.setText(Html.fromHtml("IP : <b>" + automaton.getIp() + "</b>    " +
-                "Rack : <b>" + automaton.getRack() + "</b>    " +
-                "Slot : <b>" + automaton.getSlot() + "</b>"));
-        tv_automatonItem_mac.setText(Html.fromHtml("MAC : <b>" + automaton.getMac() + "</b>"));
+        tv_automatonItem_name.setText(Html.fromHtml(context.getString(R.string.name) + " : <b>" + automaton.getName() + "</b>"));
+        tv_automatonItem_type.setText(Html.fromHtml(context.getString(R.string.type) + " : <b>" + type + "</b>"));
+        tv_automatonItem_ip.setText(Html.fromHtml(context.getString(R.string.ip) + " : <b>" + automaton.getIp() + "</b>    " +
+                context.getString(R.string.rack) + " : <b>" + automaton.getRack() + "</b>    " +
+                context.getString(R.string.slot) + " : <b>" + automaton.getSlot() + "</b>"));
+        tv_automatonItem_mac.setText(Html.fromHtml(context.getString(R.string.mac) + " : <b>" + automaton.getMac() + "</b>"));
 
         btn_automatonItem_seeIcon.setTag(position);
         btn_automatonItem_editIcon.setTag(position);
