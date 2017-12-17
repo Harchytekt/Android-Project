@@ -28,6 +28,7 @@ public class ListAutomatonsActivity extends Activity {
     TextView tv_listAutomatons_email;
     AutomatonsAdapter adapter;
     ListView lv_listAutomatons_list;
+
     FloatingActionButton fab_listAutomatons_add;
     FloatingActionButton fab_listAutomatons_logout;
 
@@ -70,6 +71,21 @@ public class ListAutomatonsActivity extends Activity {
 
     public void onListAutomatonsClickManager(View v) {
         switch (v.getId()) {
+            case R.id.btn_automatonItem_seeIcon:
+
+                Toast.makeText(getApplicationContext(), "Voir l'automate", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.btn_automatonItem_editIcon:
+
+                Toast.makeText(getApplicationContext(), "Modifier l'automate", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.btn_automatonItem_removeIcon:
+
+                Toast.makeText(getApplicationContext(), "Supprimer l'automate", Toast.LENGTH_LONG).show();
+
+                break;
             case R.id.fab_listAutomatons_add:
 
                 Toast.makeText(getApplicationContext(), "Ajouter un automate", Toast.LENGTH_LONG).show();
