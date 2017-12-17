@@ -53,6 +53,12 @@ public class RegisterActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
     public void onRegisterClickManager(View v) {
         // Récupérer la vue et accéder au bouton
         switch (v.getId()) {
@@ -60,6 +66,7 @@ public class RegisterActivity extends Activity {
 
                 Intent intentMain = new Intent(this, LoginActivity.class);
                 startActivity(intentMain);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 break;
             case R.id.btn_register_register:
@@ -85,7 +92,9 @@ public class RegisterActivity extends Activity {
 
                     Toast.makeText(getApplicationContext(), "✔️ L'utilisateur a bien été créé ! ✔️ ", Toast.LENGTH_LONG).show();
 
-                    Intent intentLogin = new Intent(this, LoginActivity.class); startActivity(intentLogin);
+                    Intent intentLogin = new Intent(this, LoginActivity.class);
+                    startActivity(intentLogin);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
 
                 break;

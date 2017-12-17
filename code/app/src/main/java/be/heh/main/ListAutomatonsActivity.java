@@ -38,8 +38,10 @@ public class ListAutomatonsActivity extends Activity {
         fab_listAutomatons_logout = findViewById(R.id.fab_listAutomatons_logout);
 
         // If not logged in, redirection to LoginActivity
-        if (session.checkLogin())
+        if (session.checkLogin()) {
             finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
 
         HashMap<String, String> user = session.getUserDetails();
 
@@ -49,6 +51,12 @@ public class ListAutomatonsActivity extends Activity {
         userDB.Close();
 
         tv_listAutomatons_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     public void onListAutomatonsClickManager(View v) {
@@ -68,6 +76,7 @@ public class ListAutomatonsActivity extends Activity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 session.logoutUser();
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             }
                         })
                         .setNegativeButton("Non", new DialogInterface.OnClickListener() {

@@ -36,12 +36,20 @@ public class LoginActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
     public void onLoginClickManager(View v) {
 
         switch (v.getId()) {
             case R.id.btn_login_register:
 
-                Intent intentRegister = new Intent(this, RegisterActivity.class); startActivity(intentRegister);
+                Intent intentRegister = new Intent(this, RegisterActivity.class);
+                startActivity(intentRegister);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 break;
             case R.id.btn_login_login:
@@ -63,6 +71,7 @@ public class LoginActivity extends Activity {
 
                     intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intentHome);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                     finish();
                 } else

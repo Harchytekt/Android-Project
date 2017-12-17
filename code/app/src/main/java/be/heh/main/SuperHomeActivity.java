@@ -35,8 +35,10 @@ public class SuperHomeActivity extends Activity {
         fab_superHome_logout = findViewById(R.id.fab_superHome_logout);
 
         // If not logged in, redirection to LoginActivity
-        if (session.checkLogin())
+        if (session.checkLogin()) {
             finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
 
         HashMap<String, String> user = session.getUserDetails();
 
@@ -58,8 +60,10 @@ public class SuperHomeActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if (session.checkLogin())
+        if (session.checkLogin()) {
             finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
 
         UserAccessDB userDB = new UserAccessDB(this);
         userDB.openForWrite();
@@ -75,11 +79,19 @@ public class SuperHomeActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
     public void onSuperHomeClickManager(View v) {
 
         switch (v.getId()) {
             case R.id.btn_superHome_users:
-                Intent intentListUsers = new Intent(this, ListUsersActivity.class); startActivity(intentListUsers);
+                Intent intentListUsers = new Intent(this, ListUsersActivity.class);
+                startActivity(intentListUsers);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.fab_superHome_logout:
 
@@ -91,6 +103,7 @@ public class SuperHomeActivity extends Activity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 session.logoutUser();
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             }
                         })
                         .setNegativeButton("Non", new DialogInterface.OnClickListener() {

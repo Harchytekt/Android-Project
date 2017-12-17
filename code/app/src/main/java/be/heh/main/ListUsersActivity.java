@@ -51,8 +51,10 @@ public class ListUsersActivity extends Activity {
         fab_listUsers_logout = findViewById(R.id.fab_listUsers_logout);
 
         // If not logged in, redirection to LoginActivity
-        if (session.checkLogin())
+        if (session.checkLogin()) {
             finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
 
         HashMap<String, String> user = session.getUserDetails();
 
@@ -66,6 +68,12 @@ public class ListUsersActivity extends Activity {
         adapter = new UsersAdapter(this, tabUser);
         lv_listUsers_list.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     public void onListUsersClickManager(View v) {
@@ -99,6 +107,7 @@ public class ListUsersActivity extends Activity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 session.logoutUser();
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             }
                         })
                         .setNegativeButton("Non", new DialogInterface.OnClickListener() {
