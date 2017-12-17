@@ -33,6 +33,7 @@
     <string name="logout_message">Voulez-vous vraiment vous déconnecter ?</string>
     <string name="change_password_message">Veuillez entrer votre nouveau mot de passe</string>
     <string name="delete_user_message">Voulez-vous vraiment supprimer l\'utilisateur ?</string>
+    <string name="delete_automaton_message">Voulez-vous vraiment supprimer l\'automate ?</string>
     <string name="yes_button">Oui</string>
     <string name="save_button">Enregistrer</string>
     <string name="no_button">Non</string>

@@ -32,6 +32,10 @@ public class ListAutomatonsActivity extends Activity {
     FloatingActionButton fab_listAutomatons_add;
     FloatingActionButton fab_listAutomatons_logout;
 
+    Automaton automaton;
+    AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
+    int position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +87,10 @@ public class ListAutomatonsActivity extends Activity {
                 break;
             case R.id.btn_automatonItem_removeIcon:
 
-                Toast.makeText(getApplicationContext(), "Supprimer l'automate", Toast.LENGTH_LONG).show();
+                position = (Integer) v.getTag();
+
+                automaton = adapter.getItem(position);
+                createRemoveAutomatonDialog();
 
                 break;
             case R.id.fab_listAutomatons_add:
@@ -113,5 +120,29 @@ public class ListAutomatonsActivity extends Activity {
 
                 break;
         }
+    }
+
+    public void createRemoveAutomatonDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.delete_title)
+                .setMessage(R.string.delete_automaton_message)
+                .setPositiveButton(R.string.yes_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        automatonDB.openForWrite();
+                        automatonDB.removeAutomaton(automaton.getName());
+                        tabAutomaton = automatonDB.getAllAutomatons();
+                        adapter.clear();
+                        adapter.addAll(tabAutomaton);
+                        automatonDB.Close();
+                    }
+                })
+                .setNegativeButton(R.string.no_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).create().show();
     }
 }
