@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="be.heh.session.LoginActivity"
+            android:label="@string/title_activity_login"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +23,11 @@
         </activity>
         <activity
             android:name="be.heh.session.RegisterActivity"
+            android:label="@string/title_activity_register"
             android:screenOrientation="portrait" />
         <activity
             android:name=".HomeActivity"
+            android:label="@string/title_activity_home"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SuperHomeActivity"
@@ -32,8 +35,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ListUsersActivity"
+            android:label="@string/title_activity_list_users"
             android:screenOrientation="portrait" />
-        <activity android:name=".ListAutomatonsActivity"></activity>
+        <activity
+            android:name=".ListAutomatonsActivity"
+            android:label="@string/title_activity_list_automatons"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

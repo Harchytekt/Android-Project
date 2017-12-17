@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MyProject</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_super_home">SuperHomeActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_list_users">ListUsersActivity</string>
+    <string name="title_activity_list_automatons">ListAutomatonsActivity</string>
 </resources>
