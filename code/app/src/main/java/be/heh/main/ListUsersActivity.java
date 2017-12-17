@@ -84,16 +84,18 @@ public class ListUsersActivity extends Activity {
 
                 break;
             case R.id.btn_userItem_rightsIcon:
+
                 position = (Integer) v.getTag();
 
                 user = adapter.getItem(position);
                 createRightsDialog(Integer.parseInt(user.getRights()) % 2);
+
                 break;
             case R.id.btn_userItem_removeIcon:
+
                 position = (Integer) v.getTag();
 
                 user = adapter.getItem(position);
-
                 createRemoveUserDialog();
 
                 break;

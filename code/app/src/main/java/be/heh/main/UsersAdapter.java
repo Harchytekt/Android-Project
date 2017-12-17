@@ -77,6 +77,7 @@ public class UsersAdapter extends ArrayAdapter<User> {
         tv_userItem_firstname.setText(Html.fromHtml("Prénom : <b>" + user.getFirstname() + "</b>"));
         tv_userItem_email.setText(Html.fromHtml("Email : <b>" + user.getEmail() + "</b>"));
         tv_userItem_rights.setText(Html.fromHtml("Droits : <b>" + rights + "</b>"));
+
         btn_userItem_passwordIcon.setTag(position);
         btn_userItem_rightsIcon.setTag(position);
         btn_userItem_removeIcon.setTag(position);
