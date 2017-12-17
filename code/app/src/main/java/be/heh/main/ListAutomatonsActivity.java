@@ -13,8 +13,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import be.heh.databases.User;
-import be.heh.databases.UserAccessDB;
+import be.heh.database.User;
+import be.heh.database.UserAccessDB;
 import be.heh.session.Session;
 
 public class ListAutomatonsActivity extends Activity {
@@ -47,7 +47,7 @@ public class ListAutomatonsActivity extends Activity {
 
         UserAccessDB userDB = new UserAccessDB(this);
         userDB.openForWrite();
-        tabUser = userDB.getAllUser();
+        tabUser = userDB.getAllUsers();
         userDB.Close();
 
         tv_listAutomatons_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));

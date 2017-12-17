@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import be.heh.databases.User;
+import be.heh.database.User;
 
 /**
  * Created by alexandre on 11/12/17.

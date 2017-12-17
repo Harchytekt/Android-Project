@@ -1,4 +1,4 @@
-package be.heh.databases;
+package be.heh.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
  * Created by alexandre on 1/12/17.
  */
 
-public class AutomatonAccessDB {
+public class UserAccessDB {
 
     private static final int VERSION = 1;
-    private static final String NOM_DB = "User.db";
+    private static final String NOM_DB = "MyProject.db";
 
     private static final String TABLE_USER = "table_user";
     private static final String COL_ID = "ID";
@@ -32,18 +32,18 @@ public class AutomatonAccessDB {
     private static final int NUM_COL_RIGHTS = 5;
 
     private SQLiteDatabase db;
-    private UserDBSQlite userdb;
+    private MyProjectDBSQlite myprojectdb;
 
-    public AutomatonAccessDB(Context c) {
-        userdb = new UserDBSQlite(c, NOM_DB, null, VERSION);
+    public UserAccessDB(Context c) {
+        myprojectdb = new MyProjectDBSQlite(c, NOM_DB, null, VERSION);
     }
 
     public void openForWrite() {
-        db = userdb.getWritableDatabase();
+        db = myprojectdb.getWritableDatabase();
     }
 
     public void openForRead() {
-        db = userdb.getReadableDatabase();
+        db = myprojectdb.getReadableDatabase();
     }
 
     public void Close() {
@@ -86,7 +86,7 @@ public class AutomatonAccessDB {
         return db.delete(TABLE_USER, COL_EMAIL + " = ?", new String[] {email});
     }
 
-    public ArrayList<User> getAllUser() {
+    public ArrayList<User> getAllUsers() {
         Cursor c = db.query(TABLE_USER, new String[]{
                 COL_ID, COL_LASTNAME, COL_FIRSTNAME, COL_PASSWORD, COL_EMAIL, COL_RIGHTS}, null, null, null, null, COL_ID);
         ArrayList<User> tabUser = new ArrayList<User>();
@@ -113,7 +113,7 @@ public class AutomatonAccessDB {
     }
 
     public boolean isAlreadyUsed(String email) {
-        ArrayList<User> tabUser = this.getAllUser();
+        ArrayList<User> tabUser = this.getAllUsers();
         for (User user : tabUser) {
             if (user.getEmail().equals(email))
                 return true;
@@ -122,7 +122,7 @@ public class AutomatonAccessDB {
     }
 
     public int getNumberOfUsers() {
-        return this.getAllUser().size();
+        return this.getAllUsers().size();
     }
 
     public String getRUsers() {

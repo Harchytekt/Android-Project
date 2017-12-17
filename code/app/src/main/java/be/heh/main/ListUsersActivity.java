@@ -15,10 +15,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import be.heh.databases.UserAccessDB;
+import be.heh.database.UserAccessDB;
 import be.heh.session.Password;
 import be.heh.session.Session;
-import be.heh.databases.User;
+import be.heh.database.User;
 
 public class ListUsersActivity extends Activity {
 
@@ -60,7 +60,7 @@ public class ListUsersActivity extends Activity {
 
         UserAccessDB userDB = new UserAccessDB(this);
         userDB.openForWrite();
-        tabUser = userDB.getAllUser();
+        tabUser = userDB.getAllUsers();
         userDB.Close();
 
         tv_listUsers_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
@@ -138,7 +138,7 @@ public class ListUsersActivity extends Activity {
 
                         userDB.updateUserPassword(user.getId(), pwd.getGeneratedPassword());
 
-                        tabUser = userDB.getAllUser();
+                        tabUser = userDB.getAllUsers();
                         adapter.clear();
                         adapter.addAll(tabUser);
                         userDB.Close();
@@ -171,7 +171,7 @@ public class ListUsersActivity extends Activity {
                         userDB.updateUserRights(user.getId(), "1");
                         break;
                 }
-                tabUser = userDB.getAllUser();
+                tabUser = userDB.getAllUsers();
                 adapter.clear();
                 adapter.addAll(tabUser);
                 userDB.Close();
@@ -192,7 +192,7 @@ public class ListUsersActivity extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         userDB.openForWrite();
                         userDB.removeUser(user.getEmail());
-                        tabUser = userDB.getAllUser();
+                        tabUser = userDB.getAllUsers();
                         adapter.clear();
                         adapter.addAll(tabUser);
                         userDB.Close();

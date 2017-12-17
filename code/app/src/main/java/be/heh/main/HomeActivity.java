@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import java.util.HashMap;
 
+import be.heh.database.AutomatonAccessDB;
 import be.heh.session.Session;
 
 public class HomeActivity extends Activity {
@@ -59,17 +60,17 @@ public class HomeActivity extends Activity {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
-        /*UserAccessDB userDB = new UserAccessDB(this);
-        userDB.openForWrite();
-        int nbUsers = userDB.getNumberOfUsers();
-        String nbRUsers = userDB.getRUsers();
-        String nbRWUsers = userDB.getRWUsers();
-        userDB.Close();*/
+        AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
+        automatonDB.openForWrite();
+        int nbAutomatons = automatonDB.getNumberOfAutomatons();
+        String nbPills = automatonDB.getPills();
+        String nbLiquids = automatonDB.getLiquids();
+        automatonDB.Close();
 
-        tv_home_automatons.setText(Html.fromHtml("Vous avez <b>"+ "0" +
+        tv_home_automatons.setText(Html.fromHtml("Vous avez <b>"+ nbAutomatons +
                 "</b> automates dont :<br><br>" +
-                "<b>"+ "0" + "</b> pour le <i>conditionnement de comprimés</i>;<br>" +
-                "<b>" + "0" + "</b> pour l'<i>asservissement de niveau de liquide</i>."));
+                "<b>"+ nbPills + "</b> pour le <i>conditionnement de comprimés</i>;<br>" +
+                "<b>" + nbLiquids + "</b> pour l'<i>asservissement de niveau de liquide</i>."));
 
     }
 

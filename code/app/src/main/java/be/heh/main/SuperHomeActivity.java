@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
-import be.heh.databases.UserAccessDB;
+import be.heh.database.UserAccessDB;
 import be.heh.session.Session;
 
 public class SuperHomeActivity extends Activity {

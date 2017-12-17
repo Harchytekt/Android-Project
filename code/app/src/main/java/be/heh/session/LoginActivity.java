@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-import be.heh.databases.User;
-import be.heh.databases.UserAccessDB;
+import be.heh.database.User;
+import be.heh.database.UserAccessDB;
 import be.heh.main.HomeActivity;
 import be.heh.main.R;
 import be.heh.main.SuperHomeActivity;
@@ -56,7 +56,7 @@ public class LoginActivity extends Activity {
 
                 UserAccessDB userDB = new UserAccessDB(this);
                 userDB.openForWrite();
-                ArrayList<User> tabUser = userDB.getAllUser();
+                ArrayList<User> tabUser = userDB.getAllUsers();
                 userDB.Close();
 
                 if (login(tabUser)) {
