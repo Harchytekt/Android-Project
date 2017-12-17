@@ -8,10 +8,12 @@
     <color name="veryLightYellow">#FFF8E69C</color>
     <color name="lightYellow">#FFFCDB69</color>
     <color name="darkYellow">#FFF8C530</color>
+    <color name="userList">#CCFDF3C8</color>
 
     <color name="lightGreen">#FF2FD390</color>
     <color name="green">#FF2AB77E</color>
     <color name="darkGreen">#FF1E835A</color>
+    <color name="automatonList">#CCc9eec2</color>
 
     <color name="blue">#FF0056D6</color>
     <color name="red">#FFD33C43</color>

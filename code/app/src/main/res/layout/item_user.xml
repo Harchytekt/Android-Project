@@ -8,7 +8,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="#FDF3C8">
+        android:background="@color/userList">
 
         <ImageView
             android:id="@+id/iv_userItem_userIcon"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:lines="1"
                 android:ellipsize="end"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_userItem_firstname"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:lines="1"
                 android:ellipsize="end"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_userItem_email"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:lines="1"
                 android:ellipsize="end"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_userItem_rights"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:lines="1"
                 android:ellipsize="end"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
