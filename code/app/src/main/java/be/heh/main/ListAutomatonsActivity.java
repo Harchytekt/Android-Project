@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import be.heh.database.Automaton;
+import be.heh.database.AutomatonAccessDB;
 import be.heh.database.User;
 import be.heh.database.UserAccessDB;
 import be.heh.session.Session;
@@ -21,8 +24,10 @@ public class ListAutomatonsActivity extends Activity {
 
     private Session session;
 
-    ArrayList<User> tabUser;
+    ArrayList<Automaton> tabAutomaton;
     TextView tv_listAutomatons_email;
+    AutomatonsAdapter adapter;
+    ListView lv_listAutomatons_list;
     FloatingActionButton fab_listAutomatons_add;
     FloatingActionButton fab_listAutomatons_logout;
 
@@ -34,6 +39,7 @@ public class ListAutomatonsActivity extends Activity {
         session = new Session(getApplicationContext());
 
         tv_listAutomatons_email = findViewById(R.id.tv_listAutomatons_email);
+        lv_listAutomatons_list = findViewById(R.id.lv_listAutomatons_list);
         fab_listAutomatons_add = findViewById(R.id.fab_listAutomatons_add);
         fab_listAutomatons_logout = findViewById(R.id.fab_listAutomatons_logout);
 
@@ -45,12 +51,15 @@ public class ListAutomatonsActivity extends Activity {
 
         HashMap<String, String> user = session.getUserDetails();
 
-        UserAccessDB userDB = new UserAccessDB(this);
-        userDB.openForWrite();
-        tabUser = userDB.getAllUsers();
-        userDB.Close();
+        AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
+        automatonDB.openForWrite();
+        tabAutomaton = automatonDB.getAllAutomatons();
+        automatonDB.Close();
 
         tv_listAutomatons_email.setText(Html.fromHtml("Connecté en tant que '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+
+        adapter = new AutomatonsAdapter(this, tabAutomaton);
+        lv_listAutomatons_list.setAdapter(adapter);
     }
 
     @Override
