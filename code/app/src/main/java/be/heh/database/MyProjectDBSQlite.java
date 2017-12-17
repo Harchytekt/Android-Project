@@ -67,12 +67,12 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
     private static final String ADD_PILLS = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ") VALUES (" +
-            "'Conditionnement de comprimés 1', '10.1.0.130', '0', '1', '0');";
+            "'Comprimés 1', '10.1.0.130', '0', '1', '0');";
 
     private static final String ADD_LIQUID = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ") VALUES (" +
-            "'Asservissement de niveau de liquide 1', '10.1.0.130', '0', '1', '1');";
+            "'Liquide 1', '10.1.0.130', '0', '1', '1');";
 
     public MyProjectDBSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);
