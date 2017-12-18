@@ -1,4 +1,4 @@
-package be.heh.session;
+package be.heh.authActivities;
 
 import android.app.Activity;
 import android.content.Intent;
