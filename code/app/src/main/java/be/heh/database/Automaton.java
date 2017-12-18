@@ -12,7 +12,6 @@ public class Automaton {
     private String rack;
     private String slot;
     private String type;
-    private String mac;
 
     public Automaton(){}
 
@@ -22,7 +21,6 @@ public class Automaton {
         this.rack = rack;
         this.slot = slot;
         this.type = type;
-        mac       = "Inconnue";
     }
 
     public int getId() {
@@ -73,14 +71,6 @@ public class Automaton {
         this.type = type;
     }
 
-    public String getMac() {
-        return mac;
-    }
-
-    public void setMac(String mac) {
-        this.mac = mac;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -90,8 +80,7 @@ public class Automaton {
                 "IP : " + getIp() + "\n" +
                 "Rack : " + getRack() + "\n" +
                 "Slot : " + getSlot() + "\n" +
-                "Type : " + getType() + "\n" +
-                "MAC : " + getMac());
+                "Type : " + getType());
         return sb.toString();
     }
 

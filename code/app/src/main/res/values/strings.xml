@@ -22,7 +22,6 @@
     <string name="ip">IP</string>
     <string name="rack">Rack</string>
     <string name="slot">Slot</string>
-    <string name="mac">MAC</string>
 
 
     <!-- Alert dialogs -->
