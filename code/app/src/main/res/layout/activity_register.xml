@@ -6,7 +6,7 @@
     android:background="@drawable/rectangle"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="be.heh.authActivities.RegisterActivity">
+    tools:context="be.heh.auth.RegisterActivity">
 
     <ImageView
         android:id="@+id/iv_register_icon"

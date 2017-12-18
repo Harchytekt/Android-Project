@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import be.heh.authActivities.LoginActivity;
+import be.heh.auth.LoginActivity;
 
 public class Session {
 
