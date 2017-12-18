@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/automatonList">
+        android:background="@layout/item_automaton_shape">
 
         <ImageView
             android:id="@+id/iv_automatonItem_automatonIcon"
