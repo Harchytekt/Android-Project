@@ -12,7 +12,7 @@
         android:layout_marginTop="15dp"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:src="@drawable/super_home" />
+        android:src="@drawable/ic_super_home" />
 
     <TextView
         android:id="@+id/tv_superHome_email"
