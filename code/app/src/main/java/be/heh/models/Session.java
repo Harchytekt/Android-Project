@@ -1,4 +1,4 @@
-package be.heh.session;
+package be.heh.models;
 
 /**
  * Created by alexandre on 7/12/17.
@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import be.heh.session.LoginActivity;
 
 public class Session {
 

@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import be.heh.database.UserAccessDB;
-import be.heh.session.Password;
-import be.heh.session.Session;
+import be.heh.models.Password;
+import be.heh.models.Session;
 import be.heh.models.User;
 
 public class ListUsersActivity extends Activity {

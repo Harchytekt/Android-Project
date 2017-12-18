@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
+import be.heh.models.Password;
 import be.heh.models.User;
 import be.heh.database.UserAccessDB;
 import be.heh.main.R;

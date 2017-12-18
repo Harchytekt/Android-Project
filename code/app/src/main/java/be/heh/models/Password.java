@@ -1,4 +1,4 @@
-package be.heh.session;
+package be.heh.models;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.util.ArrayList;
 
+import be.heh.models.Password;
+import be.heh.models.Session;
 import be.heh.models.User;
 import be.heh.database.UserAccessDB;
 import be.heh.main.HomeActivity;

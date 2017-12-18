@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 import be.heh.models.Automaton;
 import be.heh.database.AutomatonAccessDB;
-import be.heh.session.Session;
+import be.heh.models.Session;
 
 public class ListAutomatonsActivity extends Activity {
 
