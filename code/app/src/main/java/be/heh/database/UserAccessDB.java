@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import be.heh.models.User;
+
 /**
  * Created by alexandre on 1/12/17.
  */

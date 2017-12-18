@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import be.heh.database.Automaton;
+import be.heh.models.Automaton;
 
 /**
  * Created by alexandre on 11/12/17.

@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import be.heh.models.Automaton;
+
 /**
  * Created by alexandre on 1/12/17.
  */

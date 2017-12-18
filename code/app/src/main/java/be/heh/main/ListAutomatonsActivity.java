@@ -14,10 +14,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import be.heh.database.Automaton;
+import be.heh.models.Automaton;
 import be.heh.database.AutomatonAccessDB;
-import be.heh.database.User;
-import be.heh.database.UserAccessDB;
 import be.heh.session.Session;
 
 public class ListAutomatonsActivity extends Activity {
