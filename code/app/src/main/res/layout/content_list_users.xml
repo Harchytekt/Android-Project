@@ -30,6 +30,8 @@
         android:layout_marginTop="30dp"
         android:id="@+id/lv_listUsers_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 
 </LinearLayout>
