@@ -12,7 +12,7 @@
         android:id="@+id/iv_register_icon"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:src="@drawable/ic_register" />
+        android:src="@drawable/register" />
 
     <TextView
         android:id="@+id/tv_register_title"
