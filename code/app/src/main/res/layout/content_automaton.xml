@@ -28,7 +28,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="PLC : ⚠"
+        android:text="Automate"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"

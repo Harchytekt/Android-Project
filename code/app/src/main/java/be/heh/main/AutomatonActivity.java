@@ -95,7 +95,7 @@ public class AutomatonActivity extends Activity {
                         tv_automaton_status.setText("Connecté par " + network.getTypeName() + " à l'automate.");
 
                         readS7 = new ReadTaskS7(v, tv_automaton_plc);
-                        readS7.Start("192.168.10.130", "0", "2");
+                        readS7.Start("Liquide 1","192.168.10.130", "0", "2");
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
 
@@ -114,8 +114,6 @@ public class AutomatonActivity extends Activity {
                         fab_automaton_connect.setContentDescription("Connexion");
                         fab_automaton_connect.setImageResource(R.drawable.ic_signin);
                         tv_automaton_status.setText("Déconnecté de l'automate.");
-
-                        Toast.makeText(getApplication(), "Traitement interrompu par l'utilisateur !!!", Toast.LENGTH_SHORT).show();
 
                         /*try {
                             Thread.sleep(1000);

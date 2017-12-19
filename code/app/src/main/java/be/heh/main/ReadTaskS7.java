@@ -4,12 +4,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -53,11 +49,14 @@ public class ReadTaskS7 {
         readThread.interrupt();
     }
 
-    public void Start(String a, String r, String s) {
+    public void Start(String name, String ip, String rack, String slot) {
         if (!readThread.isAlive()) {
-            param[0] = a;
-            param[1] = r;
-            param[2] = s;
+            param[0] = name;
+            param[1] = ip;
+            param[2] = rack;
+            param[3] = slot;
+
+            System.out.println(param[0]);
 
             readThread.start();
             isRunning.set(true);
@@ -65,16 +64,14 @@ public class ReadTaskS7 {
     }
 
     private void downloadOnPreExecute(int t) {
-        //Toast.makeText(vi_main_ui.getContext(), "Le traitement de la tâche de fond est démarré !\n", Toast.LENGTH_SHORT).show();
-        tv_main_plc.setText("PLC : " + String.valueOf(t));
+        tv_main_plc.setText(param[0] + "\nPLC : " + String.valueOf(t));
     }
 
     private void downloadOnProgressUpdate(int progress) {
     }
 
     private void downloadOnPostExecute() {
-        //Toast.makeText(vi_main_ui.getContext(), "Le traitement de la tâche de fond est terminé !\n️", Toast.LENGTH_SHORT).show();
-        tv_main_plc.setText("PLC : ⚠");
+        tv_main_plc.setText(param[0] + "\nPLC : ⚠");
     }
 
     private Handler monHandler = new Handler() {
@@ -102,7 +99,7 @@ public class ReadTaskS7 {
         public void run() {
             try {
                 comS7.SetConnectionType(S7.S7_BASIC);
-                Integer res = comS7.ConnectTo(param[0],Integer.valueOf(param[1]),Integer.valueOf(param[2]));
+                Integer res = comS7.ConnectTo(param[1],Integer.valueOf(param[2]),Integer.valueOf(param[3]));
 
                 S7OrderCode orderCode = new S7OrderCode();
                 Integer result = comS7.GetOrderCode(orderCode);
