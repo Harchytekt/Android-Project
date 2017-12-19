@@ -6,29 +6,29 @@
     android:background="@drawable/yellow_gradient"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".AutomatonActivity">
+    tools:context=".AutomatonLiquidsActivity">
 
     <TextView
-        android:id="@+id/tv_automaton_email"
+        android:id="@+id/tv_automatonLiquids_email"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/tv_automaton_status"
+        android:id="@+id/tv_automatonLiquids_status"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="Déconnecté de l'automate"
+        android:text="@string/liquids"
         android:textAlignment="center"
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/tv_automaton_plc"
+        android:id="@+id/tv_automatonLiquids_plc"
         android:layout_marginTop="20dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="Automate"
+        android:text="@string/not_connected"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"

@@ -4,32 +4,32 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
 
-import be.heh.database.AutomatonAccessDB;
+import be.heh.models.CurrentAutomaton;
 import be.heh.models.Session;
 
-public class AutomatonActivity extends Activity {
+public class AutomatonLiquidsActivity extends Activity {
 
     private Session session;
-    FloatingActionButton fab_automaton_connect;
-    FloatingActionButton fab_automaton_logout;
+    private CurrentAutomaton currentAutomaton;
+    String automatonName;
 
-    TextView tv_automaton_email;
-    TextView tv_automaton_status;
-    TextView tv_automaton_plc;
+    FloatingActionButton fab_automatonLiquids_connect;
+    FloatingActionButton fab_automatonLiquids_logout;
+
+    TextView tv_automatonLiquids_email;
+    TextView tv_automatonLiquids_status;
+    TextView tv_automatonLiquids_plc;
 
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
@@ -38,33 +38,35 @@ public class AutomatonActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_automaton);
+        setContentView(R.layout.activity_automaton_liquids);
 
         session = new Session(getApplicationContext());
+        currentAutomaton = new CurrentAutomaton(getApplicationContext());
 
-        tv_automaton_email = findViewById(R.id.tv_automaton_email);
-        tv_automaton_status = findViewById(R.id.tv_automaton_status);
-        tv_automaton_plc = findViewById(R.id.tv_automaton_plc);
+        tv_automatonLiquids_email = findViewById(R.id.tv_automatonLiquids_email);
+        tv_automatonLiquids_status = findViewById(R.id.tv_automatonLiquids_status);
+        tv_automatonLiquids_plc = findViewById(R.id.tv_automatonLiquids_plc);
 
-        fab_automaton_connect = findViewById(R.id.fab_automaton_connect);
-        fab_automaton_logout = findViewById(R.id.fab_automaton_logout);
+        fab_automatonLiquids_connect = findViewById(R.id.fab_automatonLiquids_connect);
+        fab_automatonLiquids_logout = findViewById(R.id.fab_automatonLiquids_logout);
 
         // If not logged in, redirection to LoginActivity
-        if (session.checkLogin()) {
+        if (session.checkLogin() || currentAutomaton.checkCurrent()) {
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
         HashMap<String, String> user = session.getUserDetails();
+        automatonName = currentAutomaton.getAutomatonName().get(CurrentAutomaton.KEY_NAME);
 
-        tv_automaton_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_automatonLiquids_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (session.checkLogin()) {
+        if (session.checkLogin() || currentAutomaton.checkCurrent()) {
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
@@ -80,7 +82,7 @@ public class AutomatonActivity extends Activity {
     public void onAutomatonClickManager(View v) {
 
         switch (v.getId()) {
-            case R.id.fab_automaton_connect:
+            case R.id.fab_automatonLiquids_connect:
 
                 connexStatus = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
                 if (connexStatus != null) {
@@ -88,14 +90,15 @@ public class AutomatonActivity extends Activity {
                 }
 
                 if (network != null && network.isConnectedOrConnecting()) {
-                    if (fab_automaton_connect.getContentDescription().equals("Connexion")) {
+                    if (fab_automatonLiquids_connect.getContentDescription().equals(getString((R.string.login)))) {
 
-                        fab_automaton_connect.setContentDescription("Déconnexion");
-                        fab_automaton_connect.setImageResource(R.drawable.ic_signout);
-                        tv_automaton_status.setText("Connecté par " + network.getTypeName() + " à l'automate.");
+                        fab_automatonLiquids_connect.setContentDescription(getString(R.string.logout_title));
+                        fab_automatonLiquids_connect.setImageResource(R.drawable.ic_signout);
+                        tv_automatonLiquids_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
-                        readS7 = new ReadTaskS7(v, tv_automaton_plc);
-                        readS7.Start("Liquide 1","192.168.10.130", "0", "2");
+                        readS7 = new ReadTaskS7(v, tv_automatonLiquids_plc);
+                        readS7.Start(automatonName,"192.168.1.130", "0", "2");
+                        //readS7.Start(automatonName,"10.1.0.119", "0", "1"); // Pills
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
 
@@ -111,9 +114,9 @@ public class AutomatonActivity extends Activity {
                     } else {
                         readS7.Stop();
 
-                        fab_automaton_connect.setContentDescription("Connexion");
-                        fab_automaton_connect.setImageResource(R.drawable.ic_signin);
-                        tv_automaton_status.setText("Déconnecté de l'automate.");
+                        fab_automatonLiquids_connect.setContentDescription(getString((R.string.login)));
+                        fab_automatonLiquids_connect.setImageResource(R.drawable.ic_signin);
+                        tv_automatonLiquids_status.setText(getString((R.string.liquids)));
 
                         /*try {
                             Thread.sleep(1000);
@@ -126,12 +129,12 @@ public class AutomatonActivity extends Activity {
 
                     }
                 } else {
-                    Toast.makeText(this, "! Connexion réseau IMPOSSIBLE !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString((R.string.impossible_connection)), Toast.LENGTH_SHORT).show();
                 }
 
 
                 break;
-            case R.id.fab_automaton_logout:
+            case R.id.fab_automatonLiquids_logout:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

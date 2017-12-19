@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AutomatonPillsActivity">
+
+    <include layout="@layout/content_automaton_pills" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_automatonPills_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_signin"
+        android:contentDescription="Connexion"
+        android:onClick="onAutomatonClickManager"
+        app:backgroundTint="@color/darkGreen" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_automatonPills_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_logout"
+        android:onClick="onAutomatonClickManager"
+        app:backgroundTint="@color/red" />
+
+</android.support.design.widget.CoordinatorLayout>

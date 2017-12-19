@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
@@ -17,11 +18,13 @@ import java.util.HashMap;
 
 import be.heh.models.Automaton;
 import be.heh.database.AutomatonAccessDB;
+import be.heh.models.CurrentAutomaton;
 import be.heh.models.Session;
 
 public class ListAutomatonsActivity extends Activity {
 
     private Session session;
+    private CurrentAutomaton currentAutomaton;
 
     private ArrayList<Automaton> tabAutomaton;
     private TextView tv_listAutomatons_email;
@@ -41,6 +44,7 @@ public class ListAutomatonsActivity extends Activity {
         setContentView(R.layout.activity_list_automatons);
 
         session = new Session(getApplicationContext());
+        currentAutomaton = new CurrentAutomaton(getApplicationContext());
 
         tv_listAutomatons_email = findViewById(R.id.tv_listAutomatons_email);
         lv_listAutomatons_list = findViewById(R.id.lv_listAutomatons_list);
@@ -76,7 +80,19 @@ public class ListAutomatonsActivity extends Activity {
         switch (v.getId()) {
             case R.id.btn_automatonItem_seeIcon:
 
-                Intent intentAutomaton = new Intent(this, AutomatonActivity.class);
+                position = (Integer) v.getTag();
+
+                automaton = adapter.getItem(position);
+
+                currentAutomaton.createCurrentAutomaton(automaton.getName());
+
+                Intent intentAutomaton;
+
+                if (automaton.getType().equals("0"))
+                    intentAutomaton = new Intent(this, AutomatonPillsActivity.class);
+                else
+                    intentAutomaton = new Intent(this, AutomatonLiquidsActivity.class);
+
                 startActivity(intentAutomaton);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 

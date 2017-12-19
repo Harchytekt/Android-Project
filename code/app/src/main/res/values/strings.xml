@@ -64,6 +64,11 @@
     <string name="home_users_text1">automates dont :</string>
     <string name="home_users_text2">pour le</string>
     <string name="home_users_text3">pour l\'</string>
+    <string name="login">Connexion</string>
+    <string name="not_connected">Non connecté</string>
+    <string name="connected_by">Connecté par</string>
+    <string name="to_automaton">à l\'automate.</string>
+    <string name="connected_automaton">Connecté par \' %s \' au réseau.</string>
 
 
     <!-- Titles -->
@@ -83,5 +88,6 @@
     <string name="wrong_email_format">Format d\'email incorrect !</string>
     <string name="already_used_email">Cette adresse est déjà utilisée !</string>
     <string name="password_format">Minimum 4 caractères, au moins 1 majuscule, 1 minuscule et 1 chiffre.</string>
+    <string name="impossible_connection">⚠️ Connexion réseau IMPOSSIBLE ⚠️ </string>
 
 </resources>

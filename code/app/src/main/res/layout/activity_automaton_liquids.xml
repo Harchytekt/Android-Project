@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AutomatonActivity">
+    tools:context=".AutomatonLiquidsActivity">
 
-    <include layout="@layout/content_automaton" />
+    <include layout="@layout/content_automaton_liquids" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_automaton_connect"
+        android:id="@+id/fab_automatonLiquids_connect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
@@ -21,7 +21,7 @@
         app:backgroundTint="@color/darkGreen" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_automaton_logout"
+        android:id="@+id/fab_automatonLiquids_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
