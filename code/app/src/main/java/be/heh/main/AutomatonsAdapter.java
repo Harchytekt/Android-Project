@@ -71,8 +71,9 @@ public class AutomatonsAdapter extends ArrayAdapter<Automaton> {
         tv_automatonItem_name.setText(Html.fromHtml(context.getString(R.string.name) + " : <b>" + automaton.getName() + "</b>"));
         tv_automatonItem_type.setText(Html.fromHtml(context.getString(R.string.type) + " : <b>" + type + "</b>"));
         tv_automatonItem_ip.setText(Html.fromHtml(context.getString(R.string.ip) + " : <b>" + automaton.getIp() + "</b>"));
-        tv_automatonItem_infos.setText(Html.fromHtml(context.getString(R.string.rack) + " : <b>" + automaton.getRack() + "</b>    " +
-                context.getString(R.string.slot) + " : <b>" + automaton.getSlot() + "</b>"));
+        tv_automatonItem_infos.setText(Html.fromHtml(context.getString(R.string.rack) + " : <b>" + automaton.getRack() + "</b> " +
+                context.getString(R.string.slot) + " : <b>" + automaton.getSlot() + "</b> " +
+                context.getString(R.string.databloc) + " : <b>" + automaton.getDataBloc() + "</b>"));
 
         btn_automatonItem_seeIcon.setTag(position);
         btn_automatonItem_editIcon.setTag(position);

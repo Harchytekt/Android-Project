@@ -23,6 +23,7 @@
     <string name="ip">IP</string>
     <string name="rack">Rack</string>
     <string name="slot">Slot</string>
+    <string name="databloc">Databloc</string>
 
 
     <!-- Alert dialogs -->

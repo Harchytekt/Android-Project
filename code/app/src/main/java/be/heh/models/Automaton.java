@@ -12,15 +12,17 @@ public class Automaton {
     private String rack;
     private String slot;
     private String type;
+    private String dataBloc;
 
     public Automaton(){}
 
-    public Automaton(String name, String ip, String rack, String slot, String type) {
+    public Automaton(String name, String ip, String rack, String slot, String type, String dataBloc) {
         this.name = name;
         this.ip   = ip;
         this.rack = rack;
         this.slot = slot;
         this.type = type;
+        this.dataBloc = dataBloc;
     }
 
     public int getId() {
@@ -71,6 +73,14 @@ public class Automaton {
         this.type = type;
     }
 
+    public String getDataBloc() {
+        return dataBloc;
+    }
+
+    public void setDataBloc(String dataBloc) {
+        this.dataBloc = dataBloc;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -80,7 +90,8 @@ public class Automaton {
                 "IP : " + getIp() + "\n" +
                 "Rack : " + getRack() + "\n" +
                 "Slot : " + getSlot() + "\n" +
-                "Type : " + getType());
+                "Type : " + getType() + "\n" +
+                "Databloc : " + getDataBloc());
         return sb.toString();
     }
 

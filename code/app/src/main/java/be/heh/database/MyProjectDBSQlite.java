@@ -27,6 +27,7 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
     private static final String COL_RACK = "RACK";
     private static final String COL_SLOT = "SLOT";
     private static final String COL_TYPE = "TYPE";
+    private static final String COL_DATABLOC = "DATABLOC";
 
     private static final String CREATE_USERDB = "CREATE TABLE IF NOT EXISTS " +
             TABLE_USER + " (" +
@@ -60,17 +61,18 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
             COL_IP   + " TEXT NOT NULL, " +
             COL_RACK + " TEXT NOT NULL, " +
             COL_SLOT + " TEXT NOT NULL, " +
-            COL_TYPE + " TEXT NOT NULL);";
+            COL_TYPE + " TEXT NOT NULL, " +
+            COL_DATABLOC + " TEXT NOT NULL);";
 
     private static final String ADD_PILLS = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
-            COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ") VALUES (" +
-            "'Comprimés 1', '192.168.10.130', '0', '1', '0');";
+            COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
+            "'Comprimés 1', '192.168.10.130', '0', '1', '0', 'DB25');";
 
     private static final String ADD_LIQUID = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
-            COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ") VALUES (" +
-            "'Liquide 1', '10.1.0.130', '0', '2', '1');";
+            COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
+            "'Liquide 1', '10.1.0.130', '0', '2', '1', 'DB25');";
 
     public MyProjectDBSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);

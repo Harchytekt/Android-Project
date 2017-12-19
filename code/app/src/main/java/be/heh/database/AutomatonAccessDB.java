@@ -25,6 +25,7 @@ public class AutomatonAccessDB {
     private static final String COL_RACK = "RACK";
     private static final String COL_SLOT = "SLOT";
     private static final String COL_TYPE = "TYPE";
+    private static final String COL_DATABLOC = "DATABLOC";
 
     private static final int NUM_COL_ID = 0;
     private static final int NUM_COL_NAME = 1;
@@ -32,6 +33,7 @@ public class AutomatonAccessDB {
     private static final int NUM_COL_RACK = 3;
     private static final int NUM_COL_SLOT = 4;
     private static final int NUM_COL_TYPE = 5;
+    private static final int NUM_COL_DATABLOC = 6;
 
     private SQLiteDatabase db;
     private MyProjectDBSQlite automatondb;
@@ -59,6 +61,7 @@ public class AutomatonAccessDB {
         content.put(COL_RACK, a.getRack());
         content.put(COL_SLOT, a.getSlot());
         content.put(COL_TYPE, a.getType());
+        content.put(COL_DATABLOC, a.getType());
         return db.insert(TABLE_AUTOMATON, null, content);
     }
 
@@ -69,6 +72,7 @@ public class AutomatonAccessDB {
         content.put(COL_RACK, a.getRack());
         content.put(COL_SLOT, a.getSlot());
         content.put(COL_TYPE, a.getType());
+        content.put(COL_DATABLOC, a.getType());
         return db.update(TABLE_AUTOMATON, content, COL_ID + " = " + i, null);
     }
 
@@ -78,7 +82,7 @@ public class AutomatonAccessDB {
 
     public ArrayList<Automaton> getAllAutomatons() {
         Cursor c = db.query(TABLE_AUTOMATON, new String[]{
-                COL_ID, COL_NAME, COL_IP, COL_RACK, COL_SLOT, COL_TYPE}, null, null, null, null, COL_ID);
+                COL_ID, COL_NAME, COL_IP, COL_RACK, COL_SLOT, COL_TYPE, COL_DATABLOC}, null, null, null, null, COL_ID);
         ArrayList<Automaton> tabAutomaton = new ArrayList<Automaton>();
 
         if (c.getCount() == 0) {
@@ -94,6 +98,7 @@ public class AutomatonAccessDB {
             automaton1.setRack(c.getString(NUM_COL_RACK));
             automaton1.setSlot(c.getString(NUM_COL_SLOT));
             automaton1.setType(c.getString(NUM_COL_TYPE));
+            automaton1.setDataBloc(c.getString(NUM_COL_DATABLOC));
             tabAutomaton.add(automaton1);
         }
 
