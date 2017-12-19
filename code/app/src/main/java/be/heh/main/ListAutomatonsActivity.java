@@ -3,6 +3,7 @@ package be.heh.main;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
@@ -22,17 +23,17 @@ public class ListAutomatonsActivity extends Activity {
 
     private Session session;
 
-    ArrayList<Automaton> tabAutomaton;
-    TextView tv_listAutomatons_email;
-    AutomatonsAdapter adapter;
-    ListView lv_listAutomatons_list;
+    private ArrayList<Automaton> tabAutomaton;
+    private TextView tv_listAutomatons_email;
+    private AutomatonsAdapter adapter;
+    private ListView lv_listAutomatons_list;
 
     FloatingActionButton fab_listAutomatons_add;
     FloatingActionButton fab_listAutomatons_logout;
 
-    Automaton automaton;
-    AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
-    int position;
+    private Automaton automaton;
+    private AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,9 @@ public class ListAutomatonsActivity extends Activity {
         switch (v.getId()) {
             case R.id.btn_automatonItem_seeIcon:
 
-                Toast.makeText(getApplicationContext(), "Voir l'automate", Toast.LENGTH_LONG).show();
+                Intent intentAutomaton = new Intent(this, AutomatonActivity.class);
+                startActivity(intentAutomaton);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 break;
             case R.id.btn_automatonItem_editIcon:

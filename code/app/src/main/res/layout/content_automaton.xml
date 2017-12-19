@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yellow_gradient"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".AutomatonActivity">
+
+    <TextView
+        android:id="@+id/tv_automaton_email"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_automaton_status"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:text="Déconnecté de l'automate"
+        android:textAlignment="center"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_automaton_plc"
+        android:layout_marginTop="20dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:text="PLC : ⚠"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+</LinearLayout>

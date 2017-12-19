@@ -45,7 +45,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Voir les automates"
+        android:text="@string/home_seeAutomatons"
         android:onClick="onHomeClickManager"
         android:textColor="@color/darkGreen"
         android:background="@android:color/transparent" />

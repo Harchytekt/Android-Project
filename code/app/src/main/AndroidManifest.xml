@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="be.heh.main">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon"
@@ -39,6 +42,9 @@
         <activity
             android:name=".ListAutomatonsActivity"
             android:label="@string/title_activity_list_automatons"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AutomatonActivity"
+            android:label="@string/title_activity_automaton"
             android:screenOrientation="portrait" />
     </application>
 

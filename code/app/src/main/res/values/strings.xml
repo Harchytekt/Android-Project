@@ -7,6 +7,7 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_list_users">ListUsersActivity</string>
     <string name="title_activity_list_automatons">ListAutomatonsActivity</string>
+    <string name="title_activity_automaton">AutomatonActivity</string>
 
 
     <!-- Adapter -->

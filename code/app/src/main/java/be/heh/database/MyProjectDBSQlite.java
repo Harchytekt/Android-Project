@@ -59,13 +59,13 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
             COL_NAME + " TEXT NOT NULL, " +
             COL_IP   + " TEXT NOT NULL, " +
             COL_RACK + " TEXT NOT NULL, " +
-            COL_SLOT + " TEXT NOT NULL," +
+            COL_SLOT + " TEXT NOT NULL, " +
             COL_TYPE + " TEXT NOT NULL);";
 
     private static final String ADD_PILLS = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ") VALUES (" +
-            "'Comprimés 1', '10.1.0.130', '0', '1', '0');";
+            "'Comprimés 1', '192.168.10.130', '0', '1', '0');";
 
     private static final String ADD_LIQUID = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
