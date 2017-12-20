@@ -70,6 +70,25 @@ public class ListAutomatonsActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (session.checkLogin()) {
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
+
+        AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
+        automatonDB.openForWrite();
+        tabAutomaton = automatonDB.getAllAutomatons();
+        automatonDB.Close();
+
+        adapter = new AutomatonsAdapter(this, tabAutomaton);
+        lv_listAutomatons_list.setAdapter(adapter);
+
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -111,7 +130,10 @@ public class ListAutomatonsActivity extends Activity {
                 break;
             case R.id.fab_listAutomatons_add:
 
-                Toast.makeText(getApplicationContext(), "Ajouter un automate", Toast.LENGTH_LONG).show();
+                Intent intentRegisterAutomaton = new Intent(this, RegisterAutomatonActivity.class);
+                startActivity(intentRegisterAutomaton);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                //Toast.makeText(getApplicationContext(), "Ajouter un automate", Toast.LENGTH_LONG).show();
 
                 break;
             case R.id.fab_listAutomatons_logout:

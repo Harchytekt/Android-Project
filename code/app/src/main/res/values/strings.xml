@@ -9,6 +9,8 @@
     <string name="title_activity_list_automatons">ListAutomatonsActivity</string>
     <string name="title_activity_automaton_pills">AutomatonPillsActivity</string>
     <string name="title_activity_automaton_liquid">AutomatonLiquidActivity</string>
+    <string name="title_activity_create_automaton">CreateAutomatonActivity</string>
+    <string name="title_activity_modify_automaton">ModifyAutomatonActivity</string>
 
 
     <!-- Adapter -->
@@ -54,6 +56,14 @@
     <string name="password">Mot de passe</string>
     <string name="lastname">Nom de famille</string>
     <string name="firstname">Prénom</string>
+    <string name="ip_address">Adresse IP</string>
+
+    <!-- Spinners (Dropdown lists) -->
+    <string-array name="automaton_types_arrays">
+        <item>Conditionnement de comprimés</item>
+        <item>Asservissement de niveau de liquide</item>
+    </string-array>
+    <string name="automaton_types_prompt">Choisissez un type</string>
 
 
     <!-- Texts -->
@@ -78,6 +88,7 @@
     <string name="welcome_title">Bienvenue !</string>
     <string name="listUsers_title">Liste des utilisateurs</string>
     <string name="listAutomatons_title">Liste des automates</string>
+    <string name="new_automaton_title">Nouvel automate</string>
 
 
     <!-- Toasts -->
@@ -90,5 +101,10 @@
     <string name="already_used_email">Cette adresse est déjà utilisée !</string>
     <string name="password_format">Minimum 4 caractères, au moins 1 majuscule, 1 minuscule et 1 chiffre.</string>
     <string name="impossible_connection">⚠️ Connexion réseau IMPOSSIBLE ⚠️ </string>
+    <string name="already_used_name">Ce nom est déjà utilisé !</string>
+    <string name="wrong_ip_format">Format d\'IP incorrect !</string>
+    <string name="wrong_rack_slot_format">La valeur doit être entre 0 et 3.</string>
+    <string name="wrong_databloc_format">Format de databloc incorrect !</string>
+    <string name="created_automaton">✔️ L\'automate a bien été créé ! ✔️ </string>
 
 </resources>

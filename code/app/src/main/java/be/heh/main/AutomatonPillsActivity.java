@@ -106,7 +106,6 @@ public class AutomatonPillsActivity extends Activity {
 
                         readS7 = new ReadTaskS7(v, tv_automatonPills_plc);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
-                        //readS7.Start(automatonName,"10.1.0.119", "0", "1"); // Pills
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
 
