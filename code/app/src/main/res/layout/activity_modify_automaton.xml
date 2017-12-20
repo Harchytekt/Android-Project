@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yellow_gradient"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".ModifyAutomatonActivity">
+
+    <ImageView
+        android:id="@+id/iv_modifyAutomaton_icon"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/automaton" />
+
+    <TextView
+        android:id="@+id/tv_modifyAutomaton_title"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:text="@string/modify_automaton_title"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/et_modifyAutomaton_name"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_modifyAutomaton_ip"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="@string/ip_address"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_modifyAutomaton_rack"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="@string/rack"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_modifyAutomaton_slot"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="@string/slot"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_modifyAutomaton_databloc"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="@string/databloc"
+        android:inputType="text" />
+
+    <Spinner
+        android:id="@+id/sp_modifyAutomaton_type"
+        android:layout_width="325dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:entries="@array/automaton_types_arrays"
+        android:prompt="@string/automaton_types_prompt" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/btn_modifyAutomaton_cancel"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_button"
+            android:onClick="onModifyAutomatonClickManager"
+            android:textColor="@color/blue"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/btn_modifyAutomaton_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_button"
+            android:onClick="onModifyAutomatonClickManager" />
+
+    </LinearLayout>
+
+</LinearLayout>

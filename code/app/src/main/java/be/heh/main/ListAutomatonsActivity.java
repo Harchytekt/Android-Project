@@ -117,7 +117,10 @@ public class ListAutomatonsActivity extends Activity {
                 break;
             case R.id.btn_automatonItem_editIcon:
 
-                Toast.makeText(getApplicationContext(), "Modifier l'automate", Toast.LENGTH_LONG).show();
+                Intent intentModifyAutomaton = new Intent(this, ModifyAutomatonActivity.class);
+                startActivity(intentModifyAutomaton);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                //Toast.makeText(getApplicationContext(), "Modifier l'automate", Toast.LENGTH_LONG).show();
 
                 break;
             case R.id.btn_automatonItem_removeIcon:

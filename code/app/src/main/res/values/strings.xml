@@ -89,6 +89,7 @@
     <string name="listUsers_title">Liste des utilisateurs</string>
     <string name="listAutomatons_title">Liste des automates</string>
     <string name="new_automaton_title">Nouvel automate</string>
+    <string name="modify_automaton_title">Modifier l\'automate</string>
 
 
     <!-- Toasts -->
