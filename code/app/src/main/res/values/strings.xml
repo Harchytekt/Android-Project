@@ -107,5 +107,6 @@
     <string name="wrong_rack_slot_format">La valeur doit être entre 0 et 3.</string>
     <string name="wrong_databloc_format">Format de databloc incorrect !</string>
     <string name="created_automaton">✔️ L\'automate a bien été créé ! ✔️ </string>
+    <string name="modified_automaton">✔️ L\'automate a bien été modifié ! ✔️ </string>
 
 </resources>

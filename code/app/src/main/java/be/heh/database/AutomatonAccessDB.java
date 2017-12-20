@@ -72,7 +72,7 @@ public class AutomatonAccessDB {
         content.put(COL_RACK, a.getRack());
         content.put(COL_SLOT, a.getSlot());
         content.put(COL_TYPE, a.getType());
-        content.put(COL_DATABLOC, a.getType());
+        content.put(COL_DATABLOC, a.getDataBloc());
         return db.update(TABLE_AUTOMATON, content, COL_ID + " = " + i, null);
     }
 

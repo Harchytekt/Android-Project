@@ -31,11 +31,11 @@ public class ModifyAutomatonActivity extends Activity {
     private TextWatcher slot;
     private TextWatcher dataBloc;
 
-    private boolean validName;
-    private boolean validIp;
-    private boolean validRack;
-    private boolean validSlot;
-    private boolean validDataBloc;
+    private boolean validName = true;
+    private boolean validIp = true;
+    private boolean validRack = true;
+    private boolean validSlot = true;
+    private boolean validDataBloc = true;
 
     AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
 
@@ -112,7 +112,7 @@ public class ModifyAutomatonActivity extends Activity {
                     automatonDB.updateAutomaton(modifiedAutomaton.getId(), automaton);
                     automatonDB.Close();
 
-                    Toast.makeText(getApplicationContext(), R.string.created_automaton, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.modified_automaton, Toast.LENGTH_LONG).show();
 
                     finish();
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
