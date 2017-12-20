@@ -99,7 +99,7 @@ public class ReadTaskS7 {
         public void run() {
             try {
                 comS7.SetConnectionType(S7.S7_BASIC);
-                Integer res = comS7.ConnectTo(param[1],Integer.valueOf(param[2]),Integer.valueOf(param[3]));
+                Integer res = comS7.ConnectTo(param[1], Integer.valueOf(param[2]), Integer.valueOf(param[3]));
 
                 S7OrderCode orderCode = new S7OrderCode();
                 Integer result = comS7.GetOrderCode(orderCode);
@@ -118,7 +118,7 @@ public class ReadTaskS7 {
 
                 while(isRunning.get()) {
                     if (res.equals(0)) {
-                        int retInfo = comS7.ReadArea(S7.S7AreaDB,5,9,2,datasPLC);
+                        int retInfo = comS7.ReadArea(S7.S7AreaDB,5,9,2, datasPLC);
                         int data=0;
                         //int dataB=0;
                         if (retInfo ==0) {

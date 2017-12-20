@@ -30,7 +30,7 @@
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_home_automatons"
