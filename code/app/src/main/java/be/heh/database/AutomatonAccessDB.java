@@ -116,14 +116,15 @@ public class AutomatonAccessDB {
             return automaton;
         }
 
-        automaton.setId(c.getInt(NUM_COL_ID));
-        automaton.setName(c.getString(NUM_COL_NAME));
-        automaton.setIp(c.getString(NUM_COL_IP));
-        automaton.setRack(c.getString(NUM_COL_RACK));
-        automaton.setSlot(c.getString(NUM_COL_SLOT));
-        automaton.setType(c.getString(NUM_COL_TYPE));
-        automaton.setDataBloc(c.getString(NUM_COL_DATABLOC));
-
+        while (c.moveToNext()) {
+            automaton.setId(c.getInt(NUM_COL_ID));
+            automaton.setName(c.getString(NUM_COL_NAME));
+            automaton.setIp(c.getString(NUM_COL_IP));
+            automaton.setRack(c.getString(NUM_COL_RACK));
+            automaton.setSlot(c.getString(NUM_COL_SLOT));
+            automaton.setType(c.getString(NUM_COL_TYPE));
+            automaton.setDataBloc(c.getString(NUM_COL_DATABLOC));
+        }
 
         c.close();
         return automaton;

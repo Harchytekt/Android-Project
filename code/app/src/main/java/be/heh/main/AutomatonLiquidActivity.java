@@ -65,9 +65,7 @@ public class AutomatonLiquidActivity extends Activity {
 
         AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
         automatonDB.openForWrite();
-        System.out.println("Test 1");
         automaton = automatonDB.getAutomaton(automatonName);
-        System.out.println("Test2");
         automatonDB.Close();
 
         tv_automatonLiquid_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
@@ -108,7 +106,7 @@ public class AutomatonLiquidActivity extends Activity {
                         tv_automatonLiquid_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
                         readS7 = new ReadTaskS7(v, tv_automatonLiquid_plc);
-                        readS7.Start(automatonName, automaton.getName(), automaton.getRack(), automaton.getSlot());
+                        readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
                         //readS7.Start(automatonName,"10.1.0.119", "0", "1"); // Pills
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);

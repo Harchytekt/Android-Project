@@ -105,7 +105,7 @@ public class AutomatonPillsActivity extends Activity {
                         tv_automatonPills_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
                         readS7 = new ReadTaskS7(v, tv_automatonPills_plc);
-                        readS7.Start(automatonName, automaton.getName(), automaton.getRack(), automaton.getSlot());
+                        readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
                         //readS7.Start(automatonName,"10.1.0.119", "0", "1"); // Pills
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
