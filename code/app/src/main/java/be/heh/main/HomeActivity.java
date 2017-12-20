@@ -55,7 +55,7 @@ public class HomeActivity extends Activity {
         tv_home_automatons.setText(Html.fromHtml(getString(R.string.there_is) + " <b>"+ nbAutomatons +
                 "</b> " + getString(R.string.home_users_text1) + "<br><br>" +
                 "<b>"+ nbPills + "</b> " + getString(R.string.home_users_text2) + " <i>" + getString(R.string.pills) + "</i>;<br>" +
-                "<b>" + nbLiquids + "</b> " + getString(R.string.home_users_text3) + "<i>" + getString(R.string.liquids) + "</i>."));
+                "<b>" + nbLiquids + "</b> " + getString(R.string.home_users_text3) + "<i>" + getString(R.string.liquid) + "</i>."));
     }
 
     @Override
@@ -77,7 +77,7 @@ public class HomeActivity extends Activity {
         tv_home_automatons.setText(Html.fromHtml(getString(R.string.there_is) + " <b>"+ nbAutomatons +
                 "</b> " + getString(R.string.home_users_text1) + "<br><br>" +
                 "<b>"+ nbPills + "</b> " + getString(R.string.home_users_text2) + " <i>" + getString(R.string.pills) + "</i>;<br>" +
-                "<b>" + nbLiquids + "</b> " + getString(R.string.home_users_text3) + "<i>" + getString(R.string.liquids) + "</i>."));
+                "<b>" + nbLiquids + "</b> " + getString(R.string.home_users_text3) + "<i>" + getString(R.string.liquid) + "</i>."));
 
     }
 

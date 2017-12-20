@@ -63,7 +63,7 @@ public class AutomatonsAdapter extends ArrayAdapter<Automaton> {
             type = context.getString(R.string.pills);
             icon = R.drawable.pill_automaton;
         } else {
-            type = context.getString(R.string.liquids);
+            type = context.getString(R.string.liquid);
             icon = R.drawable.liquid_automaton;
         }
 

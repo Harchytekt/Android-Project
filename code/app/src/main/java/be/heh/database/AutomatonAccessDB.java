@@ -107,6 +107,29 @@ public class AutomatonAccessDB {
 
     }
 
+    public Automaton getAutomaton(String name) {
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_AUTOMATON + " where " + COL_NAME + " = '" + name + "'", null);
+        Automaton automaton = new Automaton();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return automaton;
+        }
+
+        automaton.setId(c.getInt(NUM_COL_ID));
+        automaton.setName(c.getString(NUM_COL_NAME));
+        automaton.setIp(c.getString(NUM_COL_IP));
+        automaton.setRack(c.getString(NUM_COL_RACK));
+        automaton.setSlot(c.getString(NUM_COL_SLOT));
+        automaton.setType(c.getString(NUM_COL_TYPE));
+        automaton.setDataBloc(c.getString(NUM_COL_DATABLOC));
+
+
+        c.close();
+        return automaton;
+
+    }
+
     public boolean isAlreadyUsed(String name) {
         ArrayList<Automaton> tabAutomaton = this.getAllAutomatons();
         for (Automaton automaton : tabAutomaton) {

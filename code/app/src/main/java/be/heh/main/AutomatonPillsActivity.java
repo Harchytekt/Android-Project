@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import be.heh.database.AutomatonAccessDB;
 import be.heh.models.Automaton;
 import be.heh.models.CurrentAutomaton;
 import be.heh.models.Session;
@@ -24,6 +25,7 @@ public class AutomatonPillsActivity extends Activity {
     private Session session;
     private CurrentAutomaton currentAutomaton;
     String automatonName;
+    Automaton automaton;
 
     FloatingActionButton fab_automatonPills_connect;
     FloatingActionButton fab_automatonPills_logout;
@@ -59,6 +61,11 @@ public class AutomatonPillsActivity extends Activity {
 
         HashMap<String, String> user = session.getUserDetails();
         automatonName = currentAutomaton.getAutomatonName().get(CurrentAutomaton.KEY_NAME);
+
+        AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
+        automatonDB.openForWrite();
+        automaton = automatonDB.getAutomaton(automatonName);
+        automatonDB.Close();
 
         tv_automatonPills_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
     }
@@ -98,7 +105,7 @@ public class AutomatonPillsActivity extends Activity {
                         tv_automatonPills_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
                         readS7 = new ReadTaskS7(v, tv_automatonPills_plc);
-                        readS7.Start(automatonName,"192.168.1.130", "0", "2");
+                        readS7.Start(automatonName, automaton.getName(), automaton.getRack(), automaton.getSlot());
                         //readS7.Start(automatonName,"10.1.0.119", "0", "1"); // Pills
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);

@@ -7,7 +7,8 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_list_users">ListUsersActivity</string>
     <string name="title_activity_list_automatons">ListAutomatonsActivity</string>
-    <string name="title_activity_automaton">AutomatonActivity</string>
+    <string name="title_activity_automaton_pills">AutomatonPillsActivity</string>
+    <string name="title_activity_automaton_liquid">AutomatonLiquidActivity</string>
 
 
     <!-- Adapter -->
@@ -15,7 +16,7 @@
     <string name="read_write">Lecture-Écriture</string>
     <string name="super_user">Super-utilisateur</string>
     <string name="pills">Conditionnement de comprimés</string>
-    <string name="liquids">Asservissement de niveau de liquide</string>
+    <string name="liquid">Asservissement de niveau de liquide</string>
     <string name="email">Email</string>
     <string name="rights">Droits</string>
     <string name="name">Nom</string>

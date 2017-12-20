@@ -6,25 +6,25 @@
     android:background="@drawable/yellow_gradient"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".AutomatonLiquidsActivity">
+    tools:context=".AutomatonLiquidActivity">
 
     <TextView
-        android:id="@+id/tv_automatonLiquids_email"
+        android:id="@+id/tv_automatonLiquid_email"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquids_status"
+        android:id="@+id/tv_automatonLiquid_status"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:text="@string/liquids"
+        android:text="@string/liquid"
         android:textAlignment="center"
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquids_plc"
+        android:id="@+id/tv_automatonLiquid_plc"
         android:layout_marginTop="20dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"

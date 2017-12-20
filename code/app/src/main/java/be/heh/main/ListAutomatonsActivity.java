@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
@@ -91,7 +90,7 @@ public class ListAutomatonsActivity extends Activity {
                 if (automaton.getType().equals("0"))
                     intentAutomaton = new Intent(this, AutomatonPillsActivity.class);
                 else
-                    intentAutomaton = new Intent(this, AutomatonLiquidsActivity.class);
+                    intentAutomaton = new Intent(this, AutomatonLiquidActivity.class);
 
                 startActivity(intentAutomaton);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
