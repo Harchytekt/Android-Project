@@ -67,17 +67,17 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
     private static final String ADD_PILLS_VM = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
-            "'Comprimés VM', '192.168.1.130', '0', '2', '0', 'DB25');";
+            "'Comprimés VM', '192.168.1.130', '0', '2', '0', '25');";
 
     private static final String ADD_LIQUID_VM = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
-            "'Liquide VM', '192.168.1.130', '0', '2', '1', 'DB25');";
+            "'Liquide VM', '192.168.1.130', '0', '2', '1', '25');";
 
     private static final String ADD_PILLS_SCHOOL = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
-            "'Comprimés École', '10.1.0.119', '0', '1', '0', 'DB25');";
+            "'Comprimés École', '10.1.0.119', '0', '1', '0', '25');";
 
     public MyProjectDBSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);

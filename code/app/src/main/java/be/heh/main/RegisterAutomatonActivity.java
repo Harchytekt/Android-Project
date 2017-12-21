@@ -201,7 +201,7 @@ public class RegisterAutomatonActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Pattern.matches("^(DB[0-9]{1,2})$", et_registerAutomaton_databloc.getText().toString())) {
+                if (!Pattern.matches("^([0-9]{1,2})$", et_registerAutomaton_databloc.getText().toString())) {
                     et_registerAutomaton_databloc.setError(getString(R.string.wrong_databloc_format));
                     validDataBloc = false;
                 } else {
