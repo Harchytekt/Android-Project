@@ -26,7 +26,7 @@ public class ListAutomatonsActivity extends Activity {
     private CurrentAutomaton currentAutomaton;
 
     private ArrayList<Automaton> tabAutomaton;
-    private TextView tv_listAutomatons_email;
+    private TextView tv_listAutomatons_connected;
     private AutomatonsAdapter adapter;
     private ListView lv_listAutomatons_list;
 
@@ -45,7 +45,7 @@ public class ListAutomatonsActivity extends Activity {
         session = new Session(getApplicationContext());
         currentAutomaton = new CurrentAutomaton(getApplicationContext());
 
-        tv_listAutomatons_email = findViewById(R.id.tv_listAutomatons_email);
+        tv_listAutomatons_connected = findViewById(R.id.tv_listAutomatons_connected);
         lv_listAutomatons_list = findViewById(R.id.lv_listAutomatons_list);
         fab_listAutomatons_add = findViewById(R.id.fab_listAutomatons_add);
         fab_listAutomatons_logout = findViewById(R.id.fab_listAutomatons_logout);
@@ -63,7 +63,7 @@ public class ListAutomatonsActivity extends Activity {
         tabAutomaton = automatonDB.getAllAutomatons();
         automatonDB.Close();
 
-        tv_listAutomatons_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_listAutomatons_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
         adapter = new AutomatonsAdapter(this, tabAutomaton);
         lv_listAutomatons_list.setAdapter(adapter);
@@ -116,6 +116,12 @@ public class ListAutomatonsActivity extends Activity {
 
                 break;
             case R.id.btn_automatonItem_editIcon:
+
+                position = (Integer) v.getTag();
+
+                automaton = adapter.getItem(position);
+
+                currentAutomaton.createCurrentAutomaton(automaton.getName());
 
                 Intent intentModifyAutomaton = new Intent(this, ModifyAutomatonActivity.class);
                 startActivity(intentModifyAutomaton);

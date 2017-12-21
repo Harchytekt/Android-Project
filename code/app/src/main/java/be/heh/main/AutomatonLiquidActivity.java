@@ -30,7 +30,7 @@ public class AutomatonLiquidActivity extends Activity {
     FloatingActionButton fab_automatonLiquid_connect;
     FloatingActionButton fab_automatonLiquid_logout;
 
-    TextView tv_automatonLiquid_email;
+    TextView tv_automatonLiquid_connected;
     TextView tv_automatonLiquid_status;
     TextView tv_automatonLiquid_plc;
 
@@ -46,7 +46,7 @@ public class AutomatonLiquidActivity extends Activity {
         session = new Session(getApplicationContext());
         currentAutomaton = new CurrentAutomaton(getApplicationContext());
 
-        tv_automatonLiquid_email = findViewById(R.id.tv_automatonLiquid_email);
+        tv_automatonLiquid_connected = findViewById(R.id.tv_automatonLiquid_connected);
         tv_automatonLiquid_status = findViewById(R.id.tv_automatonLiquid_status);
         tv_automatonLiquid_plc = findViewById(R.id.tv_automatonLiquid_plc);
 
@@ -61,14 +61,13 @@ public class AutomatonLiquidActivity extends Activity {
 
         HashMap<String, String> user = session.getUserDetails();
         automatonName = currentAutomaton.getAutomatonName().get(CurrentAutomaton.KEY_NAME);
-        System.out.println(automatonName);
 
         AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
         automatonDB.openForWrite();
         automaton = automatonDB.getAutomaton(automatonName);
         automatonDB.Close();
 
-        tv_automatonLiquid_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_automatonLiquid_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
     }
 
     @Override

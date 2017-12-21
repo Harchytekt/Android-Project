@@ -18,7 +18,7 @@ import be.heh.models.Session;
 public class SuperHomeActivity extends Activity {
 
     private Session session;
-    TextView tv_superHome_email;
+    TextView tv_superHome_connected;
     TextView tv_superHome_users;
     FloatingActionButton fab_superHome_logout;
 
@@ -29,7 +29,7 @@ public class SuperHomeActivity extends Activity {
 
         session = new Session(getApplicationContext());
 
-        tv_superHome_email = findViewById(R.id.tv_superHome_email);
+        tv_superHome_connected = findViewById(R.id.tv_superHome_connected);
         tv_superHome_users = findViewById(R.id.tv_superHome_users);
 
         fab_superHome_logout = findViewById(R.id.fab_superHome_logout);
@@ -49,7 +49,7 @@ public class SuperHomeActivity extends Activity {
         String nbRWUsers = userDB.getRWUsers();
         userDB.Close();
 
-        tv_superHome_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_superHome_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
         tv_superHome_users.setText(Html.fromHtml(getString(R.string.there_is) + " <b>"+ nbUsers +
                 "</b> " + getString(R.string.superHome_users_text1) + "<br><br>" +
                 "<b>"+ nbRUsers + "</b> " + getString(R.string.superHome_users_text2) + "<br>" +

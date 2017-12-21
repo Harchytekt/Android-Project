@@ -9,7 +9,7 @@
     tools:context=".AutomatonPillsActivity">
 
     <TextView
-        android:id="@+id/tv_automatonPills_email"
+        android:id="@+id/tv_automatonPills_connected"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"

@@ -19,7 +19,7 @@ public class HomeActivity extends Activity {
 
     private Session session;
     FloatingActionButton fab_home_logout;
-    TextView tv_home_email;
+    TextView tv_home_connected;
     TextView tv_home_automatons;
     Button btn_home_seeAutomatons;
 
@@ -30,7 +30,7 @@ public class HomeActivity extends Activity {
 
         session = new Session(getApplicationContext());
 
-        tv_home_email = findViewById(R.id.tv_home_email);
+        tv_home_connected = findViewById(R.id.tv_home_connected);
         tv_home_automatons = findViewById(R.id.tv_home_automatons);
         btn_home_seeAutomatons = findViewById(R.id.btn_home_seeAutomatons);
 
@@ -51,7 +51,7 @@ public class HomeActivity extends Activity {
         String nbLiquids = automatonDB.getLiquids();
         automatonDB.Close();
 
-        tv_home_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_home_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
         tv_home_automatons.setText(Html.fromHtml(getString(R.string.there_is) + " <b>"+ nbAutomatons +
                 "</b> " + getString(R.string.home_users_text1) + "<br><br>" +
                 "<b>"+ nbPills + "</b> " + getString(R.string.home_users_text2) + " <i>" + getString(R.string.pills) + "</i>;<br>" +

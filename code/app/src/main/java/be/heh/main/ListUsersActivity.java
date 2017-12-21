@@ -25,7 +25,7 @@ public class ListUsersActivity extends Activity {
     private Session session;
 
     ArrayList<User> tabUser;
-    TextView tv_listUsers_email;
+    TextView tv_listUsers_connected;
     UsersAdapter adapter;
     ListView lv_listUsers_list;
     FloatingActionButton fab_listUsers_logout;
@@ -46,7 +46,7 @@ public class ListUsersActivity extends Activity {
 
         session = new Session(getApplicationContext());
 
-        tv_listUsers_email = findViewById(R.id.tv_listUsers_email);
+        tv_listUsers_connected = findViewById(R.id.tv_listUsers_connected);
         lv_listUsers_list = findViewById(R.id.lv_listUsers_list);
         fab_listUsers_logout = findViewById(R.id.fab_listUsers_logout);
 
@@ -63,7 +63,7 @@ public class ListUsersActivity extends Activity {
         tabUser = userDB.getAllUsers();
         userDB.Close();
 
-        tv_listUsers_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_listUsers_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
         adapter = new UsersAdapter(this, tabUser);
         lv_listUsers_list.setAdapter(adapter);

@@ -30,7 +30,7 @@ public class AutomatonPillsActivity extends Activity {
     FloatingActionButton fab_automatonPills_connect;
     FloatingActionButton fab_automatonPills_logout;
 
-    TextView tv_automatonPills_email;
+    TextView tv_automatonPills_connected;
     TextView tv_automatonPills_status;
     TextView tv_automatonPills_plc;
 
@@ -46,7 +46,7 @@ public class AutomatonPillsActivity extends Activity {
         session = new Session(getApplicationContext());
         currentAutomaton = new CurrentAutomaton(getApplicationContext());
 
-        tv_automatonPills_email = findViewById(R.id.tv_automatonPills_email);
+        tv_automatonPills_connected = findViewById(R.id.tv_automatonPills_connected);
         tv_automatonPills_status = findViewById(R.id.tv_automatonPills_status);
         tv_automatonPills_plc = findViewById(R.id.tv_automatonPills_plc);
 
@@ -67,7 +67,7 @@ public class AutomatonPillsActivity extends Activity {
         automaton = automatonDB.getAutomaton(automatonName);
         automatonDB.Close();
 
-        tv_automatonPills_email.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_automatonPills_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
     }
 
     @Override
