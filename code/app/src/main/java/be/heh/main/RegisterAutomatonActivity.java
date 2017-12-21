@@ -3,19 +3,26 @@ package be.heh.main;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import be.heh.database.AutomatonAccessDB;
 import be.heh.models.Automaton;
+import be.heh.models.Session;
 
 public class RegisterAutomatonActivity extends Activity {
 
+    private Session session;
+
+    TextView tv_registerAutomaton_connected;
     EditText et_registerAutomaton_name;
     EditText et_registerAutomaton_ip;
     EditText et_registerAutomaton_rack;
@@ -42,12 +49,25 @@ public class RegisterAutomatonActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_automaton);
 
+        session = new Session(getApplicationContext());
+
+        tv_registerAutomaton_connected = findViewById(R.id.tv_registerAutomaton_connected);
         et_registerAutomaton_name = findViewById(R.id.et_registerAutomaton_name);
         et_registerAutomaton_ip = findViewById(R.id.et_registerAutomaton_ip);
         et_registerAutomaton_rack = findViewById(R.id.et_registerAutomaton_rack);
         et_registerAutomaton_slot = findViewById(R.id.et_registerAutomaton_slot);
         et_registerAutomaton_databloc = findViewById(R.id.et_registerAutomaton_databloc);
         sp_registerAutomaton_type = findViewById(R.id.sp_registerAutomaton_type);
+
+        // If not logged in, redirection to LoginActivity
+        if (session.checkLogin()) {
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
+
+        HashMap<String, String> user = session.getUserDetails();
+
+        tv_registerAutomaton_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
         initValidation();
 

@@ -15,6 +15,13 @@
         android:src="@drawable/automaton" />
 
     <TextView
+        android:id="@+id/tv_registerAutomaton_connected"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:singleLine="true" />
+
+    <TextView
         android:id="@+id/tv_registerAutomaton_title"
         android:layout_width="325dp"
         android:layout_height="wrap_content"

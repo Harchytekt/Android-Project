@@ -3,21 +3,30 @@ package be.heh.main;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import be.heh.database.AutomatonAccessDB;
 import be.heh.models.Automaton;
+import be.heh.models.CurrentAutomaton;
+import be.heh.models.Session;
 
 public class ModifyAutomatonActivity extends Activity {
 
+    private Session session;
+    private CurrentAutomaton currentAutomaton;
+    String automatonName;
     Automaton modifiedAutomaton;
 
+    TextView tv_modifyAutomaton_connected;
     EditText et_modifyAutomaton_name;
     EditText et_modifyAutomaton_ip;
     EditText et_modifyAutomaton_rack;
@@ -44,6 +53,10 @@ public class ModifyAutomatonActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_automaton);
 
+        session = new Session(getApplicationContext());
+        currentAutomaton = new CurrentAutomaton(getApplicationContext());
+
+        tv_modifyAutomaton_connected = findViewById(R.id.tv_modifyAutomaton_connected);
         et_modifyAutomaton_name = findViewById(R.id.et_modifyAutomaton_name);
         et_modifyAutomaton_ip = findViewById(R.id.et_modifyAutomaton_ip);
         et_modifyAutomaton_rack = findViewById(R.id.et_modifyAutomaton_rack);
@@ -51,11 +64,21 @@ public class ModifyAutomatonActivity extends Activity {
         et_modifyAutomaton_databloc = findViewById(R.id.et_modifyAutomaton_databloc);
         sp_modifyAutomaton_type = findViewById(R.id.sp_modifyAutomaton_type);
 
+        // If not logged in, redirection to LoginActivity
+        if (session.checkLogin() || currentAutomaton.checkCurrent()) {
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
+
+        HashMap<String, String> user = session.getUserDetails();
+        automatonName = currentAutomaton.getAutomatonName().get(CurrentAutomaton.KEY_NAME);
+
         AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
         automatonDB.openForWrite();
-        // Get Current Automaton
-        modifiedAutomaton = automatonDB.getAutomaton("Test Liquide");
+        modifiedAutomaton = automatonDB.getAutomaton(automatonName);
         automatonDB.Close();
+
+        tv_modifyAutomaton_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
         et_modifyAutomaton_name.setText(modifiedAutomaton.getName());
         et_modifyAutomaton_ip.setText(modifiedAutomaton.getIp());
