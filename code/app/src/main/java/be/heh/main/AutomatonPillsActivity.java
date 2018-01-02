@@ -33,6 +33,8 @@ public class AutomatonPillsActivity extends Activity {
     TextView tv_automatonPills_connected;
     TextView tv_automatonPills_status;
     TextView tv_automatonPills_plc;
+    TextView tv_automatonPills_bottles;
+    TextView tv_automatonPills_pills;
 
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
@@ -49,6 +51,8 @@ public class AutomatonPillsActivity extends Activity {
         tv_automatonPills_connected = findViewById(R.id.tv_automatonPills_connected);
         tv_automatonPills_status = findViewById(R.id.tv_automatonPills_status);
         tv_automatonPills_plc = findViewById(R.id.tv_automatonPills_plc);
+        tv_automatonPills_bottles = findViewById(R.id.tv_automatonPills_bottles);
+        tv_automatonPills_pills = findViewById(R.id.tv_automatonPills_pills);
 
         fab_automatonPills_connect = findViewById(R.id.fab_automatonPills_connect);
         fab_automatonPills_logout = findViewById(R.id.fab_automatonPills_logout);
@@ -104,7 +108,7 @@ public class AutomatonPillsActivity extends Activity {
                         fab_automatonPills_connect.setImageResource(R.drawable.ic_signout);
                         tv_automatonPills_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
-                        readS7 = new ReadTaskS7(v, tv_automatonPills_plc);
+                        readS7 = new ReadTaskS7(v, tv_automatonPills_plc, tv_automatonPills_bottles, tv_automatonPills_pills);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);

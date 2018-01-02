@@ -32,6 +32,24 @@
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/tv_automatonPills_bottles"
+        android:layout_marginTop="20dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/tv_automatonPills_pills"
+        android:layout_marginTop="20dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
 
 </LinearLayout>
