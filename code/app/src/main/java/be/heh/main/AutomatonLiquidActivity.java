@@ -36,9 +36,11 @@ public class AutomatonLiquidActivity extends Activity {
     TextView tv_automatonLiquid_plc;
 
     TextView tv_automatonLiquid_level;
-    TextView tv_automatonLiquid_consigneAuto;
-    TextView tv_automatonLiquid_consigneManuelle;
-    TextView tv_automatonLiquid_pilotageVanne;
+    TextView tv_automatonLiquid_valveMA;
+    TextView tv_automatonLiquid_valve1;
+    TextView tv_automatonLiquid_valve2;
+    TextView tv_automatonLiquid_valve3;
+    TextView tv_automatonLiquid_valve4;
 
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
@@ -58,9 +60,11 @@ public class AutomatonLiquidActivity extends Activity {
         tv_automatonLiquid_plc = findViewById(R.id.tv_automatonLiquid_plc);
 
         tv_automatonLiquid_level = findViewById(R.id.tv_automatonLiquid_level);
-        tv_automatonLiquid_consigneAuto = findViewById(R.id.tv_automatonLiquid_consigneAuto);
-        tv_automatonLiquid_consigneManuelle = findViewById(R.id.tv_automatonLiquid_consigneManuelle);
-        tv_automatonLiquid_pilotageVanne = findViewById(R.id.tv_automatonLiquid_pilotageVanne);
+        tv_automatonLiquid_valveMA = findViewById(R.id.tv_automatonLiquid_valveMA);
+        tv_automatonLiquid_valve1 = findViewById(R.id.tv_automatonLiquid_valve1);
+        tv_automatonLiquid_valve2 = findViewById(R.id.tv_automatonLiquid_valve2);
+        tv_automatonLiquid_valve3 = findViewById(R.id.tv_automatonLiquid_valve3);
+        tv_automatonLiquid_valve4 = findViewById(R.id.tv_automatonLiquid_valve4);
 
         fab_automatonLiquid_connect = findViewById(R.id.fab_automatonLiquid_connect);
         fab_automatonLiquid_logout = findViewById(R.id.fab_automatonLiquid_logout);
@@ -86,9 +90,11 @@ public class AutomatonLiquidActivity extends Activity {
         tv_automatonLiquid_plc.setText(Html.fromHtml(automatonName + "<br>" + getString(R.string.not_connected)));
 
         tv_automatonLiquid_level.setText(String.format(getString(R.string.liquid_level), "?"));
-        tv_automatonLiquid_consigneAuto.setText(String.format(getString(R.string.liquid_consigneAuto), "?"));
-        tv_automatonLiquid_consigneManuelle.setText(String.format(getString(R.string.liquid_consigneManuelle), "?"));
-        tv_automatonLiquid_pilotageVanne.setText(String.format(getString(R.string.liquid_pilotageVanne), "?"));
+        tv_automatonLiquid_valveMA.setText(String.format(getString(R.string.liquid_valveMA), "?"));
+        tv_automatonLiquid_valve1.setText(String.format(getString(R.string.liquid_valve1), "?"));
+        tv_automatonLiquid_valve2.setText(String.format(getString(R.string.liquid_valve2), "?"));
+        tv_automatonLiquid_valve3.setText(String.format(getString(R.string.liquid_valve3), "?"));
+        tv_automatonLiquid_valve4.setText(String.format(getString(R.string.liquid_valve4), "?"));
     }
 
     @Override
@@ -126,8 +132,9 @@ public class AutomatonLiquidActivity extends Activity {
                         tv_automatonLiquid_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
                         TextView[] tvArray = {tv_automatonLiquid_plc, tv_automatonLiquid_level,
-                                tv_automatonLiquid_consigneAuto, tv_automatonLiquid_consigneManuelle,
-                                tv_automatonLiquid_pilotageVanne};
+                                tv_automatonLiquid_valveMA, tv_automatonLiquid_valve1,
+                                tv_automatonLiquid_valve2, tv_automatonLiquid_valve3,
+                                tv_automatonLiquid_valve4};
 
                         readS7 = new ReadLiquidS7(v, tvArray);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
@@ -140,7 +147,7 @@ public class AutomatonLiquidActivity extends Activity {
                             e.printStackTrace();
                         }
 
-                        writeS7 = new WriteTaskS7();
+                        writeS7 = new WritePillsS7();
                         //writeS7.Start("10.1.0.110", "0", "1");*/
 
                     } else {

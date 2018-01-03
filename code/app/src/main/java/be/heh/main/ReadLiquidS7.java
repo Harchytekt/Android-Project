@@ -19,11 +19,12 @@ import be.heh.SimaticS7.S7OrderCode;
 public class ReadLiquidS7 {
     private static final int MESSAGE_PRE_EXECUTE               = 1;
     private static final int MESSAGE_LEVEL_UPDATE              = 2;
-    private static final int MESSAGE_CONSIGNE_AUTO_UPDATE      = 3;
-    private static final int MESSAGE_CONSIGNE_MANUELLE_UPDATE  = 4;
-    private static final int MESSAGE_PILOTAGE_VANNE_UPDATE     = 5;
-    private static final int MESSAGE_BOTTLES_UPDATE            = 6;
-    private static final int MESSAGE_POST_EXECUTE              = 7;
+    private static final int MESSAGE_VALVE_MA_UPDATE           = 3;
+    private static final int MESSAGE_VALVE_1_UPDATE            = 4;
+    private static final int MESSAGE_VALVE_2_UPDATE            = 5;
+    private static final int MESSAGE_VALVE_3_UPDATE            = 6;
+    private static final int MESSAGE_VALVE_4_UPDATE            = 7;
+    private static final int MESSAGE_POST_EXECUTE              = 8;
 
     private final int readingDataBloc = 5;
 
@@ -31,9 +32,7 @@ public class ReadLiquidS7 {
     private View vi_main_ui;
     private TextView tv_plc;
     private TextView tv_level;
-    private TextView tv_consigneAuto;
-    private TextView tv_consigneManuelle;
-    private TextView tv_pilotageVanne;
+    private TextView tv_valveMA, tv_valve1, tv_valve2, tv_valve3, tv_valve4;
 
     private AutomateS7 plcS7;
     private Thread readThread;
@@ -41,16 +40,17 @@ public class ReadLiquidS7 {
     private S7Client comS7;
     private String[] param = new String[10];
     private byte[] levelPLC = new byte[2];
-    private byte[] consigneAutoPLC = new byte[2], consigneManuellePLC = new byte[2];
-    private byte[] pilotageVannePLC = new byte[2];
+    private byte[] valvesPLC = new byte[2];
 
     public ReadLiquidS7(View v, TextView[] tvArray) {
         vi_main_ui          = v;
         tv_plc              = tvArray[0];
         tv_level            = tvArray[1];
-        tv_consigneAuto     = tvArray[2];
-        tv_consigneManuelle = tvArray[3];
-        tv_pilotageVanne    = tvArray[4];
+        tv_valveMA          = tvArray[2];
+        tv_valve1           = tvArray[3];
+        tv_valve2           = tvArray[4];
+        tv_valve3           = tvArray[5];
+        tv_valve4           = tvArray[6];
 
         comS7             = new S7Client();
         plcS7             = new AutomateS7();
@@ -85,28 +85,40 @@ public class ReadLiquidS7 {
                 String.valueOf(data)));
     }
 
-    private void downloadOnConsigneAutoUpdate(int data) {
-        tv_consigneAuto.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consigneAuto),
-                String.valueOf(data)));
+    private void downloadOnValveMAUpdate(int data) {
+        tv_valveMA.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valveMA),
+                (data == 1 ? "Automatique" : "Manuelle")));
     }
 
-    private void downloadOnConsigneManuelleUpdate(int data) {
-        tv_consigneManuelle.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consigneManuelle),
-                String.valueOf(data)));
+    private void downloadOnValve1Update(int data) {
+        tv_valve1.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valve1),
+                (data == 1 ? "Fermée" : "Ouverte")));
     }
 
-    private void downloadOnPilotageVanneUpdate(int data) {
-        tv_pilotageVanne.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_pilotageVanne),
-                String.valueOf(data)));
+    private void downloadOnValve2Update(int data) {
+        tv_valve2.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valve2),
+                (data == 1 ? "Fermée" : "Ouverte")));
+    }
+
+    private void downloadOnValve3Update(int data) {
+        tv_valve3.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valve3),
+                (data == 1 ? "Fermée" : "Ouverte")));
+    }
+
+    private void downloadOnValve4Update(int data) {
+        tv_valve4.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valve4),
+                (data == 1 ? "Fermée" : "Ouverte")));
     }
 
     private void downloadOnPostExecute() {
         tv_plc.setText(param[0] + "\nPLC : ⚠");
 
         tv_level.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_level), "?"));
-        tv_consigneAuto.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consigneAuto), "?"));
-        tv_consigneManuelle.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consigneManuelle), "?"));
-        tv_pilotageVanne.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_pilotageVanne), "?"));
+        tv_valveMA.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valveMA), "?"));
+        tv_valve1.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valve1), "?"));
+        tv_valve2.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valve2), "?"));
+        tv_valve3.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valve3), "?"));
+        tv_valve4.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valve4), "?"));
     }
 
     private Handler monHandler = new Handler() {
@@ -120,14 +132,20 @@ public class ReadLiquidS7 {
                 case MESSAGE_LEVEL_UPDATE:
                     downloadOnLevelUpdate(msg.arg1);
                     break;
-                case MESSAGE_CONSIGNE_AUTO_UPDATE:
-                    downloadOnConsigneAutoUpdate(msg.arg1);
+                case MESSAGE_VALVE_MA_UPDATE:
+                    downloadOnValveMAUpdate(msg.arg1);
                     break;
-                case MESSAGE_CONSIGNE_MANUELLE_UPDATE:
-                    downloadOnConsigneManuelleUpdate(msg.arg1);
+                case MESSAGE_VALVE_1_UPDATE:
+                    downloadOnValve1Update(msg.arg1);
                     break;
-                case MESSAGE_PILOTAGE_VANNE_UPDATE:
-                    downloadOnPilotageVanneUpdate(msg.arg1);
+                case MESSAGE_VALVE_2_UPDATE:
+                    downloadOnValve2Update(msg.arg1);
+                    break;
+                case MESSAGE_VALVE_3_UPDATE:
+                    downloadOnValve3Update(msg.arg1);
+                    break;
+                case MESSAGE_VALVE_4_UPDATE:
+                    downloadOnValve4Update(msg.arg1);
                     break;
                 case MESSAGE_POST_EXECUTE:
                     downloadOnPostExecute();
@@ -151,7 +169,7 @@ public class ReadLiquidS7 {
                 int numCPU;
                 if (res.equals(0) && result.equals(0))
                     numCPU = Integer.valueOf(orderCode.Code().toString().substring(5, 8));
-                else numCPU=0000;
+                else numCPU = 0000;
 
                 sendPreExecuteMessage(numCPU);
 
@@ -165,25 +183,20 @@ public class ReadLiquidS7 {
                             sendLevelMessage(level);
                         }
 
-                        int consigneAutoRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,18,2, consigneAutoPLC);
-                        int consigneAuto;
-                        if (consigneAutoRead == 0) {
-                            consigneAuto = S7.GetWordAt(consigneAutoPLC, 0);
-                            sendConsigneAutoMessage(consigneAuto);
-                        }
+                        int valvesRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,0,2, valvesPLC);
+                        int valveMA, valve1, valve2, valve3, valve4;
+                        if (valvesRead == 0) {
+                            valve1 = S7.GetBitAt(valvesPLC, 0, 1) ? 1 : 0;
+                            valve2 = S7.GetBitAt(valvesPLC, 0, 2) ? 1 : 0;
+                            valve3 = S7.GetBitAt(valvesPLC, 0, 3) ? 1 : 0;
+                            valve4 = S7.GetBitAt(valvesPLC, 0, 4) ? 1 : 0;
+                            valveMA = S7.GetBitAt(valvesPLC, 0, 5) ? 1 : 0;
 
-                        int consigneManuelleRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,20,2, consigneManuellePLC);
-                        int consigneManuelle;
-                        if (consigneManuelleRead == 0) {
-                            consigneManuelle = S7.GetWordAt(consigneManuellePLC, 0);
-                            sendConsigneManuelleMessage(consigneManuelle);
-                        }
-
-                        int pilotageVanneRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,22,2, pilotageVannePLC);
-                        int pilotageVanne;
-                        if (pilotageVanneRead == 0) {
-                            pilotageVanne = S7.GetWordAt(pilotageVannePLC, 0);
-                            sendPilotageVanneMessage(pilotageVanne);
+                            sendValve1Message(valve1);
+                            sendValve2Message(valve2);
+                            sendValve3Message(valve3);
+                            sendValve4Message(valve4);
+                            sendValveMAMessage(valveMA);
                         }
 
                     }
@@ -219,25 +232,39 @@ public class ReadLiquidS7 {
             monHandler.sendMessage(levelMsg);
         }
 
-        private void sendConsigneAutoMessage(int i) {
-            Message consigneAutoMsg = new Message();
-            consigneAutoMsg.what = MESSAGE_CONSIGNE_AUTO_UPDATE;
-            consigneAutoMsg.arg1 = i;
-            monHandler.sendMessage(consigneAutoMsg);
+        private void sendValveMAMessage(int i) {
+            Message valveMAMsg = new Message();
+            valveMAMsg.what = MESSAGE_VALVE_MA_UPDATE;
+            valveMAMsg.arg1 = i;
+            monHandler.sendMessage(valveMAMsg);
         }
 
-        private void sendConsigneManuelleMessage(int i) {
-            Message consigneManuelleMsg = new Message();
-            consigneManuelleMsg.what = MESSAGE_CONSIGNE_MANUELLE_UPDATE;
-            consigneManuelleMsg.arg1 = i;
-            monHandler.sendMessage(consigneManuelleMsg);
+        private void sendValve1Message(int i) {
+            Message valve1Msg = new Message();
+            valve1Msg.what = MESSAGE_VALVE_1_UPDATE;
+            valve1Msg.arg1 = i;
+            monHandler.sendMessage(valve1Msg);
         }
 
-        private void sendPilotageVanneMessage(int i) {
-            Message pilotageVanneMsg = new Message();
-            pilotageVanneMsg.what = MESSAGE_PILOTAGE_VANNE_UPDATE;
-            pilotageVanneMsg.arg1 = i;
-            monHandler.sendMessage(pilotageVanneMsg);
+        private void sendValve2Message(int i) {
+            Message valve2Msg = new Message();
+            valve2Msg.what = MESSAGE_VALVE_2_UPDATE;
+            valve2Msg.arg1 = i;
+            monHandler.sendMessage(valve2Msg);
+        }
+
+        private void sendValve3Message(int i) {
+            Message valve3Msg = new Message();
+            valve3Msg.what = MESSAGE_VALVE_3_UPDATE;
+            valve3Msg.arg1 = i;
+            monHandler.sendMessage(valve3Msg);
+        }
+
+        private void sendValve4Message(int i) {
+            Message valve4Msg = new Message();
+            valve4Msg.what = MESSAGE_VALVE_4_UPDATE;
+            valve4Msg.arg1 = i;
+            monHandler.sendMessage(valve4Msg);
         }
 
     }

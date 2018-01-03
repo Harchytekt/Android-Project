@@ -43,24 +43,40 @@
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquid_consigneAuto"
-        android:layout_marginTop="50dp"
+        android:id="@+id/tv_automatonLiquid_valveMA"
+        android:layout_marginTop="30dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquid_consigneManuelle"
-        android:layout_marginTop="50dp"
+        android:id="@+id/tv_automatonLiquid_valve1"
+        android:layout_marginTop="10dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquid_pilotageVanne"
-        android:layout_marginTop="50dp"
+        android:id="@+id/tv_automatonLiquid_valve2"
+        android:layout_marginTop="10dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_automatonLiquid_valve3"
+        android:layout_marginTop="10dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_automatonLiquid_valve4"
+        android:layout_marginTop="10dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
