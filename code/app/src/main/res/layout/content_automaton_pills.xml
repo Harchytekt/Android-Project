@@ -79,4 +79,14 @@
         android:textSize="18sp"
         android:textColor="@color/black" />
 
+    <Button
+        android:id="@+id/btn_automatonPills_manage"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gerer"
+        android:onClick="onAutomatonClickManager"
+        android:textColor="@color/darkGreen"
+        android:background="@android:color/transparent" />
+
 </LinearLayout>

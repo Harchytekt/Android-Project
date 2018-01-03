@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,8 @@ public class AutomatonPillsActivity extends Activity {
     TextView tv_automatonPills_pills;
     TextView tv_automatonPills_bottles;
 
+    Button btn_automatonPills_manage;
+
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
     private ReadPillsS7 readS7;
@@ -64,6 +68,8 @@ public class AutomatonPillsActivity extends Activity {
 
         fab_automatonPills_connect = findViewById(R.id.fab_automatonPills_connect);
         fab_automatonPills_logout = findViewById(R.id.fab_automatonPills_logout);
+
+        btn_automatonPills_manage = findViewById(R.id.btn_automatonPills_manage);
 
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin() || currentAutomaton.checkCurrent()) {
@@ -139,7 +145,7 @@ public class AutomatonPillsActivity extends Activity {
                             e.printStackTrace();
                         }
 
-                        writeS7 = new WriteTaskS7();
+                        writeS7 = new WritePillsS7();
                         //writeS7.Start("10.1.0.110", "0", "1");*/
 
                     } else {
@@ -164,6 +170,13 @@ public class AutomatonPillsActivity extends Activity {
                 }
 
 
+                break;
+
+            case R.id.btn_automatonPills_manage:
+                Toast.makeText(this, "Gérer", Toast.LENGTH_SHORT).show();
+                Intent intentManagePills = new Intent(this, ManagePillsActivity.class);
+                startActivity(intentManagePills);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.fab_automatonPills_logout:
 

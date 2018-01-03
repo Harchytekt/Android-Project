@@ -160,7 +160,7 @@ public class ReadPillsS7 {
                 int numCPU;
                 if (res.equals(0) && result.equals(0))
                     numCPU = Integer.valueOf(orderCode.Code().toString().substring(5, 8));
-                else numCPU=0000;
+                else numCPU = 0000;
 
                 sendPreExecuteMessage(numCPU);
 
