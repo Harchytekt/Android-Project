@@ -33,12 +33,16 @@ public class AutomatonPillsActivity extends Activity {
     TextView tv_automatonPills_connected;
     TextView tv_automatonPills_status;
     TextView tv_automatonPills_plc;
-    TextView tv_automatonPills_bottles;
+
+    TextView tv_automatonPills_service;
+    TextView tv_automatonPills_bottlesComing;
+    TextView tv_automatonPills_wantedPills;
     TextView tv_automatonPills_pills;
+    TextView tv_automatonPills_bottles;
 
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
-    private ReadTaskS7 readS7;
+    private ReadPillsS7 readS7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +55,12 @@ public class AutomatonPillsActivity extends Activity {
         tv_automatonPills_connected = findViewById(R.id.tv_automatonPills_connected);
         tv_automatonPills_status = findViewById(R.id.tv_automatonPills_status);
         tv_automatonPills_plc = findViewById(R.id.tv_automatonPills_plc);
-        tv_automatonPills_bottles = findViewById(R.id.tv_automatonPills_bottles);
+
+        tv_automatonPills_service = findViewById(R.id.tv_automatonPills_service);
+        tv_automatonPills_bottlesComing = findViewById(R.id.tv_automatonPills_bottlesComing);
+        tv_automatonPills_wantedPills = findViewById(R.id.tv_automatonPills_wantedPills);
         tv_automatonPills_pills = findViewById(R.id.tv_automatonPills_pills);
+        tv_automatonPills_bottles = findViewById(R.id.tv_automatonPills_bottles);
 
         fab_automatonPills_connect = findViewById(R.id.fab_automatonPills_connect);
         fab_automatonPills_logout = findViewById(R.id.fab_automatonPills_logout);
@@ -72,6 +80,14 @@ public class AutomatonPillsActivity extends Activity {
         automatonDB.Close();
 
         tv_automatonPills_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+
+        tv_automatonPills_plc.setText(Html.fromHtml(automatonName + "<br>" + getString(R.string.not_connected)));
+
+        tv_automatonPills_service.setText(String.format(getString(R.string.pills_service), "?"));
+        tv_automatonPills_bottlesComing.setText(String.format(getString(R.string.pills_bottlesComing), "?"));
+        tv_automatonPills_wantedPills.setText(String.format(getString(R.string.pills_wantedPills), "?"));
+        tv_automatonPills_pills.setText(String.format(getString(R.string.pills_pills), "?"));
+        tv_automatonPills_bottles.setText(String.format(getString(R.string.pills_bottles), "?"));
     }
 
     @Override
@@ -108,7 +124,11 @@ public class AutomatonPillsActivity extends Activity {
                         fab_automatonPills_connect.setImageResource(R.drawable.ic_signout);
                         tv_automatonPills_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
-                        readS7 = new ReadTaskS7(v, tv_automatonPills_plc, tv_automatonPills_bottles, tv_automatonPills_pills);
+                        TextView[] tvArray = {tv_automatonPills_plc, tv_automatonPills_service,
+                                tv_automatonPills_bottlesComing, tv_automatonPills_wantedPills,
+                                tv_automatonPills_pills, tv_automatonPills_bottles};
+
+                        readS7 = new ReadPillsS7(v, tvArray);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);

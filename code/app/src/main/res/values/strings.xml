@@ -80,6 +80,11 @@
     <string name="connected_by">Connecté par</string>
     <string name="to_automaton">à l\'automate.</string>
     <string name="connected_automaton">Connecté par \' %s \' au réseau.</string>
+    <string name="pills_service">En service : %s</string>
+    <string name="pills_bottlesComing">Arrivée de flacons vides : %s</string>
+    <string name="pills_wantedPills">Nombre de comprimés demandés : %s</string>
+    <string name="pills_pills">Comprimés mis en flacon : %s</string>
+    <string name="pills_bottles">Flacons remplis : %s</string>
 
 
     <!-- Titles -->

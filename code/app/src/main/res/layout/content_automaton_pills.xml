@@ -36,8 +36,26 @@
 
 
     <TextView
-        android:id="@+id/tv_automatonPills_bottles"
-        android:layout_marginTop="20dp"
+        android:id="@+id/tv_automatonPills_service"
+        android:layout_marginTop="50dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/tv_automatonPills_bottlesComing"
+        android:layout_marginTop="10dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/tv_automatonPills_wantedPills"
+        android:layout_marginTop="30dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -46,7 +64,16 @@
 
     <TextView
         android:id="@+id/tv_automatonPills_pills"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/tv_automatonPills_bottles"
+        android:layout_marginTop="30dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
