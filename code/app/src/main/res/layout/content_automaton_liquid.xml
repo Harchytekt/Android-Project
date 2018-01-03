@@ -34,4 +34,36 @@
         android:textStyle="bold"
         android:textColor="@color/black"/>
 
+    <TextView
+        android:id="@+id/tv_automatonLiquid_level"
+        android:layout_marginTop="50dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_automatonLiquid_consigneAuto"
+        android:layout_marginTop="50dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_automatonLiquid_consigneManuelle"
+        android:layout_marginTop="50dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_automatonLiquid_pilotageVanne"
+        android:layout_marginTop="50dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+
 </LinearLayout>

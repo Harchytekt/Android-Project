@@ -25,6 +25,8 @@ public class ReadPillsS7 {
     private static final int MESSAGE_BOTTLES_UPDATE         = 6;
     private static final int MESSAGE_POST_EXECUTE           = 7;
 
+    private final int readingDataBloc = 5;
+
     private AtomicBoolean isRunning = new AtomicBoolean(false);
     private View vi_main_ui;
     private TextView tv_plc;
@@ -165,7 +167,7 @@ public class ReadPillsS7 {
                 while(isRunning.get()) {
                     if (res.equals(0)) {
 
-                        int serviceRead = comS7.ReadArea(S7.S7AreaDB,5,0,2, servicePLC);
+                        int serviceRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,0,2, servicePLC);
                         int service;
                         if (serviceRead == 0) {
                             service = S7.GetBitAt(servicePLC, 0, 0) ? 1 : 0;
@@ -173,7 +175,7 @@ public class ReadPillsS7 {
                             sendServiceMessage(service);
                         }
 
-                        int bottlesComingRead = comS7.ReadArea(S7.S7AreaDB,5,1,2, bottlesComingPLC);
+                        int bottlesComingRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,1,2, bottlesComingPLC);
                         int bottlesComing;
                         if (bottlesComingRead == 0) {
                             bottlesComing  = S7.GetBitAt(bottlesComingPLC, 0, 3) ? 1 : 0;
@@ -181,7 +183,7 @@ public class ReadPillsS7 {
                             sendBottlesComingMessage(bottlesComing);
                         }
 
-                        int wantedPillsRead = comS7.ReadArea(S7.S7AreaDB,5,4,2, wantedPillsPLC);
+                        int wantedPillsRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,4,2, wantedPillsPLC);
                         int wantedPills;
                         boolean[] wantedPillsArray = {false, false, false};
                         if (wantedPillsRead == 0) {
@@ -193,14 +195,14 @@ public class ReadPillsS7 {
                             sendWantedPillsMessage(wantedPills);
                         }
 
-                        int pillsRead = comS7.ReadArea(S7.S7AreaDB,5,15,2, pillsPLC);
+                        int pillsRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,15,2, pillsPLC);
                         int pills;
                         if (pillsRead == 0) {
                             pills = S7.BCDtoByte(pillsPLC[0]);
                             sendPillsMessage(pills);
                         }
 
-                        int bottlesRead = comS7.ReadArea(S7.S7AreaDB,5,16,2, bottlesPLC);
+                        int bottlesRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,16,2, bottlesPLC);
                         int bottles;
                         if (bottlesRead == 0) {
                             bottles = S7.GetWordAt(bottlesPLC, 0);

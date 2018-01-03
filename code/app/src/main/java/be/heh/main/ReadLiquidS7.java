@@ -17,40 +17,40 @@ import be.heh.SimaticS7.S7OrderCode;
  */
 
 public class ReadLiquidS7 {
-    private static final int MESSAGE_PRE_EXECUTE            = 1;
-    private static final int MESSAGE_SERVICE_UPDATE         = 2;
-    private static final int MESSAGE_BOTTLES_COMING_UPDATE  = 3;
-    private static final int MESSAGE_WANTED_PILLS_UPDATE    = 4;
-    private static final int MESSAGE_PILLS_UPDATE           = 5;
-    private static final int MESSAGE_BOTTLES_UPDATE         = 6;
-    private static final int MESSAGE_POST_EXECUTE           = 7;
+    private static final int MESSAGE_PRE_EXECUTE               = 1;
+    private static final int MESSAGE_LEVEL_UPDATE              = 2;
+    private static final int MESSAGE_CONSIGNE_AUTO_UPDATE      = 3;
+    private static final int MESSAGE_CONSIGNE_MANUELLE_UPDATE  = 4;
+    private static final int MESSAGE_PILOTAGE_VANNE_UPDATE     = 5;
+    private static final int MESSAGE_BOTTLES_UPDATE            = 6;
+    private static final int MESSAGE_POST_EXECUTE              = 7;
+
+    private final int readingDataBloc = 5;
 
     private AtomicBoolean isRunning = new AtomicBoolean(false);
     private View vi_main_ui;
     private TextView tv_plc;
-    private TextView tv_service;
-    private TextView tv_bottlesComing;
-    private TextView tv_wantedPills;
-    private TextView tv_pills;
-    private TextView tv_bottles;
+    private TextView tv_level;
+    private TextView tv_consigneAuto;
+    private TextView tv_consigneManuelle;
+    private TextView tv_pilotageVanne;
 
     private AutomateS7 plcS7;
     private Thread readThread;
 
     private S7Client comS7;
     private String[] param = new String[10];
-    private byte[] servicePLC = new byte[2], bottlesComingPLC = new byte[2];
-    private byte[] wantedPillsPLC = new byte[2], pillsPLC = new byte[2];
-    private byte[] bottlesPLC = new byte[2];
+    private byte[] levelPLC = new byte[2];
+    private byte[] consigneAutoPLC = new byte[2], consigneManuellePLC = new byte[2];
+    private byte[] pilotageVannePLC = new byte[2];
 
     public ReadLiquidS7(View v, TextView[] tvArray) {
-        vi_main_ui        = v;
-        tv_plc            = tvArray[0];
-        tv_service        = tvArray[1];
-        tv_bottlesComing  = tvArray[2];
-        tv_wantedPills    = tvArray[3];
-        tv_pills          = tvArray[4];
-        tv_bottles        = tvArray[5];
+        vi_main_ui          = v;
+        tv_plc              = tvArray[0];
+        tv_level            = tvArray[1];
+        tv_consigneAuto     = tvArray[2];
+        tv_consigneManuelle = tvArray[3];
+        tv_pilotageVanne    = tvArray[4];
 
         comS7             = new S7Client();
         plcS7             = new AutomateS7();
@@ -80,37 +80,33 @@ public class ReadLiquidS7 {
         tv_plc.setText(param[0] + "\nPLC : " + String.valueOf(t));
     }
 
-    private void downloadOnServiceUpdate(int data) {
-        tv_service.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_service),
-                (data == 1 ? "Oui" : "Non")));
+    private void downloadOnLevelUpdate(int data) {
+        tv_level.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_level),
+                String.valueOf(data)));
     }
 
-    private void downloadOnBottlesComingUpdate(int data) {
-        tv_bottlesComing.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottlesComing),
-                (data == 1 ? "Oui" : "Non")));
+    private void downloadOnConsigneAutoUpdate(int data) {
+        tv_consigneAuto.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consigneAuto),
+                String.valueOf(data)));
     }
 
-    private void downloadOnWantedPillsUpdate(int data) {
-        tv_wantedPills.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_wantedPills), String.valueOf(data)));
+    private void downloadOnConsigneManuelleUpdate(int data) {
+        tv_consigneManuelle.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consigneManuelle),
+                String.valueOf(data)));
     }
 
-    private void downloadOnPillsUpdate(int data) {
-        tv_pills.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_pills), String.valueOf(data)));
-    }
-
-    private void downloadOnBottlesUpdate(int data) {
-        tv_bottles.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottles), String.valueOf(data)));
+    private void downloadOnPilotageVanneUpdate(int data) {
+        tv_pilotageVanne.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_pilotageVanne),
+                String.valueOf(data)));
     }
 
     private void downloadOnPostExecute() {
         tv_plc.setText(param[0] + "\nPLC : ⚠");
 
-        tv_service.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_service), "?"));
-        tv_bottlesComing.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottlesComing),
-                "?"));
-        tv_wantedPills.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_wantedPills), "?"));
-        tv_pills.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_pills), "?"));
-        tv_bottles.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottles), "?"));
+        tv_level.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_level), "?"));
+        tv_consigneAuto.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consigneAuto), "?"));
+        tv_consigneManuelle.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consigneManuelle), "?"));
+        tv_pilotageVanne.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_pilotageVanne), "?"));
     }
 
     private Handler monHandler = new Handler() {
@@ -121,20 +117,17 @@ public class ReadLiquidS7 {
                 case MESSAGE_PRE_EXECUTE:
                     downloadOnPreExecute(msg.arg1);
                     break;
-                case MESSAGE_SERVICE_UPDATE:
-                    downloadOnServiceUpdate(msg.arg1);
+                case MESSAGE_LEVEL_UPDATE:
+                    downloadOnLevelUpdate(msg.arg1);
                     break;
-                case MESSAGE_BOTTLES_COMING_UPDATE:
-                    downloadOnBottlesComingUpdate(msg.arg1);
+                case MESSAGE_CONSIGNE_AUTO_UPDATE:
+                    downloadOnConsigneAutoUpdate(msg.arg1);
                     break;
-                case MESSAGE_WANTED_PILLS_UPDATE:
-                    downloadOnWantedPillsUpdate(msg.arg1);
+                case MESSAGE_CONSIGNE_MANUELLE_UPDATE:
+                    downloadOnConsigneManuelleUpdate(msg.arg1);
                     break;
-                case MESSAGE_PILLS_UPDATE:
-                    downloadOnPillsUpdate(msg.arg1);
-                    break;
-                case MESSAGE_BOTTLES_UPDATE:
-                    downloadOnBottlesUpdate(msg.arg1);
+                case MESSAGE_PILOTAGE_VANNE_UPDATE:
+                    downloadOnPilotageVanneUpdate(msg.arg1);
                     break;
                 case MESSAGE_POST_EXECUTE:
                     downloadOnPostExecute();
@@ -165,51 +158,33 @@ public class ReadLiquidS7 {
                 while(isRunning.get()) {
                     if (res.equals(0)) {
 
-                        int serviceRead = comS7.ReadArea(S7.S7AreaDB,5,0,2, servicePLC);
-                        int service;
-                        if (serviceRead == 0) {
-                            service = S7.GetBitAt(servicePLC, 0, 0) ? 1 : 0;
-
-                            sendServiceMessage(service);
+                        int levelRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,16,2, levelPLC);
+                        int level;
+                        if (levelRead == 0) {
+                            level = S7.GetWordAt(levelPLC, 0);
+                            sendLevelMessage(level);
                         }
 
-                        int bottlesComingRead = comS7.ReadArea(S7.S7AreaDB,5,1,2, bottlesComingPLC);
-                        int bottlesComing;
-                        if (bottlesComingRead == 0) {
-                            bottlesComing  = S7.GetBitAt(bottlesComingPLC, 0, 3) ? 1 : 0;
-
-                            sendBottlesComingMessage(bottlesComing);
+                        int consigneAutoRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,18,2, consigneAutoPLC);
+                        int consigneAuto;
+                        if (consigneAutoRead == 0) {
+                            consigneAuto = S7.GetWordAt(consigneAutoPLC, 0);
+                            sendConsigneAutoMessage(consigneAuto);
                         }
 
-                        int wantedPillsRead = comS7.ReadArea(S7.S7AreaDB,5,4,2, wantedPillsPLC);
-                        int wantedPills;
-                        boolean[] wantedPillsArray = {false, false, false};
-                        if (wantedPillsRead == 0) {
-                            wantedPillsArray[0] = S7.GetBitAt(wantedPillsPLC, 0, 3);
-                            wantedPillsArray[1] = S7.GetBitAt(wantedPillsPLC, 0, 4);
-                            wantedPillsArray[2] = S7.GetBitAt(wantedPillsPLC, 0, 5);
-                            wantedPills = wantedPillsNumber(wantedPillsArray);
-
-                            sendWantedPillsMessage(wantedPills);
+                        int consigneManuelleRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,20,2, consigneManuellePLC);
+                        int consigneManuelle;
+                        if (consigneManuelleRead == 0) {
+                            consigneManuelle = S7.GetWordAt(consigneManuellePLC, 0);
+                            sendConsigneManuelleMessage(consigneManuelle);
                         }
 
-                        int pillsRead = comS7.ReadArea(S7.S7AreaDB,5,15,2, pillsPLC);
-                        int pills;
-                        if (pillsRead == 0) {
-                            pills = S7.BCDtoByte(pillsPLC[0]);
-                            sendPillsMessage(pills);
+                        int pilotageVanneRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,22,2, pilotageVannePLC);
+                        int pilotageVanne;
+                        if (pilotageVanneRead == 0) {
+                            pilotageVanne = S7.GetWordAt(pilotageVannePLC, 0);
+                            sendPilotageVanneMessage(pilotageVanne);
                         }
-
-                        int bottlesRead = comS7.ReadArea(S7.S7AreaDB,5,16,2, bottlesPLC);
-                        int bottles;
-                        if (bottlesRead == 0) {
-                            bottles = S7.GetWordAt(bottlesPLC, 0);
-                            sendBottlesMessage(bottles);
-                        }
-
-                        //Log.i("Service → ", String.valueOf(service)); // OK
-                        //Log.i("Pills   → ", String.valueOf(pills)); // OK
-                        //Log.i("Bottles → ", String.valueOf(bottles)); // OK
 
                     }
                     try {
@@ -237,49 +212,32 @@ public class ReadLiquidS7 {
             monHandler.sendMessage(preExecuteMsg);
         }
 
-        private void sendServiceMessage(int i) {
-            Message serviceMsg = new Message();
-            serviceMsg.what = MESSAGE_SERVICE_UPDATE;
-            serviceMsg.arg1 = i;
-            monHandler.sendMessage(serviceMsg);
+        private void sendLevelMessage(int i) {
+            Message levelMsg = new Message();
+            levelMsg.what = MESSAGE_LEVEL_UPDATE;
+            levelMsg.arg1 = i;
+            monHandler.sendMessage(levelMsg);
         }
 
-        private void sendBottlesComingMessage(int i) {
-            Message bottlesComingMsg = new Message();
-            bottlesComingMsg.what = MESSAGE_BOTTLES_COMING_UPDATE;
-            bottlesComingMsg.arg1 = i;
-            monHandler.sendMessage(bottlesComingMsg);
+        private void sendConsigneAutoMessage(int i) {
+            Message consigneAutoMsg = new Message();
+            consigneAutoMsg.what = MESSAGE_CONSIGNE_AUTO_UPDATE;
+            consigneAutoMsg.arg1 = i;
+            monHandler.sendMessage(consigneAutoMsg);
         }
 
-        private void sendWantedPillsMessage(int i) {
-            Message wantedPillsMsg = new Message();
-            wantedPillsMsg.what = MESSAGE_WANTED_PILLS_UPDATE;
-            wantedPillsMsg.arg1 = i;
-            monHandler.sendMessage(wantedPillsMsg);
+        private void sendConsigneManuelleMessage(int i) {
+            Message consigneManuelleMsg = new Message();
+            consigneManuelleMsg.what = MESSAGE_CONSIGNE_MANUELLE_UPDATE;
+            consigneManuelleMsg.arg1 = i;
+            monHandler.sendMessage(consigneManuelleMsg);
         }
 
-        private void sendPillsMessage(int i) {
-            Message pillsMsg = new Message();
-            pillsMsg.what = MESSAGE_PILLS_UPDATE;
-            pillsMsg.arg1 = i;
-            monHandler.sendMessage(pillsMsg);
-        }
-
-        private void sendBottlesMessage(int i) {
-            Message bottlesMsg = new Message();
-            bottlesMsg.what = MESSAGE_BOTTLES_UPDATE;
-            bottlesMsg.arg1 = i;
-            monHandler.sendMessage(bottlesMsg);
-        }
-
-        private int wantedPillsNumber(boolean[] array) {
-            if (array[0])
-                return 5;
-            else if (array[1])
-                return 10;
-            else if (array[2])
-                return 15;
-            return 0;
+        private void sendPilotageVanneMessage(int i) {
+            Message pilotageVanneMsg = new Message();
+            pilotageVanneMsg.what = MESSAGE_PILOTAGE_VANNE_UPDATE;
+            pilotageVanneMsg.arg1 = i;
+            monHandler.sendMessage(pilotageVanneMsg);
         }
 
     }

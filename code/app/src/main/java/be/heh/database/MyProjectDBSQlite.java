@@ -67,17 +67,22 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
     private static final String ADD_PILLS_VM = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
-            "'Comprimés VM', '192.168.1.130', '0', '2', '0', '25');";
+            "'Comprimés VM', '192.168.1.130', '0', '2', '0', '5');";
 
     private static final String ADD_LIQUID_VM = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
-            "'Liquide VM', '192.168.1.130', '0', '2', '1', '25');";
+            "'Liquide VM', '192.168.1.130', '0', '2', '1', '5');";
 
     private static final String ADD_PILLS_SCHOOL = "INSERT INTO "+ TABLE_AUTOMATON +
             " (" + COL_NAME + ", " + COL_IP + ", " +
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
             "'Comprimés École', '10.1.0.119', '0', '1', '0', '25');";
+
+    private static final String TEST_LIQUID_SCHOOL = "INSERT INTO "+ TABLE_AUTOMATON +
+            " (" + COL_NAME + ", " + COL_IP + ", " +
+            COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
+            "'Test Liquide', '10.1.0.111', '0', '1', '1', '25');";
 
     public MyProjectDBSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);
@@ -88,10 +93,12 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
         db.execSQL(CREATE_USERDB);
         db.execSQL(ADD_SUPER);
         db.execSQL(ADD_USER);
+
         db.execSQL(CREATE_AUTOMATONDB);
         db.execSQL(ADD_PILLS_VM);
         db.execSQL(ADD_LIQUID_VM);
         db.execSQL(ADD_PILLS_SCHOOL);
+        db.execSQL(TEST_LIQUID_SCHOOL);
     }
 
     @Override

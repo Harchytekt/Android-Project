@@ -35,10 +35,15 @@ public class AutomatonLiquidActivity extends Activity {
     TextView tv_automatonLiquid_status;
     TextView tv_automatonLiquid_plc;
 
+    TextView tv_automatonLiquid_level;
+    TextView tv_automatonLiquid_consigneAuto;
+    TextView tv_automatonLiquid_consigneManuelle;
+    TextView tv_automatonLiquid_pilotageVanne;
+
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
     private S7Client clientS7;
-    private ReadPillsS7 readS7;
+    private ReadLiquidS7 readS7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,11 @@ public class AutomatonLiquidActivity extends Activity {
         tv_automatonLiquid_connected = findViewById(R.id.tv_automatonLiquid_connected);
         tv_automatonLiquid_status = findViewById(R.id.tv_automatonLiquid_status);
         tv_automatonLiquid_plc = findViewById(R.id.tv_automatonLiquid_plc);
+
+        tv_automatonLiquid_level = findViewById(R.id.tv_automatonLiquid_level);
+        tv_automatonLiquid_consigneAuto = findViewById(R.id.tv_automatonLiquid_consigneAuto);
+        tv_automatonLiquid_consigneManuelle = findViewById(R.id.tv_automatonLiquid_consigneManuelle);
+        tv_automatonLiquid_pilotageVanne = findViewById(R.id.tv_automatonLiquid_pilotageVanne);
 
         fab_automatonLiquid_connect = findViewById(R.id.fab_automatonLiquid_connect);
         fab_automatonLiquid_logout = findViewById(R.id.fab_automatonLiquid_logout);
@@ -72,6 +82,13 @@ public class AutomatonLiquidActivity extends Activity {
         clientS7 = new S7Client();
 
         tv_automatonLiquid_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+
+        tv_automatonLiquid_plc.setText(Html.fromHtml(automatonName + "<br>" + getString(R.string.not_connected)));
+
+        tv_automatonLiquid_level.setText(String.format(getString(R.string.liquid_level), "?"));
+        tv_automatonLiquid_consigneAuto.setText(String.format(getString(R.string.liquid_consigneAuto), "?"));
+        tv_automatonLiquid_consigneManuelle.setText(String.format(getString(R.string.liquid_consigneManuelle), "?"));
+        tv_automatonLiquid_pilotageVanne.setText(String.format(getString(R.string.liquid_pilotageVanne), "?"));
     }
 
     @Override
@@ -108,7 +125,11 @@ public class AutomatonLiquidActivity extends Activity {
                         fab_automatonLiquid_connect.setImageResource(R.drawable.ic_signout);
                         tv_automatonLiquid_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
-                        //readS7 = new ReadLiquidS7(v, tv_automatonLiquid_plc);
+                        TextView[] tvArray = {tv_automatonLiquid_plc, tv_automatonLiquid_level,
+                                tv_automatonLiquid_consigneAuto, tv_automatonLiquid_consigneManuelle,
+                                tv_automatonLiquid_pilotageVanne};
+
+                        readS7 = new ReadLiquidS7(v, tvArray);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
