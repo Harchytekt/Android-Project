@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
-import be.heh.SimaticS7.S7;
 import be.heh.SimaticS7.S7Client;
 import be.heh.database.AutomatonAccessDB;
 import be.heh.models.Automaton;
@@ -39,7 +38,7 @@ public class AutomatonLiquidActivity extends Activity {
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
     private S7Client clientS7;
-    private ReadTaskS7 readS7;
+    private ReadPillsS7 readS7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +108,7 @@ public class AutomatonLiquidActivity extends Activity {
                         fab_automatonLiquid_connect.setImageResource(R.drawable.ic_signout);
                         tv_automatonLiquid_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
-                        //readS7 = new ReadTaskS7(v, tv_automatonLiquid_plc);
+                        //readS7 = new ReadLiquidS7(v, tv_automatonLiquid_plc);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
