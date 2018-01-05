@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,10 +45,14 @@ public class AutomatonLiquidActivity extends Activity {
     TextView tv_automatonLiquid_consignes;
     TextView tv_automatonLiquid_pilotageVanne;
 
+    Button btn_automatonLiquid_manage;
+
+    LinearLayout ll_automatonLiquid_manage;
+
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
-    private S7Client clientS7;
     private ReadLiquidS7 readS7;
+    private WritePillsS7 writeS7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +77,10 @@ public class AutomatonLiquidActivity extends Activity {
         fab_automatonLiquid_connect = findViewById(R.id.fab_automatonLiquid_connect);
         fab_automatonLiquid_logout = findViewById(R.id.fab_automatonLiquid_logout);
 
+        btn_automatonLiquid_manage = findViewById(R.id.btn_automatonLiquid_manage);
+
+        ll_automatonLiquid_manage = findViewById(R.id.ll_automatonLiquid_manage);
+
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin() || currentAutomaton.checkCurrent()) {
             finish();
@@ -85,11 +95,10 @@ public class AutomatonLiquidActivity extends Activity {
         automaton = automatonDB.getAutomaton(automatonName);
         automatonDB.Close();
 
-        clientS7 = new S7Client();
-
         tv_automatonLiquid_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
         tv_automatonLiquid_plc.setText(Html.fromHtml(automatonName + "<br>" + getString(R.string.not_connected)));
+        if (user.get(Session.KEY_RIGHTS).equals("1")) btn_automatonLiquid_manage.setVisibility(View.VISIBLE);
 
         tv_automatonLiquid_valveMA.setText(String.format(getString(R.string.liquid_valveMA), "?"));
         tv_automatonLiquid_valves12.setText(String.format(getString(R.string.liquid_valves12), "?", "?"));
@@ -117,7 +126,7 @@ public class AutomatonLiquidActivity extends Activity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    public void onAutomatonClickManager(View v) {
+    public void onAutomatonLiquidClickManager(View v) {
 
         switch (v.getId()) {
             case R.id.fab_automatonLiquid_connect:
@@ -142,16 +151,10 @@ public class AutomatonLiquidActivity extends Activity {
                         readS7 = new ReadLiquidS7(v, tvArray);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
 
-                        /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
-
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        if (btn_automatonLiquid_manage.getVisibility() == View.VISIBLE) {
+                            writeS7 = new WritePillsS7();
+                            writeS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot(), automaton.getDataBloc());
                         }
-
-                        writeS7 = new WritePillsS7();
-                        //writeS7.Start("10.1.0.110", "0", "1");*/
 
                     } else {
                         readS7.Stop();
@@ -160,21 +163,26 @@ public class AutomatonLiquidActivity extends Activity {
                         fab_automatonLiquid_connect.setImageResource(R.drawable.ic_signin);
                         tv_automatonLiquid_status.setText(getString((R.string.liquid)));
 
-                        /*try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        btn_automatonLiquid_manage.setContentDescription("hidden");
+                        ll_automatonLiquid_manage.setVisibility(View.GONE);
 
-                        writeS7.Stop();
-                        ln_main_ecrireS7.setVisibility(View.INVISIBLE);*/
+                        if (btn_automatonLiquid_manage.getVisibility() == View.VISIBLE) writeS7.Stop();
 
                     }
                 } else {
                     Toast.makeText(this, getString((R.string.impossible_connection)), Toast.LENGTH_SHORT).show();
                 }
 
-
+                break;
+            case R.id.btn_automatonLiquid_manage:
+                if (btn_automatonLiquid_manage.getContentDescription().equals("hidden") &&
+                        fab_automatonLiquid_connect.getContentDescription().equals("Déconnexion")) {
+                    btn_automatonLiquid_manage.setContentDescription("visible");
+                    ll_automatonLiquid_manage.setVisibility(View.VISIBLE);
+                } else {
+                    btn_automatonLiquid_manage.setContentDescription("hidden");
+                    ll_automatonLiquid_manage.setVisibility(View.GONE);
+                }
                 break;
             case R.id.fab_automatonLiquid_logout:
 

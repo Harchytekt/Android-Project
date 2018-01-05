@@ -1,85 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/yellow_gradient"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    tools:context="be.heh.automatons.AutomatonLiquidActivity">
+    android:fillViewport="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/yellow_gradient"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        tools:context="be.heh.automatons.AutomatonLiquidActivity">
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_connected"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:singleLine="true" />
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_status"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:text="@string/liquid"
+            android:textAlignment="center"
+            android:singleLine="true" />
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_plc"
+            android:layout_marginTop="20dp"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:text="@string/not_connected"
+            android:textAlignment="center"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_valveMA"
+            android:layout_marginTop="40dp"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_valves12"
+            android:layout_marginTop="7dp"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_valves34"
+            android:layout_marginTop="10dp"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_level"
+            android:layout_marginTop="25dp"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_consignes"
+            android:layout_marginTop="7dp"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    
+        <TextView
+            android:id="@+id/tv_automatonLiquid_pilotageVanne"
+            android:layout_marginTop="7dp"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_connected"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:singleLine="true" />
+        <Button
+            android:id="@+id/btn_automatonLiquid_manage"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gerer"
+            android:contentDescription="hidden"
+            android:onClick="onAutomatonLiquidClickManager"
+            android:textColor="@color/darkGreen"
+            android:background="@android:color/transparent"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_status"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:text="@string/liquid"
-        android:textAlignment="center"
-        android:singleLine="true" />
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_plc"
-        android:layout_marginTop="20dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:text="@string/not_connected"
-        android:textAlignment="center"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:id="@+id/ll_automatonLiquid_manage"
+            android:visibility="gone" >
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_valveMA"
-        android:layout_marginTop="40dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_valves12"
-        android:layout_marginTop="7dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black" />
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal" >
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_valves34"
-        android:layout_marginTop="10dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black" />
+                <EditText
+                    android:id="@+id/et_automatonLiquid_DBB5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="DBB5 (Binaire)"
+                    android:inputType="number" />
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_level"
-        android:layout_marginTop="25dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black" />
+                <Button
+                    android:id="@+id/btn_modifyAutomaton_registerDBB5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onAutomatonLiquidClickManager"
+                    android:text="@string/save_button" />
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_consignes"
-        android:layout_marginTop="7dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_automatonLiquid_pilotageVanne"
-        android:layout_marginTop="7dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black" />
 
-</LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/et_automatonLiquid_DBB6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="DBB6 (Binaire)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/btn_modifyAutomaton_registerDBB6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onAutomatonLiquidClickManager"
+                    android:text="@string/save_button" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/et_automatonLiquid_DBB7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="DBB7 (Binaire)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/btn_modifyAutomaton_registerDBB7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onAutomatonLiquidClickManager"
+                    android:text="@string/save_button" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/et_automatonLiquid_DBB8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="DBB8 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/btn_modifyAutomaton_registerDBB8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onAutomatonLiquidClickManager"
+                    android:text="@string/save_button" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="90dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/et_automatonLiquid_DBW18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="DBW18 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/btn_modifyAutomaton_registerDBW18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onAutomatonLiquidClickManager"
+                    android:text="@string/save_button" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
