@@ -9,8 +9,10 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,10 +48,13 @@ public class AutomatonPillsActivity extends Activity {
     Button btn_automatonPills_manage;
 
     LinearLayout ll_automatonPills_manage;
+    EditText et_automatonPills_DBB8;
+    EditText et_automatonPills_DBW18;
 
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
     private ReadPillsS7 readS7;
+    private WritePillsS7 writeS7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,8 @@ public class AutomatonPillsActivity extends Activity {
         btn_automatonPills_manage = findViewById(R.id.btn_automatonPills_manage);
 
         ll_automatonPills_manage = findViewById(R.id.ll_automatonPills_manage);
+        et_automatonPills_DBB8 = findViewById(R.id.et_automatonPills_DBB8);
+        et_automatonPills_DBW18 = findViewById(R.id.et_automatonPills_DBW18);
 
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin() || currentAutomaton.checkCurrent()) {
@@ -143,16 +150,10 @@ public class AutomatonPillsActivity extends Activity {
                         readS7 = new ReadPillsS7(v, tvArray);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
 
-                        /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
-
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        if (btn_automatonPills_manage.getVisibility() == View.VISIBLE) {
+                            writeS7 = new WritePillsS7();
+                            writeS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot(), automaton.getDataBloc());
                         }
-
-                        writeS7 = new WritePillsS7();
-                        //writeS7.Start("10.1.0.110", "0", "1");*/
 
                     } else {
                         readS7.Stop();
@@ -161,14 +162,10 @@ public class AutomatonPillsActivity extends Activity {
                         fab_automatonPills_connect.setImageResource(R.drawable.ic_signin);
                         tv_automatonPills_status.setText(getString((R.string.pills)));
 
-                        /*try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        btn_automatonPills_manage.setContentDescription("hidden");
+                        ll_automatonPills_manage.setVisibility(View.GONE);
 
-                        writeS7.Stop();
-                        ln_main_ecrireS7.setVisibility(View.INVISIBLE);*/
+                        if (btn_automatonPills_manage.getVisibility() == View.VISIBLE) writeS7.Stop();
 
                     }
                 } else {
@@ -178,12 +175,29 @@ public class AutomatonPillsActivity extends Activity {
 
                 break;
             case R.id.btn_automatonPills_manage:
-                if (btn_automatonPills_manage.getContentDescription().equals("hidden")) {
+                if (btn_automatonPills_manage.getContentDescription().equals("hidden") &&
+                        fab_automatonPills_connect.getContentDescription().equals("Déconnexion")) {
                     btn_automatonPills_manage.setContentDescription("visible");
                     ll_automatonPills_manage.setVisibility(View.VISIBLE);
                 } else {
                     btn_automatonPills_manage.setContentDescription("hidden");
                     ll_automatonPills_manage.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBB8:
+                if (et_automatonPills_DBB8.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBB8(et_automatonPills_DBB8.getText().toString());
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBW18:
+                if (et_automatonPills_DBW18.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBW18(et_automatonPills_DBW18.getText().toString());
                 }
                 break;
             case R.id.fab_automatonPills_logout:
