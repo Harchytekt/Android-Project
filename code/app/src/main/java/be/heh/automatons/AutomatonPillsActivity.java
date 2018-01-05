@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ public class AutomatonPillsActivity extends Activity {
 
     Button btn_automatonPills_manage;
 
+    LinearLayout ll_automatonPills_manage;
+
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
     private ReadPillsS7 readS7;
@@ -71,6 +74,8 @@ public class AutomatonPillsActivity extends Activity {
 
         btn_automatonPills_manage = findViewById(R.id.btn_automatonPills_manage);
 
+        ll_automatonPills_manage = findViewById(R.id.ll_automatonPills_manage);
+
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin() || currentAutomaton.checkCurrent()) {
             finish();
@@ -88,6 +93,7 @@ public class AutomatonPillsActivity extends Activity {
         tv_automatonPills_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
         tv_automatonPills_plc.setText(Html.fromHtml(automatonName + "<br>" + getString(R.string.not_connected)));
+        if (user.get(Session.KEY_RIGHTS).equals("1")) btn_automatonPills_manage.setVisibility(View.VISIBLE);
 
         tv_automatonPills_service.setText(String.format(getString(R.string.pills_service), "?"));
         tv_automatonPills_bottlesComing.setText(String.format(getString(R.string.pills_bottlesComing), "?"));
@@ -113,7 +119,7 @@ public class AutomatonPillsActivity extends Activity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    public void onAutomatonClickManager(View v) {
+    public void onAutomatonPillsClickManager(View v) {
 
         switch (v.getId()) {
             case R.id.fab_automatonPills_connect:
@@ -171,12 +177,15 @@ public class AutomatonPillsActivity extends Activity {
 
 
                 break;
-            /*case R.id.btn_automatonPills_manage:
-                Toast.makeText(this, "Gérer", Toast.LENGTH_SHORT).show();
-                Intent intentManagePills = new Intent(this, ManagePillsActivity.class);
-                startActivity(intentManagePills);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                break;*/
+            case R.id.btn_automatonPills_manage:
+                if (btn_automatonPills_manage.getContentDescription().equals("hidden")) {
+                    btn_automatonPills_manage.setContentDescription("visible");
+                    ll_automatonPills_manage.setVisibility(View.VISIBLE);
+                } else {
+                    btn_automatonPills_manage.setContentDescription("hidden");
+                    ll_automatonPills_manage.setVisibility(View.GONE);
+                }
+                break;
             case R.id.fab_automatonPills_logout:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
