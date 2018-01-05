@@ -171,13 +171,12 @@ public class AutomatonPillsActivity extends Activity {
 
 
                 break;
-
-            case R.id.btn_automatonPills_manage:
+            /*case R.id.btn_automatonPills_manage:
                 Toast.makeText(this, "Gérer", Toast.LENGTH_SHORT).show();
                 Intent intentManagePills = new Intent(this, ManagePillsActivity.class);
                 startActivity(intentManagePills);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                break;
+                break;*/
             case R.id.fab_automatonPills_logout:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
