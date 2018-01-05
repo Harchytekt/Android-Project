@@ -137,7 +137,7 @@ public class RegisterAutomatonActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Pattern.matches("^(([A-z][a-z]+[\\s|-]{1}[A-z][a-z]+)|([A-Z][a-z]+))$", et_registerAutomaton_name.getText().toString())) {
+                if (!Pattern.matches("^((\\w|\\s|\\d){2, 15})$", et_registerAutomaton_name.getText().toString())) {
                     et_registerAutomaton_name.setError(getString(R.string.wrong_format));
                     validName = false;
                 } else {
