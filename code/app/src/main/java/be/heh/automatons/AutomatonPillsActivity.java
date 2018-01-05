@@ -178,7 +178,6 @@ public class AutomatonPillsActivity extends Activity {
                     Toast.makeText(this, getString((R.string.impossible_connection)), Toast.LENGTH_SHORT).show();
                 }
 
-
                 break;
             case R.id.btn_automatonPills_manage:
                 if (btn_automatonPills_manage.getContentDescription().equals("hidden") &&
