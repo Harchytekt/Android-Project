@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,11 +49,17 @@ public class AutomatonLiquidActivity extends Activity {
     Button btn_automatonLiquid_manage;
 
     LinearLayout ll_automatonLiquid_manage;
+    EditText et_automatonLiquid_DBB2;
+    EditText et_automatonLiquid_DBB3;
+    EditText et_automatonLiquid_DBW24;
+    EditText et_automatonLiquid_DBW26;
+    EditText et_automatonLiquid_DBW28;
+    EditText et_automatonLiquid_DBW30;
 
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
     private ReadLiquidS7 readS7;
-    private WritePillsS7 writeS7;
+    private WriteLiquidS7 writeS7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +87,12 @@ public class AutomatonLiquidActivity extends Activity {
         btn_automatonLiquid_manage = findViewById(R.id.btn_automatonLiquid_manage);
 
         ll_automatonLiquid_manage = findViewById(R.id.ll_automatonLiquid_manage);
+        et_automatonLiquid_DBB2 = findViewById(R.id.et_automatonLiquid_DBB2);
+        et_automatonLiquid_DBB3 = findViewById(R.id.et_automatonLiquid_DBB3);
+        et_automatonLiquid_DBW24 = findViewById(R.id.et_automatonLiquid_DBW24);
+        et_automatonLiquid_DBW26 = findViewById(R.id.et_automatonLiquid_DBW26);
+        et_automatonLiquid_DBW28 = findViewById(R.id.et_automatonLiquid_DBW28);
+        et_automatonLiquid_DBW30 = findViewById(R.id.et_automatonLiquid_DBW30);
 
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin() || currentAutomaton.checkCurrent()) {
@@ -152,7 +165,7 @@ public class AutomatonLiquidActivity extends Activity {
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
 
                         if (btn_automatonLiquid_manage.getVisibility() == View.VISIBLE) {
-                            writeS7 = new WritePillsS7();
+                            writeS7 = new WriteLiquidS7();
                             writeS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot(), automaton.getDataBloc());
                         }
 
@@ -182,6 +195,54 @@ public class AutomatonLiquidActivity extends Activity {
                 } else {
                     btn_automatonLiquid_manage.setContentDescription("hidden");
                     ll_automatonLiquid_manage.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBB2:
+                if (et_automatonLiquid_DBB2.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBBBinary(2, et_automatonLiquid_DBB2.getText().toString());
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBB3:
+                if (et_automatonLiquid_DBB3.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBBBinary(3, et_automatonLiquid_DBB3.getText().toString());
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBW24:
+                if (et_automatonLiquid_DBW24.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBW(24, et_automatonLiquid_DBW24.getText().toString());
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBW26:
+                if (et_automatonLiquid_DBW26.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBW(26, et_automatonLiquid_DBW26.getText().toString());
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBW28:
+                if (et_automatonLiquid_DBW28.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBW(28, et_automatonLiquid_DBW28.getText().toString());
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBW30:
+                if (et_automatonLiquid_DBW30.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBW(30, et_automatonLiquid_DBW30.getText().toString());
                 }
                 break;
             case R.id.fab_automatonLiquid_logout:

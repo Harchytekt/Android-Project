@@ -117,40 +117,15 @@
                 android:gravity="center_horizontal" >
 
                 <EditText
-                    android:id="@+id/et_automatonLiquid_DBB5"
+                    android:id="@+id/et_automatonLiquid_DBB2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="DBB5 (Binaire)"
+                    android:hint="DBB2 (Binaire)"
                     android:inputType="number" />
 
                 <Button
-                    android:id="@+id/btn_modifyAutomaton_registerDBB5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onAutomatonLiquidClickManager"
-                    android:text="@string/save_button" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal" >
-
-                <EditText
-                    android:id="@+id/et_automatonLiquid_DBB6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="DBB6 (Binaire)"
-                    android:inputType="number" />
-
-                <Button
-                    android:id="@+id/btn_modifyAutomaton_registerDBB6"
+                    android:id="@+id/btn_modifyAutomaton_registerDBB2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onAutomatonLiquidClickManager"
@@ -167,15 +142,15 @@
                 android:gravity="center_horizontal" >
 
                 <EditText
-                    android:id="@+id/et_automatonLiquid_DBB7"
+                    android:id="@+id/et_automatonLiquid_DBB3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="DBB7 (Binaire)"
+                    android:hint="DBB3 (Binaire)"
                     android:inputType="number" />
 
                 <Button
-                    android:id="@+id/btn_modifyAutomaton_registerDBB7"
+                    android:id="@+id/btn_modifyAutomaton_registerDBB3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onAutomatonLiquidClickManager"
@@ -192,15 +167,65 @@
                 android:gravity="center_horizontal" >
 
                 <EditText
-                    android:id="@+id/et_automatonLiquid_DBB8"
+                    android:id="@+id/et_automatonLiquid_DBW24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="DBB8 (Entier)"
+                    android:hint="DBW24 (Entier)"
                     android:inputType="number" />
 
                 <Button
-                    android:id="@+id/btn_modifyAutomaton_registerDBB8"
+                    android:id="@+id/btn_modifyAutomaton_registerDBW24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onAutomatonLiquidClickManager"
+                    android:text="@string/save_button" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/et_automatonLiquid_DBW26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="DBW26 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/btn_modifyAutomaton_registerDBW26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onAutomatonLiquidClickManager"
+                    android:text="@string/save_button" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal" >
+
+                <EditText
+                    android:id="@+id/et_automatonLiquid_DBW28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="DBW28 (Entier)"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/btn_modifyAutomaton_registerDBW28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onAutomatonLiquidClickManager"
@@ -218,15 +243,15 @@
                 android:gravity="center_horizontal" >
 
                 <EditText
-                    android:id="@+id/et_automatonLiquid_DBW18"
+                    android:id="@+id/et_automatonLiquid_DBW30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="DBW18 (Entier)"
+                    android:hint="DBW30 (Entier)"
                     android:inputType="number" />
 
                 <Button
-                    android:id="@+id/btn_modifyAutomaton_registerDBW18"
+                    android:id="@+id/btn_modifyAutomaton_registerDBW30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onAutomatonLiquidClickManager"
