@@ -77,12 +77,6 @@ public class WritePillsS7 {
         }
     }
 
-    /*public void setWriteBool(int b, int v) {
-        //Masquage
-        if (v == 1) motCommande[0] = (byte)(b | motCommande[0]);
-        else motCommande[0] = (byte)(~b & motCommande[0]);
-    }*/
-
     public void setDBBBinary(int dbb, String value) {
         char[] array = value.toCharArray();
         int len = array.length;
