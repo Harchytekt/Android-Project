@@ -17,7 +17,7 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_signin"
         android:contentDescription="Connexion"
-        android:onClick="onAutomatonClickManager"
+        android:onClick="onAutomatonLiquidClickManager"
         app:backgroundTint="@color/darkGreen" />
 
     <android.support.design.widget.FloatingActionButton
@@ -27,7 +27,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:src="@drawable/ic_logout"
-        android:onClick="onAutomatonClickManager"
+        android:onClick="onAutomatonLiquidClickManager"
         app:backgroundTint="@color/red" />
 
 </android.support.design.widget.CoordinatorLayout>
