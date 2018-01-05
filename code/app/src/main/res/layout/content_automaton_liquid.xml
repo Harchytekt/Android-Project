@@ -35,51 +35,51 @@
         android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/tv_automatonLiquid_level"
-        android:layout_marginTop="50dp"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/black" />
-
-    <TextView
         android:id="@+id/tv_automatonLiquid_valveMA"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquid_valve1"
-        android:layout_marginTop="10dp"
+        android:id="@+id/tv_automatonLiquid_valves12"
+        android:layout_marginTop="7dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquid_valve2"
+        android:id="@+id/tv_automatonLiquid_valves34"
         android:layout_marginTop="10dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquid_valve3"
-        android:layout_marginTop="10dp"
+        android:id="@+id/tv_automatonLiquid_level"
+        android:layout_marginTop="25dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/tv_automatonLiquid_valve4"
-        android:layout_marginTop="10dp"
+        android:id="@+id/tv_automatonLiquid_consignes"
+        android:layout_marginTop="7dp"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_automatonLiquid_pilotageVanne"
+        android:layout_marginTop="7dp"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:textColor="@color/black" />
 
 </LinearLayout>
