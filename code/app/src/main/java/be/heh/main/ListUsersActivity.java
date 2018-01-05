@@ -144,7 +144,6 @@ public class ListUsersActivity extends Activity {
                         adapter.clear();
                         adapter.addAll(tabUser);
                         userDB.Close();
-                        System.out.println(inputPassword.getText().toString());
                     }
                 })
                 .setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {

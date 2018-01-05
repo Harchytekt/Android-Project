@@ -106,7 +106,8 @@
 
     <!-- Toasts -->
     <string name="no_user">⚠️ L\'utilisateur n\'existe pas ! ⚠️ </string>
-    <string name="empty_input">⚠️️ Veuillez compléter tous les champs ! ⚠️ </string>
+    <string name="empty_input">⚠️️ Veuillez compléter le champ ! ⚠️ </string>
+    <string name="empty_inputs">⚠️️ Veuillez compléter tous les champs ! ⚠️ </string>
     <string name="error_input">⚠️️ Veuillez vérifier les champs erronés ! ⚠️ </string>
     <string name="created_user">✔️ L\'utilisateur a bien été créé ! ✔️ </string>
     <string name="wrong_format">Format incorrect !</string>

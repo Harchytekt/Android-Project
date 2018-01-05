@@ -76,7 +76,7 @@ public class RegisterActivity extends Activity {
                         et_register_firstname.getText().toString().isEmpty() ||
                         et_register_email.getText().toString().isEmpty() ||
                         et_register_pwd.getText().toString().isEmpty())
-                    Toast.makeText(getApplicationContext(), R.string.empty_input, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.empty_inputs, Toast.LENGTH_LONG).show();
                 else if (!isValid())
                     Toast.makeText(getApplicationContext(), R.string.error_input, Toast.LENGTH_LONG).show();
                 else {

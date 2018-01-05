@@ -100,7 +100,7 @@ public class RegisterAutomatonActivity extends Activity {
                         et_registerAutomaton_rack.getText().toString().isEmpty() ||
                         et_registerAutomaton_slot.getText().toString().isEmpty() ||
                         et_registerAutomaton_databloc.getText().toString().isEmpty())
-                    Toast.makeText(getApplicationContext(), R.string.empty_input, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.empty_inputs, Toast.LENGTH_LONG).show();
                 else if (!isValid())
                     Toast.makeText(getApplicationContext(), R.string.error_input, Toast.LENGTH_LONG).show();
                 else {
