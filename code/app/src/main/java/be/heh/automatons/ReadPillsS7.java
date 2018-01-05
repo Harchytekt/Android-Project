@@ -168,25 +168,24 @@ public class ReadPillsS7 {
                 while(isRunning.get()) {
                     if (res.equals(0)) {
 
-                        int serviceRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,0,2, servicePLC);
-                        int service;
+                        int serviceRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,0,2, servicePLC),
+                                bottlesComingRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,1,2, bottlesComingPLC),
+                                wantedPillsRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,4,2, wantedPillsPLC),
+                                pillsRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,15,2, pillsPLC),
+                                bottlesRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,16,2, bottlesPLC);
+                        int service, bottlesComing, wantedPills, pills, bottles;
+                        boolean[] wantedPillsArray = {false, false, false};
+
                         if (serviceRead == 0) {
                             service = S7.GetBitAt(servicePLC, 0, 0) ? 1 : 0;
 
                             sendServiceMessage(service);
                         }
-
-                        int bottlesComingRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,1,2, bottlesComingPLC);
-                        int bottlesComing;
                         if (bottlesComingRead == 0) {
                             bottlesComing  = S7.GetBitAt(bottlesComingPLC, 0, 3) ? 1 : 0;
 
                             sendBottlesComingMessage(bottlesComing);
                         }
-
-                        int wantedPillsRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,4,2, wantedPillsPLC);
-                        int wantedPills;
-                        boolean[] wantedPillsArray = {false, false, false};
                         if (wantedPillsRead == 0) {
                             wantedPillsArray[0] = S7.GetBitAt(wantedPillsPLC, 0, 3);
                             wantedPillsArray[1] = S7.GetBitAt(wantedPillsPLC, 0, 4);
@@ -195,16 +194,10 @@ public class ReadPillsS7 {
 
                             sendWantedPillsMessage(wantedPills);
                         }
-
-                        int pillsRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,15,2, pillsPLC);
-                        int pills;
                         if (pillsRead == 0) {
                             pills = S7.BCDtoByte(pillsPLC[0]);
                             sendPillsMessage(pills);
                         }
-
-                        int bottlesRead = comS7.ReadArea(S7.S7AreaDB, readingDataBloc,16,2, bottlesPLC);
-                        int bottles;
                         if (bottlesRead == 0) {
                             bottles = S7.GetWordAt(bottlesPLC, 0);
                             sendBottlesMessage(bottles);
