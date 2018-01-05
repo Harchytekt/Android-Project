@@ -210,10 +210,6 @@ public class ReadPillsS7 {
                             sendBottlesMessage(bottles);
                         }
 
-                        //Log.i("Service → ", String.valueOf(service)); // OK
-                        //Log.i("Pills   → ", String.valueOf(pills)); // OK
-                        //Log.i("Bottles → ", String.valueOf(bottles)); // OK
-
                     }
                     try {
                         Thread.sleep(500);
