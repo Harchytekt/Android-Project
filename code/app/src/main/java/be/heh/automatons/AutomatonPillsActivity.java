@@ -193,7 +193,7 @@ public class AutomatonPillsActivity extends Activity {
                 if (et_automatonPills_DBB5.getText().toString().isEmpty()) {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
                     writeS7.setDBBBinary(5, et_automatonPills_DBB5.getText().toString());
                 }
                 break;
@@ -201,7 +201,7 @@ public class AutomatonPillsActivity extends Activity {
                 if (et_automatonPills_DBB6.getText().toString().isEmpty()) {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
                     writeS7.setDBBBinary(6, et_automatonPills_DBB6.getText().toString());
                 }
                 break;
@@ -209,7 +209,7 @@ public class AutomatonPillsActivity extends Activity {
                 if (et_automatonPills_DBB7.getText().toString().isEmpty()) {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
                     writeS7.setDBBBinary(7, et_automatonPills_DBB7.getText().toString());
                 }
                 break;
@@ -217,7 +217,7 @@ public class AutomatonPillsActivity extends Activity {
                 if (et_automatonPills_DBB8.getText().toString().isEmpty()) {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
                     writeS7.setDBB8(et_automatonPills_DBB8.getText().toString());
                 }
                 break;
@@ -225,7 +225,7 @@ public class AutomatonPillsActivity extends Activity {
                 if (et_automatonPills_DBW18.getText().toString().isEmpty()) {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
                     writeS7.setDBW18(et_automatonPills_DBW18.getText().toString());
                 }
                 break;

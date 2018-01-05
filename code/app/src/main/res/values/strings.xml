@@ -121,5 +121,6 @@
     <string name="wrong_databloc_format">Format de databloc incorrect !</string>
     <string name="created_automaton">✔️ L\'automate a bien été créé ! ✔️ </string>
     <string name="modified_automaton">✔️ L\'automate a bien été modifié ! ✔️ </string>
+    <string name="written_data">✔️ La valeur a bien été écrite ! ✔️ </string>
 
 </resources>
