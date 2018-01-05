@@ -86,12 +86,12 @@
     <string name="pills_wantedPills">Nombre de comprimés demandés : %s</string>
     <string name="pills_pills">Comprimés mis en flacon : %s</string>
     <string name="pills_bottles">Flacons remplis : %s</string>
-    <string name="liquid_level">Niveau de liquide : %s</string>
     <string name="liquid_valveMA">Manuelle/Automatique : %s</string>
-    <string name="liquid_valve1">Valve 1 : %s</string>
-    <string name="liquid_valve2">Valve 2 : %s</string>
-    <string name="liquid_valve3">Valve 3 : %s</string>
-    <string name="liquid_valve4">Valve 4 : %s</string>
+    <string name="liquid_valves12">Valve 1 : %s; Valve 2 : %s</string>
+    <string name="liquid_valves34">Valve 3 : %s; Valve 4 : %s</string>
+    <string name="liquid_level">Niveau de liquide : %s</string>
+    <string name="liquid_consignes">Consigne Auto : %s; Consigne Manuelle : %s</string>
+    <string name="liquid_pilotageVanne">Mot de pilotage vanne : %s</string>
 
 
     <!-- Titles -->

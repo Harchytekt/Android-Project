@@ -35,12 +35,12 @@ public class AutomatonLiquidActivity extends Activity {
     TextView tv_automatonLiquid_status;
     TextView tv_automatonLiquid_plc;
 
-    TextView tv_automatonLiquid_level;
     TextView tv_automatonLiquid_valveMA;
-    TextView tv_automatonLiquid_valve1;
-    TextView tv_automatonLiquid_valve2;
-    TextView tv_automatonLiquid_valve3;
-    TextView tv_automatonLiquid_valve4;
+    TextView tv_automatonLiquid_valves12;
+    TextView tv_automatonLiquid_valves34;
+    TextView tv_automatonLiquid_level;
+    TextView tv_automatonLiquid_consignes;
+    TextView tv_automatonLiquid_pilotageVanne;
 
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
@@ -59,12 +59,13 @@ public class AutomatonLiquidActivity extends Activity {
         tv_automatonLiquid_status = findViewById(R.id.tv_automatonLiquid_status);
         tv_automatonLiquid_plc = findViewById(R.id.tv_automatonLiquid_plc);
 
-        tv_automatonLiquid_level = findViewById(R.id.tv_automatonLiquid_level);
         tv_automatonLiquid_valveMA = findViewById(R.id.tv_automatonLiquid_valveMA);
-        tv_automatonLiquid_valve1 = findViewById(R.id.tv_automatonLiquid_valve1);
-        tv_automatonLiquid_valve2 = findViewById(R.id.tv_automatonLiquid_valve2);
-        tv_automatonLiquid_valve3 = findViewById(R.id.tv_automatonLiquid_valve3);
-        tv_automatonLiquid_valve4 = findViewById(R.id.tv_automatonLiquid_valve4);
+        tv_automatonLiquid_valves12 = findViewById(R.id.tv_automatonLiquid_valves12);
+        tv_automatonLiquid_valves34 = findViewById(R.id.tv_automatonLiquid_valves34);
+        tv_automatonLiquid_level = findViewById(R.id.tv_automatonLiquid_level);
+        tv_automatonLiquid_consignes = findViewById(R.id.tv_automatonLiquid_consignes);
+        tv_automatonLiquid_pilotageVanne = findViewById(R.id.tv_automatonLiquid_pilotageVanne);
+
 
         fab_automatonLiquid_connect = findViewById(R.id.fab_automatonLiquid_connect);
         fab_automatonLiquid_logout = findViewById(R.id.fab_automatonLiquid_logout);
@@ -89,12 +90,13 @@ public class AutomatonLiquidActivity extends Activity {
 
         tv_automatonLiquid_plc.setText(Html.fromHtml(automatonName + "<br>" + getString(R.string.not_connected)));
 
-        tv_automatonLiquid_level.setText(String.format(getString(R.string.liquid_level), "?"));
         tv_automatonLiquid_valveMA.setText(String.format(getString(R.string.liquid_valveMA), "?"));
-        tv_automatonLiquid_valve1.setText(String.format(getString(R.string.liquid_valve1), "?"));
-        tv_automatonLiquid_valve2.setText(String.format(getString(R.string.liquid_valve2), "?"));
-        tv_automatonLiquid_valve3.setText(String.format(getString(R.string.liquid_valve3), "?"));
-        tv_automatonLiquid_valve4.setText(String.format(getString(R.string.liquid_valve4), "?"));
+        tv_automatonLiquid_valves12.setText(String.format(getString(R.string.liquid_valves12), "?", "?"));
+        tv_automatonLiquid_valves34.setText(String.format(getString(R.string.liquid_valves34), "?", "?"));
+        tv_automatonLiquid_level.setText(String.format(getString(R.string.liquid_level), "?"));
+        tv_automatonLiquid_consignes.setText(String.format(getString(R.string.liquid_consignes), "?", "?"));
+        tv_automatonLiquid_pilotageVanne.setText(String.format(getString(R.string.liquid_pilotageVanne), "?"));
+
     }
 
     @Override
@@ -131,10 +133,10 @@ public class AutomatonLiquidActivity extends Activity {
                         fab_automatonLiquid_connect.setImageResource(R.drawable.ic_signout);
                         tv_automatonLiquid_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
-                        TextView[] tvArray = {tv_automatonLiquid_plc, tv_automatonLiquid_level,
-                                tv_automatonLiquid_valveMA, tv_automatonLiquid_valve1,
-                                tv_automatonLiquid_valve2, tv_automatonLiquid_valve3,
-                                tv_automatonLiquid_valve4};
+                        TextView[] tvArray = {tv_automatonLiquid_plc, tv_automatonLiquid_valveMA,
+                                tv_automatonLiquid_valves12, tv_automatonLiquid_valves34,
+                                tv_automatonLiquid_level, tv_automatonLiquid_consignes,
+                                tv_automatonLiquid_pilotageVanne };
 
                         readS7 = new ReadLiquidS7(v, tvArray);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
