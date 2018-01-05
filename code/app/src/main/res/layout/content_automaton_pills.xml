@@ -6,7 +6,7 @@
     android:background="@drawable/yellow_gradient"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".AutomatonPillsActivity">
+    tools:context="be.heh.automatons.AutomatonPillsActivity">
 
     <TextView
         android:id="@+id/tv_automatonPills_connected"

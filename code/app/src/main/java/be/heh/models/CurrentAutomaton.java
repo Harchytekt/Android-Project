@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import be.heh.auth.LoginActivity;
 import be.heh.main.ListAutomatonsActivity;
 
 public class CurrentAutomaton {

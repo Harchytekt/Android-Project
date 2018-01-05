@@ -1,4 +1,4 @@
-package be.heh.main;
+package be.heh.automatons;
 
 import android.util.Log;
 

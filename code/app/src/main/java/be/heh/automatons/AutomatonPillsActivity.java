@@ -1,4 +1,4 @@
-package be.heh.main;
+package be.heh.automatons;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,65 +10,66 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
 
-import be.heh.SimaticS7.S7Client;
 import be.heh.database.AutomatonAccessDB;
+import be.heh.main.R;
 import be.heh.models.Automaton;
 import be.heh.models.CurrentAutomaton;
 import be.heh.models.Session;
 
-public class AutomatonLiquidActivity extends Activity {
+public class AutomatonPillsActivity extends Activity {
 
     private Session session;
     private CurrentAutomaton currentAutomaton;
     String automatonName;
     Automaton automaton;
 
-    FloatingActionButton fab_automatonLiquid_connect;
-    FloatingActionButton fab_automatonLiquid_logout;
+    FloatingActionButton fab_automatonPills_connect;
+    FloatingActionButton fab_automatonPills_logout;
 
-    TextView tv_automatonLiquid_connected;
-    TextView tv_automatonLiquid_status;
-    TextView tv_automatonLiquid_plc;
+    TextView tv_automatonPills_connected;
+    TextView tv_automatonPills_status;
+    TextView tv_automatonPills_plc;
 
-    TextView tv_automatonLiquid_valveMA;
-    TextView tv_automatonLiquid_valves12;
-    TextView tv_automatonLiquid_valves34;
-    TextView tv_automatonLiquid_level;
-    TextView tv_automatonLiquid_consignes;
-    TextView tv_automatonLiquid_pilotageVanne;
+    TextView tv_automatonPills_service;
+    TextView tv_automatonPills_bottlesComing;
+    TextView tv_automatonPills_wantedPills;
+    TextView tv_automatonPills_pills;
+    TextView tv_automatonPills_bottles;
+
+    Button btn_automatonPills_manage;
 
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
-    private S7Client clientS7;
-    private ReadLiquidS7 readS7;
+    private ReadPillsS7 readS7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_automaton_liquid);
+        setContentView(R.layout.activity_automaton_pills);
 
         session = new Session(getApplicationContext());
         currentAutomaton = new CurrentAutomaton(getApplicationContext());
 
-        tv_automatonLiquid_connected = findViewById(R.id.tv_automatonLiquid_connected);
-        tv_automatonLiquid_status = findViewById(R.id.tv_automatonLiquid_status);
-        tv_automatonLiquid_plc = findViewById(R.id.tv_automatonLiquid_plc);
+        tv_automatonPills_connected = findViewById(R.id.tv_automatonPills_connected);
+        tv_automatonPills_status = findViewById(R.id.tv_automatonPills_status);
+        tv_automatonPills_plc = findViewById(R.id.tv_automatonPills_plc);
 
-        tv_automatonLiquid_valveMA = findViewById(R.id.tv_automatonLiquid_valveMA);
-        tv_automatonLiquid_valves12 = findViewById(R.id.tv_automatonLiquid_valves12);
-        tv_automatonLiquid_valves34 = findViewById(R.id.tv_automatonLiquid_valves34);
-        tv_automatonLiquid_level = findViewById(R.id.tv_automatonLiquid_level);
-        tv_automatonLiquid_consignes = findViewById(R.id.tv_automatonLiquid_consignes);
-        tv_automatonLiquid_pilotageVanne = findViewById(R.id.tv_automatonLiquid_pilotageVanne);
+        tv_automatonPills_service = findViewById(R.id.tv_automatonPills_service);
+        tv_automatonPills_bottlesComing = findViewById(R.id.tv_automatonPills_bottlesComing);
+        tv_automatonPills_wantedPills = findViewById(R.id.tv_automatonPills_wantedPills);
+        tv_automatonPills_pills = findViewById(R.id.tv_automatonPills_pills);
+        tv_automatonPills_bottles = findViewById(R.id.tv_automatonPills_bottles);
 
+        fab_automatonPills_connect = findViewById(R.id.fab_automatonPills_connect);
+        fab_automatonPills_logout = findViewById(R.id.fab_automatonPills_logout);
 
-        fab_automatonLiquid_connect = findViewById(R.id.fab_automatonLiquid_connect);
-        fab_automatonLiquid_logout = findViewById(R.id.fab_automatonLiquid_logout);
+        btn_automatonPills_manage = findViewById(R.id.btn_automatonPills_manage);
 
         // If not logged in, redirection to LoginActivity
         if (session.checkLogin() || currentAutomaton.checkCurrent()) {
@@ -84,19 +85,15 @@ public class AutomatonLiquidActivity extends Activity {
         automaton = automatonDB.getAutomaton(automatonName);
         automatonDB.Close();
 
-        clientS7 = new S7Client();
+        tv_automatonPills_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
 
-        tv_automatonLiquid_connected.setText(Html.fromHtml(getString(R.string.connected_as) + " '<b>" + user.get(Session.KEY_EMAIl) + "</b>'."));
+        tv_automatonPills_plc.setText(Html.fromHtml(automatonName + "<br>" + getString(R.string.not_connected)));
 
-        tv_automatonLiquid_plc.setText(Html.fromHtml(automatonName + "<br>" + getString(R.string.not_connected)));
-
-        tv_automatonLiquid_valveMA.setText(String.format(getString(R.string.liquid_valveMA), "?"));
-        tv_automatonLiquid_valves12.setText(String.format(getString(R.string.liquid_valves12), "?", "?"));
-        tv_automatonLiquid_valves34.setText(String.format(getString(R.string.liquid_valves34), "?", "?"));
-        tv_automatonLiquid_level.setText(String.format(getString(R.string.liquid_level), "?"));
-        tv_automatonLiquid_consignes.setText(String.format(getString(R.string.liquid_consignes), "?", "?"));
-        tv_automatonLiquid_pilotageVanne.setText(String.format(getString(R.string.liquid_pilotageVanne), "?"));
-
+        tv_automatonPills_service.setText(String.format(getString(R.string.pills_service), "?"));
+        tv_automatonPills_bottlesComing.setText(String.format(getString(R.string.pills_bottlesComing), "?"));
+        tv_automatonPills_wantedPills.setText(String.format(getString(R.string.pills_wantedPills), "?"));
+        tv_automatonPills_pills.setText(String.format(getString(R.string.pills_pills), "?"));
+        tv_automatonPills_bottles.setText(String.format(getString(R.string.pills_bottles), "?"));
     }
 
     @Override
@@ -119,7 +116,7 @@ public class AutomatonLiquidActivity extends Activity {
     public void onAutomatonClickManager(View v) {
 
         switch (v.getId()) {
-            case R.id.fab_automatonLiquid_connect:
+            case R.id.fab_automatonPills_connect:
 
                 connexStatus = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
                 if (connexStatus != null) {
@@ -127,18 +124,17 @@ public class AutomatonLiquidActivity extends Activity {
                 }
 
                 if (network != null && network.isConnectedOrConnecting()) {
-                    if (fab_automatonLiquid_connect.getContentDescription().equals(getString((R.string.login)))) {
+                    if (fab_automatonPills_connect.getContentDescription().equals(getString((R.string.login)))) {
 
-                        fab_automatonLiquid_connect.setContentDescription(getString(R.string.logout_title));
-                        fab_automatonLiquid_connect.setImageResource(R.drawable.ic_signout);
-                        tv_automatonLiquid_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
+                        fab_automatonPills_connect.setContentDescription(getString((R.string.logout_title)));
+                        fab_automatonPills_connect.setImageResource(R.drawable.ic_signout);
+                        tv_automatonPills_status.setText(String.format(getString(R.string.connected_automaton), network.getTypeName()));
 
-                        TextView[] tvArray = {tv_automatonLiquid_plc, tv_automatonLiquid_valveMA,
-                                tv_automatonLiquid_valves12, tv_automatonLiquid_valves34,
-                                tv_automatonLiquid_level, tv_automatonLiquid_consignes,
-                                tv_automatonLiquid_pilotageVanne };
+                        TextView[] tvArray = {tv_automatonPills_plc, tv_automatonPills_service,
+                                tv_automatonPills_bottlesComing, tv_automatonPills_wantedPills,
+                                tv_automatonPills_pills, tv_automatonPills_bottles};
 
-                        readS7 = new ReadLiquidS7(v, tvArray);
+                        readS7 = new ReadPillsS7(v, tvArray);
                         readS7.Start(automatonName, automaton.getIp(), automaton.getRack(), automaton.getSlot());
 
                         /*ln_main_ecrireS7.setVisibility(View.VISIBLE);
@@ -155,9 +151,9 @@ public class AutomatonLiquidActivity extends Activity {
                     } else {
                         readS7.Stop();
 
-                        fab_automatonLiquid_connect.setContentDescription(getString((R.string.login)));
-                        fab_automatonLiquid_connect.setImageResource(R.drawable.ic_signin);
-                        tv_automatonLiquid_status.setText(getString((R.string.liquid)));
+                        fab_automatonPills_connect.setContentDescription(getString((R.string.login)));
+                        fab_automatonPills_connect.setImageResource(R.drawable.ic_signin);
+                        tv_automatonPills_status.setText(getString((R.string.pills)));
 
                         /*try {
                             Thread.sleep(1000);
@@ -175,7 +171,13 @@ public class AutomatonLiquidActivity extends Activity {
 
 
                 break;
-            case R.id.fab_automatonLiquid_logout:
+            /*case R.id.btn_automatonPills_manage:
+                Toast.makeText(this, "Gérer", Toast.LENGTH_SHORT).show();
+                Intent intentManagePills = new Intent(this, ManagePillsActivity.class);
+                startActivity(intentManagePills);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;*/
+            case R.id.fab_automatonPills_logout:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

@@ -10,11 +10,16 @@ import android.text.Html;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import be.heh.automatons.AutomatonLiquidActivity;
+import be.heh.automatons.AutomatonPillsActivity;
+import be.heh.automatons.AutomatonsAdapter;
+import be.heh.main.ModifyAutomatonActivity;
+import be.heh.main.R;
+import be.heh.main.RegisterAutomatonActivity;
 import be.heh.models.Automaton;
 import be.heh.database.AutomatonAccessDB;
 import be.heh.models.CurrentAutomaton;

@@ -44,11 +44,11 @@
             android:label="@string/title_activity_list_automatons"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AutomatonPillsActivity"
+            android:name="be.heh.automatons.AutomatonPillsActivity"
             android:label="@string/title_activity_automaton_pills"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AutomatonLiquidActivity"
+            android:name="be.heh.automatons.AutomatonLiquidActivity"
             android:label="@string/title_activity_automaton_liquid"
             android:screenOrientation="portrait" />
         <activity

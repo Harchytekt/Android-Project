@@ -1,4 +1,4 @@
-package be.heh.main;
+package be.heh.automatons;
 
 import android.content.Context;
 import android.text.Html;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import be.heh.main.R;
 import be.heh.models.Automaton;
 
 /**

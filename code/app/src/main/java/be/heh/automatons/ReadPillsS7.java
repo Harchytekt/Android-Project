@@ -1,4 +1,4 @@
-package be.heh.main;
+package be.heh.automatons;
 
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import be.heh.SimaticS7.S7;
 import be.heh.SimaticS7.S7Client;
 import be.heh.SimaticS7.S7OrderCode;
+import be.heh.main.R;
 
 /**
  * Created by alexandre on 16/11/17.
