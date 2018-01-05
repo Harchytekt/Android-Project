@@ -22,8 +22,8 @@ public class WritePillsS7 {
 
     private S7Client comS7;
     private String[] param = new String[10];
-    //private byte[] motCommande = new byte[10];
-    private byte[] dbb8 = new byte[2], dbw18 = new byte[2];
+    private byte[] dbb5 = new byte[2], dbb6 = new byte[2];
+    private byte[] dbb7 = new byte[2], dbb8 = new byte[2], dbw18 = new byte[2];
 
     public WritePillsS7() {
         comS7 = new S7Client();
@@ -63,14 +63,13 @@ public class WritePillsS7 {
                         Integer.valueOf(param[3]));
 
                 while (isRunning.get() && res.equals(0)) {
-                    /*Integer writePLC = comS7.WriteArea(S7.S7AreaDB, dataBloc, 0, 1, motCommande);
 
-                    if (writePLC.equals(0)) {
-                        Log.i("ret WRITE : ", String.valueOf(res) + "****" + String.valueOf(writePLC));
-                    }*/
+                    comS7.WriteArea(S7.S7AreaDB, dataBloc,5,2, dbb5);
+                    comS7.WriteArea(S7.S7AreaDB, dataBloc,6,2, dbb6);
+                    comS7.WriteArea(S7.S7AreaDB, dataBloc,7,2, dbb7);
+                    comS7.WriteArea(S7.S7AreaDB, dataBloc,8,2, dbb8);
+                    comS7.WriteArea(S7.S7AreaDB, dataBloc,18,2, dbw18);
 
-                    comS7.WriteArea(S7.S7AreaDB, dataBloc, 8, 2, dbb8);
-                    comS7.WriteArea(S7.S7AreaDB, dataBloc, 18, 2, dbw18);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -84,9 +83,20 @@ public class WritePillsS7 {
         else motCommande[0] = (byte)(~b & motCommande[0]);
     }*/
 
+    public void setDBBBinary(int dbb, String value) {
+        char[] array = value.toCharArray();
+        int len = array.length;
+        byte[] chosenDBB;
+        if (dbb == 5) chosenDBB = dbb5;
+        else if (dbb == 6) chosenDBB = dbb6;
+        else chosenDBB = dbb7;
+        for (int i = 0; i < len; i++) {
+            S7.SetBitAt(chosenDBB, 0, i, array[len-(i+1)] == '1' ? true : false);
+        }
+    }
+
     public void setDBB8(String value) {
         dbb8[0] = S7.ByteToBCD(Integer.parseInt(value));
-        System.out.println("--------------------------------- " + dbb8[0]);
     }
 
     public void setDBW18(String value) {

@@ -48,6 +48,9 @@ public class AutomatonPillsActivity extends Activity {
     Button btn_automatonPills_manage;
 
     LinearLayout ll_automatonPills_manage;
+    EditText et_automatonPills_DBB5;
+    EditText et_automatonPills_DBB6;
+    EditText et_automatonPills_DBB7;
     EditText et_automatonPills_DBB8;
     EditText et_automatonPills_DBW18;
 
@@ -80,6 +83,9 @@ public class AutomatonPillsActivity extends Activity {
         btn_automatonPills_manage = findViewById(R.id.btn_automatonPills_manage);
 
         ll_automatonPills_manage = findViewById(R.id.ll_automatonPills_manage);
+        et_automatonPills_DBB5 = findViewById(R.id.et_automatonPills_DBB5);
+        et_automatonPills_DBB6 = findViewById(R.id.et_automatonPills_DBB6);
+        et_automatonPills_DBB7 = findViewById(R.id.et_automatonPills_DBB7);
         et_automatonPills_DBB8 = findViewById(R.id.et_automatonPills_DBB8);
         et_automatonPills_DBW18 = findViewById(R.id.et_automatonPills_DBW18);
 
@@ -182,6 +188,30 @@ public class AutomatonPillsActivity extends Activity {
                 } else {
                     btn_automatonPills_manage.setContentDescription("hidden");
                     ll_automatonPills_manage.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBB5:
+                if (et_automatonPills_DBB5.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBBBinary(5, et_automatonPills_DBB5.getText().toString());
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBB6:
+                if (et_automatonPills_DBB6.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBBBinary(6, et_automatonPills_DBB6.getText().toString());
+                }
+                break;
+            case R.id.btn_modifyAutomaton_registerDBB7:
+                if (et_automatonPills_DBB7.getText().toString().isEmpty()) {
+                    Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString((R.string.created_user)), Toast.LENGTH_SHORT).show();
+                    writeS7.setDBBBinary(7, et_automatonPills_DBB7.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBB8:
