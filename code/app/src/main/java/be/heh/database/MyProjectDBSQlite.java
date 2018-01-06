@@ -5,9 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by alexandre on 1/12/17.
+ * This class creates The database.
+ *
+ * @author DUCOBU Alexandre
  */
-
 public class MyProjectDBSQlite extends SQLiteOpenHelper {
 
     // USER
@@ -84,10 +85,30 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
             COL_RACK + ", " + COL_SLOT + ", " + COL_TYPE + ", " + COL_DATABLOC + ") VALUES (" +
             "'Test Liquide', '10.1.0.111', '0', '1', '1', '25');";
 
+
+    /**
+     * Constructor of the MyProjectDBSQlite object.
+     *
+     * @param context
+     *      The context of the application.
+     * @param name
+     *      The name of the database.
+     * @param factory
+     *      ?
+     * @param version
+     *      The version of the database.
+     *
+     */
     public MyProjectDBSQlite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super (context, name, factory, version);
     }
 
+    /**
+     * Create the database and populate it with the tables and data created.
+     *
+     * @param db
+     *      The database.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_USERDB);
@@ -101,9 +122,18 @@ public class MyProjectDBSQlite extends SQLiteOpenHelper {
         db.execSQL(TEST_LIQUID_SCHOOL);
     }
 
+    /**
+     * Update de database by dropping the tables and calling the onCreate method.
+     *
+     * @param db
+     *      The database
+     * @param oldVersion
+     *      The old version of the database
+     * @param newVersion
+     *      The new version of the database
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //Dans cette méthode, vous devez gérer les révisions de version de votre base de données
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_AUTOMATON);
         onCreate(db);

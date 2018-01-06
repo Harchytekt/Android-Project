@@ -5,13 +5,21 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by alexandre on 7/12/17.
+ * This class creates an encrypted password.
+ *
+ * @author DUCOBU Alexandre
  */
-
 public class Password {
 
     private static String generatedPassword;
 
+    /**
+     * Constructor of an encrypted password.
+     * The password is salted and hashed with SHA-512.
+     *
+     * @param passwordToHash
+     *      The password to hash.
+     */
     public Password(String passwordToHash) {
         String salt = "+%#hkgjdf" + passwordToHash.length() + "¨*$mkl@67";
         try {
@@ -31,6 +39,11 @@ public class Password {
         }
     }
 
+    /**
+     * Get the generated password.
+     *
+     * @return the generated password.
+     */
     public static String getGeneratedPassword() {
         return generatedPassword;
     }

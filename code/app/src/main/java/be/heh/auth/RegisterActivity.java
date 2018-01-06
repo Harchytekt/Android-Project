@@ -16,6 +16,11 @@ import be.heh.models.User;
 import be.heh.database.UserAccessDB;
 import be.heh.main.R;
 
+/**
+ * This class creates the register activity.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class RegisterActivity extends Activity {
 
     EditText et_register_lastname;
@@ -35,6 +40,13 @@ public class RegisterActivity extends Activity {
 
     UserAccessDB userDB = new UserAccessDB(this);
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +66,23 @@ public class RegisterActivity extends Activity {
 
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the function managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onRegisterClickManager(View v) {
-        // Récupérer la vue et accéder au bouton
         switch (v.getId()) {
             case R.id.btn_register_login:
 
@@ -102,6 +123,10 @@ public class RegisterActivity extends Activity {
         }
     }
 
+    /**
+     * Initialize the validation of the inputs.
+     * Each input is linked to a text watcher to verify if the text has the right format.
+     */
     private void initValidation() {
         lastname = new TextWatcher() {
             @Override
@@ -185,6 +210,13 @@ public class RegisterActivity extends Activity {
         };
     }
 
+    /**
+     * Verify if the format of the email address is valid.
+     *
+     * @param target
+     *      The given email address.
+     * @return true if the email is valid, false otherwise.
+     */
     public final static boolean isValidEmail(CharSequence target) {
         if (target == null) {
             return false;
@@ -193,6 +225,11 @@ public class RegisterActivity extends Activity {
         }
     }
 
+    /**
+     * Verify if all the inputs are valid.
+     *
+     * @return true if they are, false otherwise.
+     */
     public boolean isValid() {
         return validLastname && validFirstname && validPassword && validEmail;
     }

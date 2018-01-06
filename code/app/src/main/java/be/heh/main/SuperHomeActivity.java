@@ -15,6 +15,11 @@ import java.util.HashMap;
 import be.heh.database.UserAccessDB;
 import be.heh.models.Session;
 
+/**
+ * This class creates the superhome activity.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class SuperHomeActivity extends Activity {
 
     private Session session;
@@ -22,6 +27,13 @@ public class SuperHomeActivity extends Activity {
     TextView tv_superHome_users;
     FloatingActionButton fab_superHome_logout;
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +68,11 @@ public class SuperHomeActivity extends Activity {
                 "<b>" + nbRWUsers + "</b> " + getString(R.string.superHome_users_text3)));
     }
 
+    /**
+     * Method called on resume.
+     * It's used to return to the login activity if the user is no longer connected.
+     * And updates the displayed values.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -79,12 +96,22 @@ public class SuperHomeActivity extends Activity {
 
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the method managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onSuperHomeClickManager(View v) {
 
         switch (v.getId()) {

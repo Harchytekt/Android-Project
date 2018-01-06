@@ -44,6 +44,14 @@ public class ReadLiquidS7 {
     private byte[] levelPLC = new byte[2], pilotageVannePLC = new byte[2];
     private byte[] consigneAutoPLC = new byte[2], consigneManuPLC = new byte[2];
 
+    /**
+     * Constructor of the reader.
+     *
+     * @param v
+     *      The view.
+     * @param tvArray
+     *      The list of TextViews where to write the read values.
+     */
     public ReadLiquidS7(View v, TextView[] tvArray) {
         vi_main_ui          = v;
         tv_plc              = tvArray[0];
@@ -60,12 +68,28 @@ public class ReadLiquidS7 {
         readThread        = new Thread(plcS7);
     }
 
+    /**
+     * Stop the connection to the automaton and the reading thread.
+     */
     public void Stop() {
         isRunning.set(false);
         comS7.Disconnect();
         readThread.interrupt();
     }
 
+    /**
+     * Start the connection to the automaton and the reading thread.
+     *
+     * @param name
+     *      The name of the automaton.
+     * @param ip
+     *      The IP address of the automaton.
+     * @param rack
+     *      The rack used by the automaton.
+     * @param slot
+     *      The slot used by the automaton.
+     *
+     */
     public void Start(String name, String ip, String rack, String slot) {
         if (!readThread.isAlive()) {
             param[0] = name;
@@ -78,43 +102,102 @@ public class ReadLiquidS7 {
         }
     }
 
+    /**
+     * Method called at launch.
+     * It writes the PLC number of the automaton in the right TextView.
+     *
+     * @param t
+     *      The PLC number of the automaton.
+     */
     private void downloadOnPreExecute(int t) {
         tv_plc.setText(param[0] + "\nPLC : " + String.valueOf(t));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes if the main valve is set on Manual' or 'Automatic'.
+     *
+     * @param data
+     *      Contains if the main valve is set on 'Manual' or 'Automatic'.
+     */
     private void downloadOnValveMAUpdate(int data) {
         tv_valveMA.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valveMA),
                 (data == 1 ? "Automatique" : "Manuelle")));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes if the valves 1 and 2 are 'Opened' or 'Closed'.
+     *
+     * @param data1
+     *      Contains if the valve 1 is 'Opened' or 'Closed'.
+     * @param data2
+     *      Contains if the valve 2 is 'Opened' or 'Closed'.
+     */
     private void downloadOnValves12Update(int data1, int data2) {
         tv_valves12.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valves12),
                 (data1 == 1 ? "Fermée" : "Ouverte"),
                 (data2 == 1 ? "Fermée" : "Ouverte")));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes if the valves 3 and 4 are 'Opened' or 'Closed'.
+     *
+     * @param data1
+     *      Contains if the valve 3 is 'Opened' or 'Closed'.
+     * @param data2
+     *      Contains if the valve 4 is 'Opened' or 'Closed'.
+     */
     private void downloadOnValves34Update(int data1, int data2) {
         tv_valves34.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_valves34),
                 (data1 == 1 ? "Fermée" : "Ouverte"),
                 (data2 == 1 ? "Fermée" : "Ouverte")));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes the liquid level.
+     *
+     * @param data
+     *      Contains the liquid level.
+     */
     private void downloadOnLevelUpdate(int data) {
         tv_level.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_level),
                 String.valueOf(data)));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes the 'Automatic instruction' and the 'Manual instruction' states.
+     *
+     * @param data1
+     *      Contains 'Automatic instruction' state.
+     * @param data2
+     *      Contains 'Manual instruction' state.
+     */
     private void downloadOnConsignesUpdate(int data1, int data2) {
         tv_consignes.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_consignes),
                 String.valueOf(data1),
                 String.valueOf(data2)));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes the valve control word.
+     *
+     * @param data
+     *      Contains the valve control word.
+     */
     private void downloadOnPilotageVanneUpdate(int data) {
         tv_pilotageVanne.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_pilotageVanne),
                 String.valueOf(data)));
     }
 
+    /**
+     * Method called when the connection is stopped.
+     * Write '?' for all values in all the TextView except for the PLC number which is replaces by '⚠'.
+     */
     private void downloadOnPostExecute() {
         tv_plc.setText(param[0] + "\nPLC : ⚠");
 
@@ -126,6 +209,9 @@ public class ReadLiquidS7 {
         tv_pilotageVanne.setText(String.format(vi_main_ui.getContext().getString(R.string.liquid_pilotageVanne), "?"));
     }
 
+    /**
+     * This is used to handle the values to write to the TextViews.
+     */
     private Handler monHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -161,10 +247,17 @@ public class ReadLiquidS7 {
         }
     };
 
+    /**
+     * Private inner class which read the values from the automaton.
+     * It makes use of the handler to write de read values.
+     */
     private class AutomateS7 implements Runnable {
 
         private int[] array = {0, 0, 0, 0};
 
+        /**
+         * Method which connects with the automaton and write the values of the automaton in live.
+         */
         @Override
         public void run() {
             try {
@@ -233,12 +326,22 @@ public class ReadLiquidS7 {
             }
         }
 
+        /**
+         * Send the message that the connection is stopped.
+         */
         private void sendPostExecuteMessage() {
             Message postExecuteMsg = new Message();
             postExecuteMsg.what = MESSAGE_POST_EXECUTE;
             monHandler.sendMessage(postExecuteMsg);
         }
 
+        /**
+         * Send the message that the connection is started.
+         * Contains the PLC number.
+         *
+         * @param v
+         *      The view.
+         */
         private void sendPreExecuteMessage(int v) {
             Message preExecuteMsg = new Message();
             preExecuteMsg.what = MESSAGE_PRE_EXECUTE;
@@ -246,6 +349,12 @@ public class ReadLiquidS7 {
             monHandler.sendMessage(preExecuteMsg);
         }
 
+        /**
+         * Send the message containing if the main valve is set on Manual' or 'Automatic'.
+         *
+         * @param i
+         *      Contains if the main valve is set on Manual' or 'Automatic'.
+         */
         private void sendValveMAMessage(int i) {
             Message valveMAMsg = new Message();
             valveMAMsg.what = MESSAGE_VALVE_MA_UPDATE;
@@ -253,6 +362,14 @@ public class ReadLiquidS7 {
             monHandler.sendMessage(valveMAMsg);
         }
 
+        /**
+         * Send the message containing if the valves 1 and 2 are 'Opened' or 'Closed'.
+         *
+         * @param i
+         *      Contains if the valve 1 is 'Opened' or 'Closed'.
+         * @param j
+         *      Contains if the valve 2 is 'Opened' or 'Closed'.
+         */
         private void sendValves12Message(int i, int j) {
             Message valves12Msg = new Message();
             valves12Msg.what = MESSAGE_VALVES_12_UPDATE;
@@ -261,6 +378,14 @@ public class ReadLiquidS7 {
             monHandler.sendMessage(valves12Msg);
         }
 
+        /**
+         * Send the message containing if the valves 3 and 4 are 'Opened' or 'Closed'.
+         *
+         * @param i
+         *      Contains if the valve 3 is 'Opened' or 'Closed'.
+         * @param j
+         *      Contains if the valve 4 is 'Opened' or 'Closed'.
+         */
         private void sendValves34Message(int i, int j) {
             Message valves34Msg = new Message();
             valves34Msg.what = MESSAGE_VALVES_34_UPDATE;
@@ -269,6 +394,9 @@ public class ReadLiquidS7 {
             monHandler.sendMessage(valves34Msg);
         }
 
+        /**
+         * Send the message containing the liquid level from the array.
+         */
         private void sendLevelMessage() {
             Message levelMsg = new Message();
             levelMsg.what = MESSAGE_LEVEL_UPDATE;
@@ -276,6 +404,10 @@ public class ReadLiquidS7 {
             monHandler.sendMessage(levelMsg);
         }
 
+        /**
+         * Send the message containing 'Automatic instruction' and
+         * the 'Manual instruction' statesfrom the array.
+         */
         private void sendConsignesMessage() {
             Message consignesManuMsg = new Message();
             consignesManuMsg.what = MESSAGE_CONSIGNES_UPDATE;
@@ -284,6 +416,9 @@ public class ReadLiquidS7 {
             monHandler.sendMessage(consignesManuMsg);
         }
 
+        /**
+         * Send the message containing the valve control word from the array.
+         */
         private void sendPilotageVanneMessage() {
             Message pilotageVanneMsg = new Message();
             pilotageVanneMsg.what = MESSAGE_PILOTAGE_VANNE_UPDATE;

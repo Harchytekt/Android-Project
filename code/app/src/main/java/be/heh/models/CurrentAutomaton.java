@@ -1,9 +1,5 @@
 package be.heh.models;
 
-/**
- * Created by alexandre on 7/12/17.
- */
-
 import java.util.HashMap;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +8,11 @@ import android.content.SharedPreferences.Editor;
 
 import be.heh.main.ListAutomatonsActivity;
 
+/**
+ * This class creates a CurrentAutomaton object.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class CurrentAutomaton {
 
     // Shared Preferences reference
@@ -33,6 +34,12 @@ public class CurrentAutomaton {
     private static final String IS_THERE_A_CURRENT = "IsThereACurrent";
     public static final String KEY_NAME = "name";
 
+    /**
+     * Constructor of a CurrentAutomaton object.
+     *
+     * @param context
+     *      The context of the application.
+     */
     public CurrentAutomaton(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREFER_NAME, PRIVATE_MODE);
@@ -52,15 +59,14 @@ public class CurrentAutomaton {
     }
 
     /**
-     * Check login method will check user login status
-     * If false it will redirect to the automatons' list
-     * Else do anything
-     * */
+     * Check if there is already an automaton in the Shared Preferences.
+     *
+     * @return true if the automaton is the current automaton, false otherwise.
+     */
     public boolean checkCurrent() {
 
         if (!this.isThereACurrent()) {
 
-            // user is not logged
             Intent i = new Intent(_context, ListAutomatonsActivity.class);
 
             // Closing all the Activities from stack
@@ -76,14 +82,13 @@ public class CurrentAutomaton {
         return false;
     }
 
-
-
     /**
-     * Get stored session data
-     * */
+     * Get the stored session data
+     *
+     * @return the stored session data
+     */
     public HashMap<String, String> getAutomatonName() {
 
-        //Use hashmap to store user credentials
         HashMap<String, String> automaton = new HashMap<>();
 
         automaton.put(KEY_NAME, pref.getString(KEY_NAME, null));
@@ -93,28 +98,18 @@ public class CurrentAutomaton {
 
     /**
      * Clear session details
-     * */
+     */
     public void clearCurrentAutomaton() {
 
-        // Clearing all user data from Shared Preferences
+        // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();
-
-        // After logout redirect user to Login Activity
-        //Intent i = new Intent(_context, LoginActivity.class);
-
-        // Closing all the Activities
-        //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        // Add new Flag to start new Activity
-        //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        //_context.startActivity(i);
     }
-
 
     /**
      * Check for login
+     *
+     * @return true if there's already a current automaton, false otherwise.
      */
     public boolean isThereACurrent() {
         return pref.getBoolean(IS_THERE_A_CURRENT, false);

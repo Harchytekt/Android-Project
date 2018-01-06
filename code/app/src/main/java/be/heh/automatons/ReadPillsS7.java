@@ -14,9 +14,10 @@ import be.heh.SimaticS7.S7OrderCode;
 import be.heh.main.R;
 
 /**
- * Created by alexandre on 16/11/17.
+ * This class is used to read data from the 'pills" automatons.
+ *
+ * @author DUCOBU Alexandre
  */
-
 public class ReadPillsS7 {
     private static final int MESSAGE_PRE_EXECUTE            = 1;
     private static final int MESSAGE_SERVICE_UPDATE         = 2;
@@ -46,6 +47,14 @@ public class ReadPillsS7 {
     private byte[] wantedPillsPLC = new byte[2], pillsPLC = new byte[2];
     private byte[] bottlesPLC = new byte[2];
 
+    /**
+     * Constructor of the reader.
+     *
+     * @param v
+     *      The view.
+     * @param tvArray
+     *      The list of TextViews where to write the read values.
+     */
     public ReadPillsS7(View v, TextView[] tvArray) {
         vi_main_ui        = v;
         tv_plc            = tvArray[0];
@@ -61,12 +70,28 @@ public class ReadPillsS7 {
         readThread        = new Thread(plcS7);
     }
 
+    /**
+     * Stop the connection to the automaton and the reading thread.
+     */
     public void Stop() {
         isRunning.set(false);
         comS7.Disconnect();
         readThread.interrupt();
     }
 
+    /**
+     * Start the connection to the automaton and the reading thread.
+     *
+     * @param name
+     *      The name of the automaton.
+     * @param ip
+     *      The IP address of the automaton.
+     * @param rack
+     *      The rack used by the automaton.
+     * @param slot
+     *      The slot used by the automaton.
+     *
+     */
     public void Start(String name, String ip, String rack, String slot) {
         if (!readThread.isAlive()) {
             param[0] = name;
@@ -79,43 +104,91 @@ public class ReadPillsS7 {
         }
     }
 
+    /**
+     * Method called at launch.
+     * It writes the PLC number of the automaton in the right TextView.
+     *
+     * @param t
+     *      The PLC number of the automaton.
+     */
     private void downloadOnPreExecute(int t) {
         tv_plc.setText(param[0] + "\nPLC : " + String.valueOf(t));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes if the automaton is in service.
+     *
+     * @param data
+     *      Contains if the automaton is in service.
+     */
     private void downloadOnServiceUpdate(int data) {
         tv_service.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_service),
                 (data == 1 ? "Oui" : "Non")));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes if the empty bottles are coming.
+     *
+     * @param data
+     *      Contains if the empty bottles are coming.
+     */
     private void downloadOnBottlesComingUpdate(int data) {
         tv_bottlesComing.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottlesComing),
                 (data == 1 ? "Oui" : "Non")));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes the wanted number of pills.
+     *
+     * @param data
+     *      Contains the wanted number of pills.
+     */
     private void downloadOnWantedPillsUpdate(int data) {
         tv_wantedPills.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_wantedPills), String.valueOf(data)));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes the number of pills in live.
+     *
+     * @param data
+     *      Contains the number of pills in live.
+     */
     private void downloadOnPillsUpdate(int data) {
         tv_pills.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_pills), String.valueOf(data)));
     }
 
+    /**
+     * Method which write the read values in the right TextView.
+     * It writes the number of filled bottles.
+     *
+     * @param data
+     *      Contains the number of filled bottles.
+     */
     private void downloadOnBottlesUpdate(int data) {
         tv_bottles.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottles), String.valueOf(data)));
     }
 
+    /**
+     * Method called when the connection is stopped.
+     * Write '?' for all values in all the TextView except for the PLC number which is replaces by '⚠'.
+     */
     private void downloadOnPostExecute() {
         tv_plc.setText(param[0] + "\nPLC : ⚠");
 
         tv_service.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_service), "?"));
-        tv_bottlesComing.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottlesComing),
-                "?"));
+        tv_bottlesComing.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottlesComing), "?"));
         tv_wantedPills.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_wantedPills), "?"));
         tv_pills.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_pills), "?"));
         tv_bottles.setText(String.format(vi_main_ui.getContext().getString(R.string.pills_bottles), "?"));
     }
 
+    /**
+     * This is used to handle the values to write to the TextViews.
+     */
     private Handler monHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -148,7 +221,14 @@ public class ReadPillsS7 {
         }
     };
 
+    /**
+     * Private inner class which read the values from the automaton.
+     * It makes use of the handler to write de read values.
+     */
     private class AutomateS7 implements Runnable {
+        /**
+         * Method which connects with the automaton and write the values of the automaton in live.
+         */
         @Override
         public void run() {
             try {
@@ -216,12 +296,22 @@ public class ReadPillsS7 {
             }
         }
 
+        /**
+         * Send the message that the connection is stopped.
+         */
         private void sendPostExecuteMessage() {
             Message postExecuteMsg = new Message();
             postExecuteMsg.what = MESSAGE_POST_EXECUTE;
             monHandler.sendMessage(postExecuteMsg);
         }
 
+        /**
+         * Send the message that the connection is started.
+         * Contains the PLC number.
+         *
+         * @param v
+         *      The view.
+         */
         private void sendPreExecuteMessage(int v) {
             Message preExecuteMsg = new Message();
             preExecuteMsg.what = MESSAGE_PRE_EXECUTE;
@@ -229,6 +319,12 @@ public class ReadPillsS7 {
             monHandler.sendMessage(preExecuteMsg);
         }
 
+        /**
+         * Send the message containing if the automaton is in service.
+         *
+         * @param i
+         *      Contains if the automaton is in service.
+         */
         private void sendServiceMessage(int i) {
             Message serviceMsg = new Message();
             serviceMsg.what = MESSAGE_SERVICE_UPDATE;
@@ -236,6 +332,12 @@ public class ReadPillsS7 {
             monHandler.sendMessage(serviceMsg);
         }
 
+        /**
+         * Send the message containing if the empty bottles are coming.
+         *
+         * @param i
+         *      Contains if the empty bottles are coming.
+         */
         private void sendBottlesComingMessage(int i) {
             Message bottlesComingMsg = new Message();
             bottlesComingMsg.what = MESSAGE_BOTTLES_COMING_UPDATE;
@@ -243,6 +345,12 @@ public class ReadPillsS7 {
             monHandler.sendMessage(bottlesComingMsg);
         }
 
+        /**
+         * Send the message containing the wanted number of pills.
+         *
+         * @param i
+         *      Contains the wanted number of pills.
+         */
         private void sendWantedPillsMessage(int i) {
             Message wantedPillsMsg = new Message();
             wantedPillsMsg.what = MESSAGE_WANTED_PILLS_UPDATE;
@@ -250,6 +358,12 @@ public class ReadPillsS7 {
             monHandler.sendMessage(wantedPillsMsg);
         }
 
+        /**
+         * Send the message containing the number of pills in live.
+         *
+         * @param i
+         *      Contains the number of pills in live.
+         */
         private void sendPillsMessage(int i) {
             Message pillsMsg = new Message();
             pillsMsg.what = MESSAGE_PILLS_UPDATE;
@@ -257,6 +371,12 @@ public class ReadPillsS7 {
             monHandler.sendMessage(pillsMsg);
         }
 
+        /**
+         * Send the message containing the number of filled bottles.
+         *
+         * @param i
+         *      Contains the number of filled bottles.
+         */
         private void sendBottlesMessage(int i) {
             Message bottlesMsg = new Message();
             bottlesMsg.what = MESSAGE_BOTTLES_UPDATE;
@@ -264,6 +384,14 @@ public class ReadPillsS7 {
             monHandler.sendMessage(bottlesMsg);
         }
 
+        /**
+         * Get the wanted number of pills from the different values returned by the automaton.
+         *
+         * @param array
+         *      The array containing the different values returned by the automaton.
+         *
+         * @return the wanted number of pills.
+         */
         private int wantedPillsNumber(boolean[] array) {
             if (array[0])
                 return 5;

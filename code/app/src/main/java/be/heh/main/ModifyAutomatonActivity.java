@@ -19,6 +19,11 @@ import be.heh.models.Automaton;
 import be.heh.models.CurrentAutomaton;
 import be.heh.models.Session;
 
+/**
+ * This class creates the activity to modify the automatons.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class ModifyAutomatonActivity extends Activity {
 
     private Session session;
@@ -48,6 +53,13 @@ public class ModifyAutomatonActivity extends Activity {
 
     AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,12 +108,22 @@ public class ModifyAutomatonActivity extends Activity {
         et_modifyAutomaton_databloc.addTextChangedListener(dataBloc);
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the method managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onModifyAutomatonClickManager(View v) {
         // Récupérer la vue et accéder au bouton
         switch (v.getId()) {
@@ -145,6 +167,10 @@ public class ModifyAutomatonActivity extends Activity {
         }
     }
 
+    /**
+     * Initialize the validation of the inputs.
+     * Each input is linked to a text watcher to verify if the text has the right format.
+     */
     private void initValidation() {
         name = new TextWatcher() {
             @Override
@@ -155,7 +181,7 @@ public class ModifyAutomatonActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Pattern.matches("^((\\w|\\s|\\d){2, 15})$", et_modifyAutomaton_name.getText().toString())) {
+                if (!Pattern.matches("^((\\w|\\s|\\d){2,15})$", et_modifyAutomaton_name.getText().toString())) {
                     et_modifyAutomaton_name.setError(getString(R.string.wrong_format));
                     validName = false;
                 } else {
@@ -249,6 +275,11 @@ public class ModifyAutomatonActivity extends Activity {
         };
     }
 
+    /**
+     * Verify if all the inputs are valid.
+     *
+     * @return true if they are, false otherwise.
+     */
     public boolean isValid() {
         return validName && validIp && validRack && validSlot && validDataBloc;
     }

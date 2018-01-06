@@ -16,15 +16,17 @@ import java.util.HashMap;
 
 import be.heh.automatons.AutomatonLiquidActivity;
 import be.heh.automatons.AutomatonPillsActivity;
-import be.heh.automatons.AutomatonsAdapter;
-import be.heh.main.ModifyAutomatonActivity;
-import be.heh.main.R;
-import be.heh.main.RegisterAutomatonActivity;
+import be.heh.models.AutomatonsAdapter;
 import be.heh.models.Automaton;
 import be.heh.database.AutomatonAccessDB;
 import be.heh.models.CurrentAutomaton;
 import be.heh.models.Session;
 
+/**
+ * This class creates the activity listing the automatons.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class ListAutomatonsActivity extends Activity {
 
     private Session session;
@@ -42,6 +44,13 @@ public class ListAutomatonsActivity extends Activity {
     private AutomatonAccessDB automatonDB = new AutomatonAccessDB(this);
     private int position;
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +83,11 @@ public class ListAutomatonsActivity extends Activity {
         lv_listAutomatons_list.setAdapter(adapter);
     }
 
+    /**
+     * Method called on resume.
+     * It's used to return to the login activity if the user is no longer connected.
+     * And updates the displayed values.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -93,12 +107,22 @@ public class ListAutomatonsActivity extends Activity {
 
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the method managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onListAutomatonsClickManager(View v) {
         switch (v.getId()) {
             case R.id.btn_automatonItem_seeIcon:
@@ -174,6 +198,10 @@ public class ListAutomatonsActivity extends Activity {
         }
     }
 
+    /**
+     * Create an alert dialog to remove the current automaton.
+     * It'll ask for a confirmation before removing the automaton.
+     */
     public void createRemoveAutomatonDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

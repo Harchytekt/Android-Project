@@ -25,6 +25,11 @@ import be.heh.models.Automaton;
 import be.heh.models.CurrentAutomaton;
 import be.heh.models.Session;
 
+/**
+ * This class creates the 'pills' automaton's activity.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class AutomatonLiquidActivity extends Activity {
 
     private Session session;
@@ -61,6 +66,13 @@ public class AutomatonLiquidActivity extends Activity {
     private ReadLiquidS7 readS7;
     private WriteLiquidS7 writeS7;
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +134,10 @@ public class AutomatonLiquidActivity extends Activity {
 
     }
 
+    /**
+     * Method called on resume.
+     * It's used to return to the login activity if the user is no longer connected.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -133,12 +149,22 @@ public class AutomatonLiquidActivity extends Activity {
 
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the method managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onAutomatonLiquidClickManager(View v) {
 
         switch (v.getId()) {
@@ -202,7 +228,7 @@ public class AutomatonLiquidActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBBBinary(2, et_automatonLiquid_DBB2.getText().toString());
+                    writeS7.setWriteBool(2, et_automatonLiquid_DBB2.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBB3:
@@ -210,7 +236,7 @@ public class AutomatonLiquidActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBBBinary(3, et_automatonLiquid_DBB3.getText().toString());
+                    writeS7.setWriteBool(3, et_automatonLiquid_DBB3.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBW24:
@@ -218,7 +244,7 @@ public class AutomatonLiquidActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBW(24, et_automatonLiquid_DBW24.getText().toString());
+                    writeS7.setWriteInt(24, et_automatonLiquid_DBW24.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBW26:
@@ -226,7 +252,7 @@ public class AutomatonLiquidActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBW(26, et_automatonLiquid_DBW26.getText().toString());
+                    writeS7.setWriteInt(26, et_automatonLiquid_DBW26.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBW28:
@@ -234,7 +260,7 @@ public class AutomatonLiquidActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBW(28, et_automatonLiquid_DBW28.getText().toString());
+                    writeS7.setWriteInt(28, et_automatonLiquid_DBW28.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBW30:
@@ -242,7 +268,7 @@ public class AutomatonLiquidActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBW(30, et_automatonLiquid_DBW30.getText().toString());
+                    writeS7.setWriteInt(30, et_automatonLiquid_DBW30.getText().toString());
                 }
                 break;
             case R.id.fab_automatonLiquid_logout:

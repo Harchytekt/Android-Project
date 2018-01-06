@@ -25,6 +25,11 @@ import be.heh.models.Automaton;
 import be.heh.models.CurrentAutomaton;
 import be.heh.models.Session;
 
+/**
+ * This class creates the 'pills' automaton's activity.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class AutomatonPillsActivity extends Activity {
 
     private Session session;
@@ -59,6 +64,13 @@ public class AutomatonPillsActivity extends Activity {
     private ReadPillsS7 readS7;
     private WritePillsS7 writeS7;
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +127,10 @@ public class AutomatonPillsActivity extends Activity {
         tv_automatonPills_bottles.setText(String.format(getString(R.string.pills_bottles), "?"));
     }
 
+    /**
+     * Method called on resume.
+     * It's used to return to the login activity if the user is no longer connected.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -126,12 +142,22 @@ public class AutomatonPillsActivity extends Activity {
 
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the method managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onAutomatonPillsClickManager(View v) {
 
         switch (v.getId()) {
@@ -194,7 +220,7 @@ public class AutomatonPillsActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBBBinary(5, et_automatonPills_DBB5.getText().toString());
+                    writeS7.setWriteBool(5, et_automatonPills_DBB5.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBB6:
@@ -202,7 +228,7 @@ public class AutomatonPillsActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBBBinary(6, et_automatonPills_DBB6.getText().toString());
+                    writeS7.setWriteBool(6, et_automatonPills_DBB6.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBB7:
@@ -210,7 +236,7 @@ public class AutomatonPillsActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBBBinary(7, et_automatonPills_DBB7.getText().toString());
+                    writeS7.setWriteBool(7, et_automatonPills_DBB7.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBB8:
@@ -218,7 +244,7 @@ public class AutomatonPillsActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBB8(et_automatonPills_DBB8.getText().toString());
+                    writeS7.setWriteByte(et_automatonPills_DBB8.getText().toString());
                 }
                 break;
             case R.id.btn_modifyAutomaton_registerDBW18:
@@ -226,7 +252,7 @@ public class AutomatonPillsActivity extends Activity {
                     Toast.makeText(this, getString((R.string.empty_input)), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString((R.string.written_data)), Toast.LENGTH_SHORT).show();
-                    writeS7.setDBW18(et_automatonPills_DBW18.getText().toString());
+                    writeS7.setWriteInt(et_automatonPills_DBW18.getText().toString());
                 }
                 break;
             case R.id.fab_automatonPills_logout:

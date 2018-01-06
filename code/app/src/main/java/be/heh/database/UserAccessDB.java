@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import be.heh.models.User;
 
 /**
- * Created by alexandre on 1/12/17.
+ * This class manages the user's data from de database.
+ *
+ * @author DUCOBU Alexandre
  */
-
 public class UserAccessDB {
 
     private static final int VERSION = 1;
@@ -36,22 +37,45 @@ public class UserAccessDB {
     private SQLiteDatabase db;
     private MyProjectDBSQlite myprojectdb;
 
+    /**
+     * Constructor of a user object from the database.
+     *
+     * @param c
+     *      The context of the application.
+     */
     public UserAccessDB(Context c) {
         myprojectdb = new MyProjectDBSQlite(c, NOM_DB, null, VERSION);
     }
 
+    /**
+     * Open the database to write in the users database.
+     */
     public void openForWrite() {
         db = myprojectdb.getWritableDatabase();
     }
 
+    /**
+     * Open the database to read in the users database.
+     */
     public void openForRead() {
         db = myprojectdb.getReadableDatabase();
     }
 
+    /**
+     * Close the users database.
+     */
     public void Close() {
         db.close();
     }
 
+    /**
+     * Insert a user to the database.
+     *
+     * @param u
+     *      The user to insert.
+     *
+     * @return the row ID of the newly inserted row, or -1 if an error occurred.
+     */
     public long insertUser(User u) {
         ContentValues content = new ContentValues();
         content.put(COL_LASTNAME, u.getLastname());
@@ -62,6 +86,16 @@ public class UserAccessDB {
         return db.insert(TABLE_USER, null, content);
     }
 
+    /**
+     * Update a user from the database.
+     *
+     * @param i
+     *      The ID of the user.
+     * @param u
+     *      The user to insert.
+     *
+     * @return the row ID of the newly inserted row, or -1 if an error occurred.
+     */
     public int updateUser(int i, User u) {
         ContentValues content = new ContentValues();
         content.put(COL_LASTNAME, u.getLastname());
@@ -72,22 +106,56 @@ public class UserAccessDB {
         return db.update(TABLE_USER, content, COL_ID + " = " + i, null);
     }
 
+    /**
+     * Update the user's rights from the database.
+     *
+     * @param id
+     *      The ID of the user.
+     * @param rights
+     *      The new rights of the user.
+     *
+     * @return the row ID of the newly inserted row, or -1 if an error occurred.
+     */
     public int updateUserRights(int id, String rights) {
         ContentValues content = new ContentValues();
         content.put(COL_RIGHTS, rights);
         return db.update(TABLE_USER, content, COL_ID + " = " + id, null);
     }
 
+    /**
+     * Update the user's password from the database.
+     *
+     * @param id
+     *      The ID of the user.
+     * @param password
+     *      The new password of the user.
+     *
+     * @return the row ID of the newly inserted row, or -1 if an error occurred.
+     */
     public int updateUserPassword(int id, String password) {
         ContentValues content = new ContentValues();
         content.put(COL_PASSWORD, password);
         return db.update(TABLE_USER, content, COL_ID + " = " + id, null);
     }
 
+    /**
+     * Remove a user  from the database.
+     *
+     * @param email
+     *      The email address of the user.
+     *
+     * @return the number of rows affected if a whereClause is passed in, 0 otherwise.
+     * To remove all rows and get a count pass "1" as the whereClause.
+     */
     public int removeUser(String email) {
         return db.delete(TABLE_USER, COL_EMAIL + " = ?", new String[] {email});
     }
 
+    /**
+     * Return a list of all the users of the database.
+     *
+     * @return a list of all the users of the database.
+     */
     public ArrayList<User> getAllUsers() {
         Cursor c = db.query(TABLE_USER, new String[]{
                 COL_ID, COL_LASTNAME, COL_FIRSTNAME, COL_PASSWORD, COL_EMAIL, COL_RIGHTS}, null, null, null, null, COL_ID);
@@ -114,6 +182,14 @@ public class UserAccessDB {
 
     }
 
+    /**
+     * Verify if the email is already used by an existing user.
+     *
+     * @param email
+     *      The email address to verify.
+     *
+     * @return true if it's already used, false otherwise.
+     */
     public boolean isAlreadyUsed(String email) {
         ArrayList<User> tabUser = this.getAllUsers();
         for (User user : tabUser) {
@@ -123,10 +199,20 @@ public class UserAccessDB {
         return false;
     }
 
+    /**
+     * Get the number of users contained in the database.
+     *
+     * @return the number of users contained in the database.
+     */
     public int getNumberOfUsers() {
         return this.getAllUsers().size();
     }
 
+    /**
+     * Get the number of 'read-only' users.
+     *
+     * @return the number of 'read-only' users.
+     */
     public String getRUsers() {
         Cursor c = db.rawQuery("SELECT COUNT(*) AS nbR FROM " + TABLE_USER + " where " + COL_RIGHTS + " = '2'", null);
 
@@ -137,6 +223,11 @@ public class UserAccessDB {
         return res;
     }
 
+    /**
+     * Get the number of 'read-write' users.
+     *
+     * @return the number of 'read-write' users.
+     */
     public String getRWUsers() {
         Cursor c = db.rawQuery("SELECT COUNT(*) AS nbR FROM " + TABLE_USER + " where " + COL_RIGHTS + " = '1'", null);
 

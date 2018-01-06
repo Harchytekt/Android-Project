@@ -19,7 +19,13 @@ import be.heh.database.UserAccessDB;
 import be.heh.models.Password;
 import be.heh.models.Session;
 import be.heh.models.User;
+import be.heh.models.UsersAdapter;
 
+/**
+ * This class creates the activity listing the users.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class ListUsersActivity extends Activity {
 
     private Session session;
@@ -39,6 +45,13 @@ public class ListUsersActivity extends Activity {
     Password pwd;
 
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,12 +83,22 @@ public class ListUsersActivity extends Activity {
 
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the method managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onListUsersClickManager(View v) {
         switch (v.getId()) {
             case R.id.btn_userItem_passwordIcon:
@@ -123,6 +146,10 @@ public class ListUsersActivity extends Activity {
         }
     }
 
+    /**
+     * Create an alert dialog to modify the current user's password.
+     * Warning: there is no verification for the format of the new password.
+     */
     public void createPasswordDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final EditText inputPassword = new EditText(this);
@@ -154,6 +181,13 @@ public class ListUsersActivity extends Activity {
                 }).create().show();
     }
 
+    /**
+     * Create an alert dialog to modify the current user's rights.
+     * The choice is made by checking radio buttons.
+     *
+     * @param checked
+     *      The current rights of the user.
+     */
     public void createRightsDialog(int checked) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -183,6 +217,10 @@ public class ListUsersActivity extends Activity {
         rightsDialog.show();
     }
 
+    /**
+     * Create an alert dialog to remove the current user.
+     * It'll ask for a confirmation before removing the user.
+     */
     public void createRemoveUserDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

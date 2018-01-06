@@ -16,6 +16,11 @@ import be.heh.main.HomeActivity;
 import be.heh.main.R;
 import be.heh.main.SuperHomeActivity;
 
+/**
+ * This class creates the login activity.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class LoginActivity extends Activity {
 
     EditText et_login_email;
@@ -26,6 +31,13 @@ public class LoginActivity extends Activity {
     private boolean isSuper;
     private String rights;
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +50,23 @@ public class LoginActivity extends Activity {
 
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the method managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onLoginClickManager(View v) {
-
         switch (v.getId()) {
             case R.id.btn_login_register:
 
@@ -87,7 +108,7 @@ public class LoginActivity extends Activity {
      * Log the user in if it's in the database.
      *
      * @param tabUser
-     *      The arraylist containing the list of all users of the be.heh.database.
+     *      The arraylist containing the list of all users of the database.
      * @return true if the user is known, false otherwise.
      */
     public boolean login(ArrayList<User> tabUser) {

@@ -15,6 +15,11 @@ import java.util.HashMap;
 import be.heh.database.AutomatonAccessDB;
 import be.heh.models.Session;
 
+/**
+ * This class creates the home activity.
+ *
+ * @author DUCOBU Alexandre
+ */
 public class HomeActivity extends Activity {
 
     private Session session;
@@ -23,6 +28,13 @@ public class HomeActivity extends Activity {
     TextView tv_home_automatons;
     Button btn_home_seeAutomatons;
 
+    /**
+     * Method called on the activity creation.
+     * It initializes all the variable, etc.
+     *
+     * @param savedInstanceState
+     *      The saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +70,11 @@ public class HomeActivity extends Activity {
                 "<b>" + nbLiquids + "</b> " + getString(R.string.home_users_text3) + "<i>" + getString(R.string.liquid) + "</i>."));
     }
 
+    /**
+     * Method called on resume.
+     * It's used to return to the login activity if the user is no longer connected.
+     * And updates the displayed values.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -81,12 +98,22 @@ public class HomeActivity extends Activity {
 
     }
 
+    /**
+     * Method called when the 'Back' button is pressed.
+     * It's used to change the animation of the activity appearance.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /**
+     * This is the method managing the actions linked to the buttons of this activity.
+     *
+     * @param v
+     *      The view of the current activity.
+     */
     public void onHomeClickManager(View v) {
 
         switch (v.getId()) {
