@@ -1,4 +1,4 @@
-package be.heh.automatons;
+package be.heh.models;
 
 import android.content.Context;
 import android.text.Html;
@@ -16,9 +16,10 @@ import be.heh.main.R;
 import be.heh.models.Automaton;
 
 /**
- * Created by alexandre on 11/12/17.
+ * This class creates an automaton's adapter object.
+ *
+ * @author DUCOBU Alexandre
  */
-
 public class AutomatonsAdapter extends ArrayAdapter<Automaton> {
 
     Context context;
@@ -34,11 +35,32 @@ public class AutomatonsAdapter extends ArrayAdapter<Automaton> {
     ImageButton btn_automatonItem_editIcon;
     ImageButton btn_automatonItem_removeIcon;
 
-    public AutomatonsAdapter(Context context, ArrayList<Automaton> automaton) {
-        super(context, 0, automaton);
+    /**
+     * Constructor of the adapter.
+     *
+     * @param context
+     *      The context of the application.
+     * @param automatons
+     *      The list of automatons for the adapter.
+     */
+    public AutomatonsAdapter(Context context, ArrayList<Automaton> automatons) {
+        super(context, 0, automatons);
         this.context = context;
     }
 
+    /**
+     * Get the view of the adapter.
+     * It's in this method that the display format of the automatons is created.
+     *
+     * @param position
+     *      The position of the current automaton in the list.
+     * @param convertView
+     *      The view.
+     * @param parent
+     *      The ViewGroup of the adapter.
+     *
+     * @return the convertView
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

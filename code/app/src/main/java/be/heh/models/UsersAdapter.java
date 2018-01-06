@@ -1,4 +1,4 @@
-package be.heh.main;
+package be.heh.models;
 
 import android.content.Context;
 import android.text.Html;
@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import be.heh.main.R;
 import be.heh.models.User;
 
 /**
- * Created by alexandre on 11/12/17.
+ * This class creates a user's adapter object.
+ *
+ * @author DUCOBU Alexandre
  */
-
 public class UsersAdapter extends ArrayAdapter<User> {
 
     Context context;
@@ -33,11 +35,32 @@ public class UsersAdapter extends ArrayAdapter<User> {
     ImageButton btn_userItem_rightsIcon;
     ImageButton btn_userItem_removeIcon;
 
+    /**
+     * Constructor of the adapter.
+     *
+     * @param context
+     *      The context of the application.
+     * @param users
+     *      The list of users for the adapter.
+     */
     public UsersAdapter(Context context, ArrayList<User> users) {
         super(context, 0, users);
         this.context = context;
     }
 
+    /**
+     * Get the view of the adapter.
+     * It's in this method that the display format of the users is created.
+     *
+     * @param position
+     *      The position of the current user in the list.
+     * @param convertView
+     *      The view.
+     * @param parent
+     *      The ViewGroup of the adapter.
+     *
+     * @return the convertView
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
