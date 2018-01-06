@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * This class creates The database.
+ * This class creates the database.
  *
  * @author DUCOBU Alexandre
  */
