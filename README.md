@@ -28,3 +28,5 @@ A user is represented by his name, firstname and email address as well as a pass
 
 The user privilege options _(R or R/W)_ are accessible via the login and password of the "**Super user**" login: "android" and (modifiable) password: "android3".
 </details>
+
+![Login](Preview.png "Login")
