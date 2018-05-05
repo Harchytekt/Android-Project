@@ -3,7 +3,7 @@ This is my first project in _Android_.
 It has been developped in my third year at the Haute École en Hainaut for the _Développement mobile - Applications sur Android_ course.
 
 The code is in the [code/app/src/main/java/be/heh](code/app/src/main/java/be/heh) folder.  
-And the report will be soon [here](https://github.com/Harchytekt/Rapports/blob/master/2015-2018%20(HeH)/2017-2018/Applications%20sur%20Android/Rapport.pdf).
+And the report is available [here](https://github.com/Harchytekt/Rapports/blob/master/2015-2018%20(HeH)/2017-2018/Applications%20sur%20Android/Rapport.pdf).
 
 ## The project 👨🏻‍💻
 
